@@ -1,0 +1,4 @@
+site_name: Documentação do Composer
+docs_dir: doc
+site_dir: build
+theme: readthedocs

@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+    python:
+        image: ${DOCKER_IMAGE_PYTHON_DEV}
+        build:
+            context: ""
+            dockerfile: ../docker/dev/Dockerfile
+            args:
+                DOCKER_IMAGE_PYTHON_BASE: ${DOCKER_IMAGE_PYTHON_BASE}
+        restart: always
+        command: mkdocs serve -a 0.0.0.0:8000
+        ports:
+            - ${DEV_HOST_PORT_HTTP}:8000
+        volumes:
+            # folders
+            - ../..:/var/www
+        working_dir: /var/www
+        env_file:
+            # docker
+            - .env
+            # application
+            - ../../.env.local
