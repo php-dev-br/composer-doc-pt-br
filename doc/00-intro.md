@@ -153,8 +153,6 @@ Composer version 1.0.0 2016-01-10 20:34:53
 Agora que você instalou o Composer, está tudo pronto para usá-lo! Vá para o
 próximo capítulo para uma demonstração curta e simples.
 
-[Uso Básico][basic-usage] &rarr;
-
 [basic-usage]: 01-basic-usage.md
 [bundler-page]: https://bundler.io/
 [cli-global]: 03-cli.md#global
