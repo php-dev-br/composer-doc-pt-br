@@ -7,14 +7,14 @@ gerencia (instala/atualiza) para você.
 ## Gerenciamento de Dependências
 
 O Composer **não** é um gerenciador de pacotes no mesmo sentido que o Yum ou
-Apt. Sim, ele lida com "pacotes" ou bibliotecas, mas os gerencia em uma base por
-projeto, instalando-os em um diretório (por exemplo, `vendor`) dentro do seu
+Apt. Sim, ele lida com "pacotes" ou bibliotecas, mas os gerencia separadamente
+por projeto, instalando-os em um diretório (por exemplo, `vendor`) dentro do seu
 projeto. Por padrão, ele não instala nada globalmente. Portanto, ele é um
 gerenciador de dependências. No entanto, ele suporta um projeto "global" por
-conveniência, através do comando [global](03-cli.md#global).
+conveniência, através do comando [global][cli-global].
 
-Essa ideia não é nova e o Composer é fortemente inspirado pelo [npm](https://www.npmjs.com/)
-do node e pelo [bundler](https://bundler.io/) do ruby.
+Essa ideia não é nova e o Composer é fortemente inspirado pelo [npm][npmjs-page]
+do node e pelo [bundler][bundler-page] do ruby.
 
 Suponha que:
 
@@ -27,8 +27,8 @@ O Composer:
 1. Descobre quais versões de quais pacotes podem e precisam ser instaladas e as
    instala (o que significa que elas são baixadas no seu projeto).
 
-Consulte o capítulo [Uso Básico](01-basic-usage.md) para obter mais detalhes
-sobre a declaração de dependências.
+Consulte o capítulo [Uso Básico][basic-usage] para obter mais detalhes sobre a
+declaração de dependências.
 
 ## Requisitos de Sistema
 
@@ -36,122 +36,132 @@ O Composer requer o PHP 5.3.2+ para executar. Algumas configurações sensíveis
 PHP e flags de compilação também são necessárias, mas ao usar o instalador, você
 será avisado sobre quaisquer incompatibilidades.
 
-Para instalar pacotes a partir de arquivos fonte, em vez de arquivos zip
-simples, você precisará do git, svn, fossil ou hg, dependendo de como é feito o
-controle de versão do pacote.
+Para instalar pacotes a partir do código-fonte, em vez de arquivos zip simples,
+você precisará do git, svn, fossil ou hg, dependendo de como é feito o controle
+de versão do pacote.
 
 O Composer é multiplataforma e nós nos esforçamos para fazê-lo funcionar
 igualmente bem no Windows, Linux e macOS.
 
 ## Instalação - Linux / Unix / macOS
 
-### Downloading the Composer Executable
+### Baixando o Executável do Composer
 
-Composer offers a convenient installer that you can execute directly from the
-command line. Feel free to [download this file](https://getcomposer.org/installer)
-or review it on [GitHub](https://github.com/composer/getcomposer.org/blob/master/web/installer)
-if you wish to know more about the inner workings of the installer. The source
-is plain PHP.
+O Composer oferece um instalador conveniente que você pode executar diretamente
+da linha de comando. Sinta-se à vontade para [baixar esse arquivo][installer]
+ou revisá-lo no [GitHub][installer-github], se desejar saber mais sobre
+o funcionamento interno do instalador. O código-fonte é PHP simples.
 
-There are in short, two ways to install Composer. Locally as part of your
-project, or globally as a system wide executable.
+Em resumo, existem duas formas de instalar o Composer. Localmente como parte do
+seu projeto ou globalmente como um executável disponível em todo o sistema.
 
-#### Locally
+#### Localmente
 
-To install Composer locally, run the installer in your project directory. See 
-[the Download page](https://getcomposer.org/download/) for instructions.
+Para instalar o Composer localmente, execute o instalador no diretório do seu
+projeto. Consulte [a página de download][download-page] para obter instruções.
 
-The installer will check a few PHP settings and then download `composer.phar`
-to your working directory. This file is the Composer binary. It is a PHAR
-(PHP archive), which is an archive format for PHP which can be run on
-the command line, amongst other things.
+O instalador verificará algumas configurações do PHP e fará o download do
+`composer.phar` no seu diretório atual. Esse arquivo é o binário do Composer.
+Ele é um PHAR (PHP Archive), que é um formato de arquivo para PHP que pode ser
+executado na linha de comando, entre outras coisas.
 
-Now run `php composer.phar` in order to run Composer.
+Agora execute `php composer.phar` para executar o Composer.
 
-You can install Composer to a specific directory by using the `--install-dir`
-option and additionally (re)name it as well using the `--filename` option. When
-running the installer when following
-[the Download page instructions](https://getcomposer.org/download/) add the
-following parameters:
+Você pode instalar o Composer em um diretório específico usando a opção
+`--install-dir` e, adicionalmente, também renomeá-lo usando a opção
+`--filename`. Ao executar o instalador, seguindo [as instruções da página de download][download-page],
+adicione os seguintes parâmetros:
 
 ```sh
 php composer-setup.php --install-dir=bin --filename=composer
 ```
 
-Now run `php bin/composer` in order to run Composer.
+Agora execute `php bin/composer` para executar o Composer.
 
-#### Globally
+#### Globalmente
 
-You can place the Composer PHAR anywhere you wish. If you put it in a directory
-that is part of your `PATH`, you can access it globally. On Unix systems you
-can even make it executable and invoke it without directly using the `php`
-interpreter.
+Você pode colocar o PHAR do Composer em qualquer lugar que desejar. Se você o
+colocar em um diretório que faça parte da sua variável de ambiente `PATH`, você
+poderá acessá-lo globalmente. Nos sistemas Unix, você pode até torná-lo
+executável e invocá-lo sem usar diretamente o interpretador `php`.
 
-After running the installer following [the Download page instructions](https://getcomposer.org/download/)
-you can run this to move composer.phar to a directory that is in your path:
+Após executar o instalador, seguindo [as instruções da página de download][download-page],
+você pode executar isto para mover o composer.phar para um diretório que esteja
+na sua variável `PATH`:
 
 ```sh
 mv composer.phar /usr/local/bin/composer
 ```
 
-If you like to install it only for your user and avoid requiring root permissions,
-you can use `~/.local/bin` instead which is available by default on some
-Linux distributions.
+Se você deseja instalá-lo apenas para o seu usuário e evitar exigir permissões
+de root, use `~/.local/bin`, que está disponível por padrão em algumas
+distribuições Linux.
 
-> **Note:** If the above fails due to permissions, you may need to run it again
-> with sudo.
+> **Nota:** Se o comando acima falhar devido a permissões, pode ser necessário
+> executá-lo novamente com sudo.
 
-> **Note:** On some versions of macOS the `/usr` directory does not exist by
-> default. If you receive the error "/usr/local/bin/composer: No such file or
-> directory" then you must create the directory manually before proceeding:
+> **Nota:** Em algumas versões do macOS, o diretório `/usr` não existe por
+> padrão. Se você receber o erro "/usr/local/bin/composer: No such file or
+> directory", deverá criar o diretório manualmente antes de continuar:
 > `mkdir -p /usr/local/bin`.
 
-> **Note:** For information on changing your PATH, please read the
-> [Wikipedia article](https://en.wikipedia.org/wiki/PATH_(variable)) and/or use Google.
+> **Nota:** Para obter informações sobre como alterar sua variável `PATH`, leia
+> o [artigo da Wikipedia][path-variable] e/ou use seu mecanismo de busca
+> preferido.
 
-Now run `composer` in order to run Composer instead of `php composer.phar`.
+Agora execute `composer` para executar o Composer em vez de `php composer.phar`.
 
-## Installation - Windows
+## Instalação - Windows
 
-### Using the Installer
+### Usando o Instalador
 
-This is the easiest way to get Composer set up on your machine.
+Esta é a maneira mais fácil de configurar o Composer na sua máquina.
 
-Download and run
-[Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe). It will
-install the latest Composer version and set up your PATH so that you can
-call `composer` from any directory in your command line.
+Baixe e execute o [Composer-Setup.exe][installer-exe]. Ele instalará a versão
+mais recente do Composer e configurará sua variável `PATH` para que você possa
+executar o `composer` de qualquer diretório na sua linha de comando.
 
-> **Note:** Close your current terminal. Test usage with a new terminal: This is
-> important since the PATH only gets loaded when the terminal starts.
+> **Nota:** Feche seu terminal atual. Teste o uso com um novo terminal: Isso é
+> importante, pois a variável `PATH` só é carregada quando o terminal é
+> iniciado.
 
-### Manual Installation
+### Instalação Manual
 
-Change to a directory on your `PATH` and run the installer following
-[the Download page instructions](https://getcomposer.org/download/)
-to download `composer.phar`.
+Mude para um diretório que esteja na sua variável `PATH` e execute o instalador
+seguindo [as instruções da página de download][download-page] para baixar o
+`composer.phar`.
 
-Create a new `composer.bat` file alongside `composer.phar`:
+Crie um novo arquivo `composer.bat` junto ao `composer.phar`:
 
 ```sh
 C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
 ```
 
-Add the directory to your PATH environment variable if it isn't already.
-For information on changing your PATH variable, please see
-[this article](https://www.computerhope.com/issues/ch000549.htm) and/or
-use Google.
+Adicione o diretório à sua variável de ambiente `PATH`, se ainda não estiver.
+Para obter informações sobre como alterar sua variável `PATH`, consulte
+[este artigo][path-article] e/ou use seu mecanismo de pesquisa preferido.
 
-Close your current terminal. Test usage with a new terminal:
+Feche o seu terminal atual. Teste o uso em um novo terminal:
 
 ```sh
 C:\Users\username>composer -V
 Composer version 1.0.0 2016-01-10 20:34:53
 ```
 
-## Using Composer
+## Usando o Composer
 
-Now that you've installed Composer, you are ready to use it! Head on over to the
-next chapter for a short and simple demonstration.
+Agora que você instalou o Composer, está tudo pronto para usá-lo! Vá para o
+próximo capítulo para uma demonstração curta e simples.
 
-[Basic usage](01-basic-usage.md) &rarr;
+[Uso Básico][basic-usage] &rarr;
+
+[basic-usage]: 01-basic-usage.md
+[bundler-page]: https://bundler.io/
+[cli-global]: 03-cli.md#global
+[download-page]: https://getcomposer.org/download/
+[installer]: https://getcomposer.org/installer
+[installer-github]: https://github.com/composer/getcomposer.org/blob/master/web/installer
+[installer-exe]: https://getcomposer.org/Composer-Setup.exe
+[npmjs-page]: https://www.npmjs.com/
+[path-article]: https://www.computerhope.com/issues/ch000549.htm
+[path-variable]: https://en.wikipedia.org/wiki/PATH_(variable)
