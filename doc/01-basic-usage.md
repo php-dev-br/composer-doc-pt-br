@@ -43,46 +43,50 @@ leia mais sobre repositórios [aqui][repositories]).
 
 ### Nomes de Pacotes
 
-The package name consists of a vendor name and the project's name. Often these
-will be identical - the vendor name only exists to prevent naming clashes. For
-example, it would allow two different people to create a library named `json`.
-One might be named `igorw/json` while the other might be `seldaek/json`.
+O nome do pacote consiste em um nome de fornecedor e o nome do projeto.
+Geralmente, eles serão idênticos - o nome do fornecedor existe apenas para
+prevenir conflitos de nomes. Por exemplo, isso permite que duas pessoas
+diferentes criem uma biblioteca chamada `json`. Uma pode ser chamada
+`igorw/json` enquanto a outra pode ser `seldaek/json`.
 
-Read more about publishing packages and package naming [here](02-libraries.md).
-(Note that you can also specify "platform packages" as dependencies, allowing
-you to require certain versions of server software. See
-[platform packages](#platform-packages) below.)
+Leia mais sobre a publicação de pacotes e a nomeação de pacotes [aqui][libraries].
+(Note que você também pode especificar "pacotes de plataforma" como
+dependências, permitindo que você exija determinadas versões do software do
+servidor. Consulte os [pacotes de plataforma][platform-packages] abaixo.)
 
-### Package version constraints
+### Restrições de Versão de Pacote
 
-In our example, we are requesting the Monolog package with the version constraint
-[`1.0.*`](https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*).
-This means any version in the `1.0` development branch, or any version that is
-greater than or equal to 1.0 and less than 1.1 (`>=1.0 <1.1`).
+Em nosso exemplo, estamos solicitando o pacote Monolog com a restrição de versão
+[`1.0.*`][semver-monolog]. Isso significa qualquer versão na branch de
+desenvolvimento `1.0`, ou qualquer versão maior ou igual a 1.0 e menor que
+1.1 (`>=1.0 <1.1`).
 
-Please read [versions](articles/versions.md) for more in-depth information on
-versions, how versions relate to each other, and on version constraints.
+Leia o [artigo sobre versões][article-versions] para obter informações mais
+detalhadas sobre versões, como as versões se relacionam entre si e sobre as
+restrições de versão.
 
-> **How does Composer download the right files?** When you specify a dependency in
-> `composer.json`, Composer first takes the name of the package that you have requested
-> and searches for it in any repositories that you have registered using the
-> [`repositories`][ch-schema-repositories] key. If you have not registered
-> any extra repositories, or it does not find a package with that name in the
-> repositories you have specified, it falls back to Packagist (more [below](#packagist)).
+> **Como o Composer baixa os arquivos corretos?** Quando você especifica uma
+> dependência no `composer.json`, o Composer primeiro pega o nome do pacote
+> solicitado e o procura em qualquer repositório registrado usando a chave
+> [`repositories`][schema-repositories]. Se você não registrou nenhum
+> repositório extra ou se ele não encontra um pacote com esse nome nos
+> repositórios que você especificou, ele volta ao Packagist (mais [abaixo][packagist]).
 >
-> When Composer finds the right package, either in Packagist or in a repo you have specified,
-> it then uses the versioning features of the package's VCS (i.e., branches and tags)
-> to attempt to find the best match for the version constraint you have specified. Be sure to read
-> about versions and package resolution in the [versions article](articles/versions.md).
+> Quando o Composer encontra o pacote certo, no Packagist ou em um repositório
+> que você especificou, ele usa os recursos de versão do VCS do pacote (ou seja,
+> branches e tags) para tentar encontrar a melhor correspondência para a
+> restrição de versão que você especificou. Leia sobre versões e resolução de
+> pacotes no [artigo sobre versões][article-versions].
 
-> **Note:** If you are trying to require a package but Composer throws an error
-> regarding package stability, the version you have specified may not meet your
-> default minimum stability requirements. By default only stable releases are taken
-> into consideration when searching for valid package versions in your VCS.
+> **Nota:** Se você está tentando requisitar um pacote mas o Composer gera um
+> erro referente à estabilidade do pacote, a versão que você especificou pode
+> não atender aos seus requisitos mínimos de estabilidade padrão. Por padrão,
+> apenas versões estáveis são levadas em consideração ao procurar versões de
+> pacotes válidas no seu VCS.
 >
-> You might run into this if you are trying to require dev, alpha, beta, or RC
-> versions of a package. Read more about stability flags and the `minimum-stability`
-> key on the [schema page](04-schema.md).
+> Você pode se deparar com isso se estiver tentando requisitar as versões dev,
+> alpha, beta ou RC de um pacote. Leia mais sobre flags de estabilidade e a
+> chave `minimum-stability` na [página do esquema][schema].
 
 ## Installing dependencies
 
@@ -265,9 +269,14 @@ See also the docs on [optimizing the autoloader](articles/autoloader-optimizatio
 
 [Libraries](02-libraries.md) &rarr;
 
+[article-versions]: articles/versions.md
 [intro]: 00-intro.md
 [intro-localmente]: 00-intro.md#localmente
+[libraries]: 02-libraries.md
 [repositories]: 05-repositories.md
+[platform-packages]: #platform-packages
+[schema]: 04-schema.md
 [schema-require]: 04-schema.md#require
 [schema-repositories]: 04-schema.md#repositories
+[semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*
 [packagist]: #packagist
