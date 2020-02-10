@@ -57,8 +57,8 @@ servidor. Consulte os [pacotes de plataforma][platform-packages] abaixo.)
 ### Restrições de Versão de Pacote
 
 Em nosso exemplo, estamos solicitando o pacote Monolog com a restrição de versão
-[`1.0.*`][semver-monolog]. Isso significa qualquer versão na branch de
-desenvolvimento `1.0`, ou qualquer versão maior ou igual a 1.0 e menor que
+[`1.0.*`][semver-monolog]. Isso significa qualquer versão no branch de
+desenvolvimento `1.0` ou qualquer versão maior ou igual a 1.0 e menor que
 1.1 (`>=1.0 <1.1`).
 
 Leia o [artigo sobre versões][article-versions] para obter informações mais
@@ -88,51 +88,57 @@ restrições de versão.
 > alpha, beta ou RC de um pacote. Leia mais sobre flags de estabilidade e a
 > chave `minimum-stability` na [página do esquema][schema].
 
-## Installing dependencies
+## Instalando Dependências
 
-To install the defined dependencies for your project, run the
-[`install`](03-cli.md#install) command.
+Para instalar as dependências definidas para o seu projeto, execute o comando
+[`install`](03-cli.md#install).
 
 ```sh
 php composer.phar install
 ```
 
-When you run this command, one of two things may happen:
+Quando você executa esse comando, uma destas duas coisas pode acontecer:
 
-### Installing without `composer.lock`
+### Instalando sem o `composer.lock`
 
-If you have never run the command before and there is also no `composer.lock` file present,
-Composer simply resolves all dependencies listed in your `composer.json` file and downloads
-the latest version of their files into the `vendor` directory in your project. (The `vendor`
-directory is the conventional location for all third-party code in a project). In our
-example from above, you would end up with the Monolog source files in
-`vendor/monolog/monolog/`. If Monolog listed any dependencies, those would also be in
-folders under `vendor/`.
+Se você nunca executou o comando antes e também não há nenhum `composer.lock`
+presente, o Composer simplesmente resolve todas as dependências listadas no seu
+arquivo `composer.json` e baixa a versão mais recente dos arquivos no diretório
+`vendor` do seu projeto. (O diretório `vendor` é o local convencional para
+todos os códigos de terceiros em um projeto). Em nosso exemplo acima, você
+acabaria com os arquivos-fonte do Monolog em `vendor/monolog/monolog/`. Se o
+Monolog listasse quaisquer dependências, elas também estariam em pastas em
+`vendor/`.
 
-> **Tip:** If you are using git for your project, you probably want to add
-> `vendor` in your `.gitignore`. You really don't want to add all of that
-> third-party code to your versioned repository.
+> **Dica:** Se você estiver usando o git no seu projeto, provavelmente desejará
+> adicionar `vendor` ao seu `.gitignore`. Você realmente não deseja adicionar
+> todo esse código de terceiros ao seu repositório versionado.
 
-When Composer has finished installing, it writes all of the packages and the exact versions
-of them that it downloaded to the `composer.lock` file, locking the project to those specific
-versions. You should commit the `composer.lock` file to your project repo so that all people
-working on the project are locked to the same versions of dependencies (more below).
+Quando o Composer termina a instalação, ele grava todos os pacotes e as versões
+exatas deles que foram baixadas no arquivo `composer.lock`, fixando o projeto
+naquelas versões específicas. Você deve fazer o commit do arquivo
+`composer.lock` no repositório do projeto, para que todas as pessoas que
+trabalham no projeto usem exatamente as mesmas versões das dependências (mais
+abaixo).
 
-### Installing with `composer.lock`
+### Instalando com o `composer.lock`
 
-This brings us to the second scenario. If there is already a `composer.lock` file as well as a
-`composer.json` file when you run `composer install`, it means either you ran the
-`install` command before, or someone else on the project ran the `install` command and
-committed the `composer.lock` file to the project (which is good).
+Isso nos leva ao segundo cenário. Se já existe um arquivo `composer.lock` e um
+arquivo `composer.json` quando você executa `composer install`, significa que
+você executou o comando `install` antes ou outra pessoa no projeto executou o
+comando `install` e fez o commit do arquivo `composer.lock` no projeto (o que é
+bom).
 
-Either way, running `install` when a `composer.lock` file is present resolves and installs
-all dependencies that you listed in `composer.json`, but Composer uses the exact versions listed
-in `composer.lock` to ensure that the package versions are consistent for everyone
-working on your project. As a result you will have all dependencies requested by your
-`composer.json` file, but they may not all be at the very latest available versions
-(some of the dependencies listed in the `composer.lock` file may have released newer versions since
-the file was created). This is by design, it ensures that your project does not break because of
-unexpected changes in dependencies.
+De qualquer forma, executar `install` quando um arquivo `composer.lock` estiver
+presente resolve e instala todas as dependências listadas no `composer.json`,
+mas o Composer usa as versões exatas listadas no `composer.lock` para garantir
+que as versões dos pacotes sejam consistentes para todos que trabalham no seu
+projeto. Como resultado você terá todas as dependências requisitadas pelo seu
+arquivo `composer.json`, mas elas podem não estar nas versões disponíveis mais
+recentes (algumas das dependências listadas no arquivo `composer.lock` podem ter
+lançado versões mais recentes desde que o arquivo foi criado). Isso é
+intencional e garante que seu projeto não quebre por causa de mudanças
+inesperadas nas dependências.
 
 ### Commit your `composer.lock` file to version control
 
