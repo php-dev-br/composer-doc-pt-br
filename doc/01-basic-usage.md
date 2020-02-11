@@ -181,43 +181,45 @@ php composer.phar update monolog/monolog [...]
 
 ## Packagist
 
-[Packagist][packagist-site] is the main Composer repository. A Composer
-repository is basically a package source: a place where you can get packages
-from. Packagist aims to be the central repository that everybody uses. This
-means that you can automatically `require` any package that is available there,
-without further specifying where Composer should look for the package.
+[Packagist][packagist-site] é o principal repositório do Composer. Um
+repositório do Composer é basicamente uma fonte de pacotes: um local de onde
+você pode obter pacotes. O Packagist pretende ser o repositório central que
+todas as pessoas usam. Isso significa que você pode exigir automaticamente
+qualquer pacote disponível lá usando `require`, sem especificar mais
+detalhes sobre onde o Composer deve procurar pelo pacote.
 
-If you go to the [Packagist website][packagist-site] (packagist.org),
-you can browse and search for packages.
+Se você for ao [site do Packagist][packagist-site] (packagist.org), você pode
+navegar e procurar por pacotes.
 
-Any open source project using Composer is recommended to publish their packages
-on Packagist. A library does not need to be on Packagist to be used by Composer,
-but it enables discovery and adoption by other developers more quickly.
+É recomendado que qualquer projeto de código aberto usando o Composer publique
+seus pacotes no Packagist. Uma biblioteca não precisa estar no Packagist para
+ser usada pelo Composer, mas isso permite a descoberta e adoção por outras
+pessoas desenvolvedoras mais rapidamente.
 
-## Platform packages
+## Pacotes de Plataforma
 
-Composer has platform packages, which are virtual packages for things that are
-installed on the system but are not actually installable by Composer. This
-includes PHP itself, PHP extensions and some system libraries.
+O Composer possui pacotes de plataforma, que são pacotes virtuais para itens
+instalados no sistema, mas que não são realmente instaláveis pelo Composer. Isso
+inclui o próprio PHP, extensões PHP e algumas bibliotecas do sistema.
 
-* `php` represents the PHP version of the user, allowing you to apply
-  constraints, e.g. `^7.1`. To require a 64bit version of php, you can
-  require the `php-64bit` package.
+* `php` representa a versão do PHP do usuário, permitindo aplicar restrições,
+  por exemplo, `^7.1`. Para exigir uma versão do PHP de 64 bits, você pode
+  exigir o pacote `php-64bit`.
 
-* `hhvm` represents the version of the HHVM runtime and allows you to apply
-  a constraint, e.g., `^2.3`.
+* `hhvm` representa a versão do runtime do HHVM e permite aplicar uma restrição,
+  por exemplo, `^2.3`.
 
-* `ext-<name>` allows you to require PHP extensions (includes core
-  extensions). Versioning can be quite inconsistent here, so it's often
-  a good idea to set the constraint to `*`.  An example of an extension
-  package name is `ext-gd`.
+* `ext-<nome>` permite exigir extensões PHP (incluindo extensões nativas). O
+  versionamento pode ser bastante inconsistente aqui, portanto é uma boa idéia
+  definir a restrição como `*`. Um exemplo de um nome de pacote de extensão é
+  `ext-gd`.
 
-* `lib-<name>` allows constraints to be made on versions of libraries used by
-  PHP. The following are available: `curl`, `iconv`, `icu`, `libxml`,
-  `openssl`, `pcre`, `uuid`, `xsl`.
+* `lib-<nome>` permite que restrições sejam feitas nas versões das bibliotecas
+  usadas pelo PHP. As seguintes estão disponíveis: `curl`, `iconv`, `icu`,
+  `libxml`, `openssl`, `pcre`, `uuid`, `xsl`.
 
-You can use [`show --platform`][cli-show] to get a list of your locally
-available platform packages.
+Você pode usar [`show --platform`][cli-show] para obter uma lista dos seus
+pacotes de plataforma disponíveis localmente.
 
 ## Autoloading
 
