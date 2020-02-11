@@ -49,10 +49,10 @@ prevenir conflitos de nomes. Por exemplo, isso permite que duas pessoas
 diferentes criem uma biblioteca chamada `json`. Uma pode ser chamada
 `igorw/json` enquanto a outra pode ser `seldaek/json`.
 
-Leia mais sobre a publicação de pacotes e a nomeação de pacotes [aqui][libraries].
-(Note que você também pode especificar "pacotes de plataforma" como
-dependências, permitindo que você exija determinadas versões do software do
-servidor. Consulte os [pacotes de plataforma][platform-packages] abaixo.)
+Leia mais sobre a publicação e a nomeação de pacotes [aqui][libraries]. (Note
+que você também pode especificar "pacotes de plataforma" como dependências,
+permitindo que você exija determinadas versões do software do servidor. Consulte
+os [pacotes de plataforma][platform-packages] abaixo.)
 
 ### Restrições de Versão de Pacote
 
@@ -91,7 +91,7 @@ restrições de versão.
 ## Instalando Dependências
 
 Para instalar as dependências definidas para o seu projeto, execute o comando
-[`install`](03-cli.md#install).
+[`install`][cli-install].
 
 ```sh
 php composer.phar install
@@ -132,61 +132,62 @@ bom).
 De qualquer forma, executar `install` quando um arquivo `composer.lock` estiver
 presente resolve e instala todas as dependências listadas no `composer.json`,
 mas o Composer usa as versões exatas listadas no `composer.lock` para garantir
-que as versões dos pacotes sejam consistentes para todos que trabalham no seu
-projeto. Como resultado você terá todas as dependências requisitadas pelo seu
-arquivo `composer.json`, mas elas podem não estar nas versões disponíveis mais
-recentes (algumas das dependências listadas no arquivo `composer.lock` podem ter
-lançado versões mais recentes desde que o arquivo foi criado). Isso é
-intencional e garante que seu projeto não quebre por causa de mudanças
-inesperadas nas dependências.
+que as versões dos pacotes sejam consistentes para todas as pessoas que
+trabalham no seu projeto. Como resultado você terá todas as dependências
+requisitadas pelo seu arquivo `composer.json`, mas elas podem não estar nas
+versões disponíveis mais recentes (algumas das dependências listadas no arquivo
+`composer.lock` podem ter lançado versões mais recentes desde que o arquivo foi
+criado). Isso é intencional e garante que seu projeto não quebre por causa de
+mudanças inesperadas nas dependências.
 
-### Commit your `composer.lock` file to version control
+### Faça o Commit do Seu Arquivo `composer.lock` para o Controle de Versão
 
-Committing this file to VC is important because it will cause anyone who sets
-up the project to use the exact same
-versions of the dependencies that you are using. Your CI server, production
-machines, other developers in your team, everything and everyone runs on the
-same dependencies, which mitigates the potential for bugs affecting only some
-parts of the deployments. Even if you develop alone, in six months when
-reinstalling the project you can feel confident the dependencies installed are
-still working even if your dependencies released many new versions since then.
-(See note below about using the `update` command.)
+Fazer o commit desse arquivo para o controle de versão é importante porque fará
+com que qualquer pessoa que configure o projeto use exatamente as mesmas versões
+das dependências que você está usando. Seu servidor de integração contínua,
+máquinas de produção, outras pessoas no seu time, tudo e todas as pessoas
+executam as mesmas dependências, o que reduz o potencial para erros que afetam
+apenas algumas partes das implantações. Mesmo se você for a única pessoa
+desenvolvendo, ao reinstalar o projeto após seis meses você poderá se sentir
+confiante de que as dependências instaladas ainda estão funcionando, mesmo que
+suas dependências tenham lançado muitas novas versões desde então. (Veja a nota
+abaixo sobre o uso do comando `update`.)
 
-## Updating dependencies to their latest versions
+## Atualizando as Dependências para Suas Versões mais Recentes
 
-As mentioned above, the `composer.lock` file prevents you from automatically getting
-the latest versions of your dependencies. To update to the latest versions, use the
-[`update`](03-cli.md#update) command. This will fetch the latest matching
-versions (according to your `composer.json` file) and update the lock file
-with the new versions. (This is equivalent to deleting the `composer.lock` file
-and running `install` again.)
+Como mencionado acima, o arquivo `composer.lock` impede que você obtenha
+automaticamente as versões mais recentes de suas dependências. Para atualizar
+para as versões mais recentes, use o comando [`update`][cli-update]. Ele buscará
+as versões correspondentes mais recentes (de acordo com seu arquivo
+`composer.json`) e atualizará o arquivo de bloqueio com as novas versões. (Isso é
+equivalente a excluir o arquivo `composer.lock` e executar `install` novamente.)
 
 ```sh
 php composer.phar update
 ```
 
-> **Note:** Composer will display a Warning when executing an `install` command
-> if the `composer.lock` has not been updated since changes were made to the
-> `composer.json` that might affect dependency resolution.
+> **Nota:** O Composer exibirá um aviso ao executar um comando `install` se o
+> `composer.lock` não tiver sido atualizado depois que foram feitas alterações
+> no `composer.json` que podem afetar a resolução de dependências.
 
-If you only want to install or update one dependency, you can whitelist them:
+Se você deseja instalar ou atualizar apenas uma dependência, você pode listá-la:
 
 ```sh
 php composer.phar update monolog/monolog [...]
 ```
 
-> **Note:** For libraries it is not necessary to commit the lock
-> file, see also: [Libraries - Lock file](02-libraries.md#lock-file).
+> **Nota:** Para bibliotecas, não é necessário fazer o commit do arquivo de
+> bloqueio, consulte também: [Bibliotecas - Arquivo de Bloqueio][libraries-lock-file].
 
 ## Packagist
 
-[Packagist](https://packagist.org/) is the main Composer repository. A Composer
+[Packagist][packagist-site] is the main Composer repository. A Composer
 repository is basically a package source: a place where you can get packages
 from. Packagist aims to be the central repository that everybody uses. This
 means that you can automatically `require` any package that is available there,
 without further specifying where Composer should look for the package.
 
-If you go to the [Packagist website](https://packagist.org/) (packagist.org),
+If you go to the [Packagist website][packagist-site] (packagist.org),
 you can browse and search for packages.
 
 Any open source project using Composer is recommended to publish their packages
@@ -215,7 +216,7 @@ includes PHP itself, PHP extensions and some system libraries.
   PHP. The following are available: `curl`, `iconv`, `icu`, `libxml`,
   `openssl`, `pcre`, `uuid`, `xsl`.
 
-You can use [`show --platform`](03-cli.md#show) to get a list of your locally
+You can use [`show --platform`][cli-show] to get a list of your locally
 available platform packages.
 
 ## Autoloading
@@ -233,7 +234,7 @@ $log->addWarning('Foo');
 ```
 
 You can even add your own code to the autoloader by adding an
-[`autoload`](04-schema.md#autoload) field to `composer.json`.
+[`autoload`][schema-autoload] field to `composer.json`.
 
 ```json
 {
@@ -243,15 +244,15 @@ You can even add your own code to the autoloader by adding an
 }
 ```
 
-Composer will register a [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloader
+Composer will register a [PSR-4][php-fig-psr4] autoloader
 for the `Acme` namespace.
 
 You define a mapping from namespaces to directories. The `src` directory would
 be in your project root, on the same level as `vendor` directory is. An example
 filename would be `src/Foo.php` containing an `Acme\Foo` class.
 
-After adding the [`autoload`](04-schema.md#autoload) field, you have to re-run
-[`dump-autoload`](03-cli.md#dump-autoload) to re-generate the
+After adding the [`autoload`][schema-autoload] field, you have to re-run
+[`dump-autoload`][cli-dump-autoload] to re-generate the
 `vendor/autoload.php` file.
 
 Including that file will also return the autoloader instance, so you can store
@@ -264,25 +265,34 @@ $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
 In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and
-files autoloading. See the [`autoload`](04-schema.md#autoload) reference for
+files autoloading. See the [`autoload`][schema-autoload] reference for
 more information.
 
-See also the docs on [optimizing the autoloader](articles/autoloader-optimization.md).
+See also the docs on [optimizing the autoloader][articles-autoloader].
 
 > **Note:** Composer provides its own autoloader. If you don't want to use that
 > one, you can include `vendor/composer/autoload_*.php` files, which return
 > associative arrays allowing you to configure your own autoloader.
 
-[Libraries](02-libraries.md) &rarr;
+[Libraries][libraries] &rarr;
 
+[articles-autoloader]: articles/autoloader-optimization.md
 [article-versions]: articles/versions.md
+[cli-dump-autoload]: 03-cli.md#dump-autoload
+[cli-install]: 03-cli.md#install
+[cli-show]: 03-cli.md#show
+[cli-update]: 03-cli.md#update
 [intro]: 00-intro.md
 [intro-localmente]: 00-intro.md#localmente
 [libraries]: 02-libraries.md
+[libraries-lock-file]: 02-libraries.md#lock-file
 [repositories]: 05-repositories.md
+[php-fig-psr4]: http://www.php-fig.org/psr/psr-4/
 [platform-packages]: #platform-packages
 [schema]: 04-schema.md
+[schema-autoload]: 04-schema.md#autoload
 [schema-require]: 04-schema.md#require
 [schema-repositories]: 04-schema.md#repositories
 [semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*
 [packagist]: #packagist
+[packagist-site]: https://packagist.org/

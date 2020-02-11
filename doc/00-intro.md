@@ -34,7 +34,7 @@ declaração de dependências.
 
 O Composer requer o PHP 5.3.2+ para executar. Algumas configurações sensíveis do
 PHP e flags de compilação também são necessárias, mas ao usar o instalador, você
-será avisado sobre quaisquer incompatibilidades.
+ficará sabendo de quaisquer incompatibilidades.
 
 Para instalar pacotes a partir do código-fonte, em vez de arquivos zip simples,
 você precisará do git, svn, fossil ou hg, dependendo de como é feito o controle
