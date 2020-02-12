@@ -223,9 +223,10 @@ pacotes de plataforma disponíveis localmente.
 
 ## Autoloading
 
-For libraries that specify autoload information, Composer generates a
-`vendor/autoload.php` file. You can simply include this file and start
-using the classes that those libraries provide without any extra work:
+Para bibliotecas que especificam informações de autoload, o Composer gera um
+arquivo `vendor/autoload.php`. Você pode simplesmente incluir esse arquivo e
+começar a usar as classes que essas bibliotecas fornecem sem nenhum trabalho
+extra:
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -235,8 +236,8 @@ $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::W
 $log->addWarning('Foo');
 ```
 
-You can even add your own code to the autoloader by adding an
-[`autoload`][schema-autoload] field to `composer.json`.
+Você pode até adicionar seu próprio código ao autoloader, adicionando um campo
+[`autoload`][schema-autoload] ao `composer.json`.
 
 ```json
 {
@@ -246,37 +247,38 @@ You can even add your own code to the autoloader by adding an
 }
 ```
 
-Composer will register a [PSR-4][php-fig-psr4] autoloader
-for the `Acme` namespace.
+O Composer registrará um autoloader [PSR-4][php-fig-psr4] para o namespace
+`Acme`.
 
-You define a mapping from namespaces to directories. The `src` directory would
-be in your project root, on the same level as `vendor` directory is. An example
-filename would be `src/Foo.php` containing an `Acme\Foo` class.
+Você define um mapeamento de namespaces para diretórios. O diretório `src`
+estaria na raiz do seu projeto, no mesmo nível que o diretório `vendor`. Um
+exemplo de nome de arquivo seria `src/Foo.php` contendo uma classe `Acme\Foo`.
 
-After adding the [`autoload`][schema-autoload] field, you have to re-run
-[`dump-autoload`][cli-dump-autoload] to re-generate the
-`vendor/autoload.php` file.
+Após adicionar o campo [`autoload`][schema-autoload], é necessário executar
+novamente o [`dump-autoload`][cli-dump-autoload] para gerar novamente o arquivo
+`vendor/autoload.php`.
 
-Including that file will also return the autoloader instance, so you can store
-the return value of the include call in a variable and add more namespaces.
-This can be useful for autoloading classes in a test suite, for example.
+A inclusão desse arquivo também retornará a instância do autoloader, para que
+você possa armazenar o valor de retorno da chamada ao include em uma variável e
+possa adicionar mais namespaces. Isso pode ser útil para fazer o autoloading de
+classes em uma suite de testes, por exemplo.
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
 $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
-In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and
-files autoloading. See the [`autoload`][schema-autoload] reference for
-more information.
+Além do autoloading da PSR-4, o Composer também suporta a PSR-0, mapas de
+classes e autoloading de arquivos. Consulte a referência de [`autoload`][schema-autoload]
+para obter mais informações.
 
-See also the docs on [optimizing the autoloader][articles-autoloader].
+Consulte também a documentação sobre [otimização do autoloader][articles-autoloader].
 
-> **Note:** Composer provides its own autoloader. If you don't want to use that
-> one, you can include `vendor/composer/autoload_*.php` files, which return
-> associative arrays allowing you to configure your own autoloader.
+> **Nota:** O Composer fornece seu próprio autoloader. Se você não quiser
+> usá-lo, poderá incluir os arquivos `vendor/composer/autoload_*.php`, que
+> retornam arrays associativos que permitem configurar seu próprio autoloader.
 
-[Libraries][libraries] &rarr;
+[Bibliotecas][libraries] &rarr;
 
 [articles-autoloader]: articles/autoloader-optimization.md
 [article-versions]: articles/versions.md
