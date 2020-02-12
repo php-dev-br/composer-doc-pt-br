@@ -280,10 +280,10 @@ Consulte também a documentação sobre [otimização do autoloader][article-aut
 
 [article-autoloader]: articles/autoloader-optimization.md
 [article-versions]: articles/versions.md
-[cli-dump-autoload]: 03-cli.md#dump-autoload
-[cli-install]: 03-cli.md#install
-[cli-show]: 03-cli.md#show
-[cli-update]: 03-cli.md#update
+[cli-dump-autoload]: cli.md#dump-autoload
+[cli-install]: cli.md#install
+[cli-show]: cli.md#show
+[cli-update]: cli.md#update
 [intro]: introducao.md
 [intro-localmente]: introducao.md#localmente
 [libraries]: bibliotecas.md

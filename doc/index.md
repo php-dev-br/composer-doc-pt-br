@@ -5,6 +5,7 @@
 * [Introdução][intro]
 * [Uso Básico][basic-usage]
 * [Bibliotecas][libraries]
+* [Interface de Linha de Comando / Comandos][cli]
 
 ## Artigos
 
@@ -13,3 +14,4 @@
 [basic-usage]: uso-basico.md
 [intro]: introducao.md
 [libraries]: bibliotecas.md
+[cli]: cli.md

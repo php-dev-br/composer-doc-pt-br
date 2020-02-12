@@ -156,7 +156,7 @@ próximo capítulo para uma demonstração curta e simples.
 [article-path]: https://www.computerhope.com/issues/ch000549.htm
 [basic-usage]: uso-basico.md
 [bundler-page]: https://bundler.io/
-[cli-global]: 03-cli.md#global
+[cli-global]: cli.md#global
 [download-page]: https://getcomposer.org/download/
 [installer]: https://getcomposer.org/installer
 [installer-github]: https://github.com/composer/getcomposer.org/blob/master/web/installer

@@ -153,10 +153,8 @@ que você envie a URL ao seu repositório VCS; neste momento o Packagist começa
 a pesquisá-lo. Uma vez feito isso, seu pacote estará disponível para qualquer
 pessoa!
 
-[Command-line interface](03-cli.md) &rarr;
-
 [article-versions]: articles/versions.md
-[cli-install]: 03-cli.md#install
+[cli-install]: cli.md#install
 [packagist]: https://packagist.org/
 [packagist-monolog]: https://packagist.org/packages/monolog/monolog
 [repositories]: 05-repositories.md
