@@ -272,15 +272,13 @@ Além do autoloading da PSR-4, o Composer também suporta a PSR-0, mapas de
 classes e autoloading de arquivos. Consulte a referência de [`autoload`][schema-autoload]
 para obter mais informações.
 
-Consulte também a documentação sobre [otimização do autoloader][articles-autoloader].
+Consulte também a documentação sobre [otimização do autoloader][article-autoloader].
 
 > **Nota:** O Composer fornece seu próprio autoloader. Se você não quiser
 > usá-lo, poderá incluir os arquivos `vendor/composer/autoload_*.php`, que
 > retornam arrays associativos que permitem configurar seu próprio autoloader.
 
-[Bibliotecas][libraries] &rarr;
-
-[articles-autoloader]: articles/autoloader-optimization.md
+[article-autoloader]: articles/autoloader-optimization.md
 [article-versions]: articles/versions.md
 [cli-dump-autoload]: 03-cli.md#dump-autoload
 [cli-install]: 03-cli.md#install
@@ -292,7 +290,7 @@ Consulte também a documentação sobre [otimização do autoloader][articles-au
 [libraries-lock-file]: 02-libraries.md#lock-file
 [repositories]: 05-repositories.md
 [php-fig-psr4]: http://www.php-fig.org/psr/psr-4/
-[platform-packages]: #platform-packages
+[platform-packages]: #pacotes-de-plataforma
 [schema]: 04-schema.md
 [schema-autoload]: 04-schema.md#autoload
 [schema-require]: 04-schema.md#require
