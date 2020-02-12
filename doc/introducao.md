@@ -154,7 +154,7 @@ Agora que você instalou o Composer, está tudo pronto para usá-lo! Vá para o
 próximo capítulo para uma demonstração curta e simples.
 
 [article-path]: https://www.computerhope.com/issues/ch000549.htm
-[basic-usage]: 01-basic-usage.md
+[basic-usage]: uso-basico.md
 [bundler-page]: https://bundler.io/
 [cli-global]: 03-cli.md#global
 [download-page]: https://getcomposer.org/download/

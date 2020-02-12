@@ -111,8 +111,8 @@ Monolog listasse quaisquer dependências, elas também estariam em pastas em
 `vendor/`.
 
 > **Dica:** Se você estiver usando o git no seu projeto, provavelmente desejará
-> adicionar `vendor` ao seu `.gitignore`. Você realmente não deseja adicionar
-> todo esse código de terceiros ao seu repositório versionado.
+> adicionar `vendor` ao `.gitignore`. Você realmente não deseja adicionar todo
+> esse código de terceiros ao seu repositório versionado.
 
 Quando o Composer termina a instalação, ele grava todos os pacotes e as versões
 exatas deles que foram baixadas no arquivo `composer.lock`, fixando o projeto
@@ -134,13 +134,13 @@ presente resolve e instala todas as dependências listadas no `composer.json`,
 mas o Composer usa as versões exatas listadas no `composer.lock` para garantir
 que as versões dos pacotes sejam consistentes para todas as pessoas que
 trabalham no seu projeto. Como resultado você terá todas as dependências
-requisitadas pelo seu arquivo `composer.json`, mas elas podem não estar nas
-versões disponíveis mais recentes (algumas das dependências listadas no arquivo
+requisitadas pelo arquivo `composer.json`, mas elas podem não estar nas versões
+disponíveis mais recentes (algumas das dependências listadas no arquivo
 `composer.lock` podem ter lançado versões mais recentes desde que o arquivo foi
 criado). Isso é intencional e garante que seu projeto não quebre por causa de
 mudanças inesperadas nas dependências.
 
-### Faça o Commit do Seu Arquivo `composer.lock` para o Controle de Versão
+### Faça o Commit do Arquivo `composer.lock` para o Controle de Versão
 
 Fazer o commit desse arquivo para o controle de versão é importante porque fará
 com que qualquer pessoa que configure o projeto use exatamente as mesmas versões
@@ -158,8 +158,8 @@ abaixo sobre o uso do comando `update`.)
 Como mencionado acima, o arquivo `composer.lock` impede que você obtenha
 automaticamente as versões mais recentes de suas dependências. Para atualizar
 para as versões mais recentes, use o comando [`update`][cli-update]. Ele buscará
-as versões correspondentes mais recentes (de acordo com seu arquivo
-`composer.json`) e atualizará o arquivo de bloqueio com as novas versões. (Isso é
+as versões correspondentes mais recentes (de acordo com o arquivo
+`composer.json`) e atualizará o arquivo lock com as novas versões. (Isso é
 equivalente a excluir o arquivo `composer.lock` e executar `install` novamente.)
 
 ```sh
@@ -176,8 +176,8 @@ Se você deseja instalar ou atualizar apenas uma dependência, você pode listá
 php composer.phar update monolog/monolog [...]
 ```
 
-> **Nota:** Para bibliotecas, não é necessário fazer o commit do arquivo de
-> bloqueio, consulte também: [Bibliotecas - Arquivo de Bloqueio][libraries-lock-file].
+> **Nota:** Para bibliotecas, não é necessário fazer o commit do arquivo lock,
+> consulte também: [Bibliotecas - Arquivo Lock][libraries-lock-file].
 
 ## Packagist
 
@@ -284,10 +284,10 @@ Consulte também a documentação sobre [otimização do autoloader][article-aut
 [cli-install]: 03-cli.md#install
 [cli-show]: 03-cli.md#show
 [cli-update]: 03-cli.md#update
-[intro]: 00-intro.md
-[intro-localmente]: 00-intro.md#localmente
-[libraries]: 02-libraries.md
-[libraries-lock-file]: 02-libraries.md#lock-file
+[intro]: introducao.md
+[intro-localmente]: introducao.md#localmente
+[libraries]: bibliotecas.md
+[libraries-lock-file]: bibliotecas.md#arquivo-lock
 [repositories]: 05-repositories.md
 [php-fig-psr4]: http://www.php-fig.org/psr/psr-4/
 [platform-packages]: #pacotes-de-plataforma

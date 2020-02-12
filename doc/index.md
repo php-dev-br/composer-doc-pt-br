@@ -2,9 +2,14 @@
 
 ## Livro
 
-* [Introdução](00-intro.md)
-* [Uso Básico](01-basic-usage.md)
+* [Introdução][intro]
+* [Uso Básico][basic-usage]
+* [Bibliotecas][libraries]
 
 ## Artigos
 
 ## FAQs
+
+[basic-usage]: uso-basico.md
+[intro]: introducao.md
+[libraries]: bibliotecas.md
