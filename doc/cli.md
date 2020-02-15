@@ -51,7 +51,7 @@ campos, enquanto usa alguns padrões inteligentes.
 php composer.phar init
 ```
 
-### Opções
+### Opções {: #opcoes-init }
 
 * **--name:** Nome do pacote.
 * **--description:** Descrição do pacote.
@@ -85,7 +85,7 @@ usando a biblioteca obtenham as mesmas versões das dependências.
 Se não houver um arquivo `composer.lock`, o Composer criará um após a resolução
 das dependências.
 
-### Opções
+### Opções {: #opcoes-install }
 
 * **--prefer-source:** Existem duas maneiras de baixar um pacote: `source` e
   `dist`. Para versões estáveis, o Composer usará `dist` por padrão. `source` é
@@ -149,7 +149,7 @@ Você também pode usar curingas para atualizar vários pacotes de uma vez:
 php composer.phar update "vendor/*"
 ```
 
-### Opções
+### Opções {: #opcoes-update }
 
 * **--prefer-source:** Instala os pacotes de `source`, quando disponíveis.
 * **--prefer-dist:** Instala os pacotes de `dist`, quando disponíveis.
@@ -214,7 +214,7 @@ Se você não especificar um pacote, o Composer solicitará que você procure um
 pacote e, caso haja resultados, que forneça uma lista de correspondências a
 serem requeridas.
 
-### Opções
+### Opções {: #opcoes-require }
 
 * **--dev:** Adiciona pacotes a `require-dev`.
 * **--prefer-source:** Instala os pacotes de `source`, quando disponíveis.
@@ -258,7 +258,7 @@ php composer.phar remove vendor/package vendor/package2
 
 Após remover os requisitos, os requisitos modificados serão desinstalados.
 
-### Opções
+### Opções {: #opcoes-remove }
 
 * **--dev:** Remove pacotes de `require-dev`.
 * **--no-progress:** Remove a exibição de progresso que pode interferir em
@@ -337,7 +337,7 @@ php composer.phar search monolog
 
 Você também pode pesquisar mais de um termo passando vários argumentos.
 
-### Opções
+### Opções {: #opcoes-search }
 
 * **--only-name (-N):** Pesquisa apenas pelo nome.
 * **--type (-t):** Pesquisa por um tipo de pacote específico.
@@ -387,7 +387,7 @@ versão específica.
 php composer.phar show monolog/monolog 1.0.2
 ```
 
-### Opções
+### Opções {: #opcoes-show }
 
 * **--all :** Lista todos os pacotes disponíveis em todos os repositórios.
 * **--installed (-i):** Lista os pacotes que estão instalados (isso está
@@ -398,14 +398,14 @@ php composer.phar show monolog/monolog 1.0.2
 * **--name-only (-N):** Lista apenas os nomes dos pacotes.
 * **--path (-P):** Lista os caminhos dos pacotes.
 * **--tree (-t):** Lista as dependências como uma árvore. Se você passar um nome
-  de pacote, isso mostrará a árvore de dependências para esse pacote.
+  de pacote, isso exibirá a árvore de dependências para esse pacote.
 * **--latest (-l):** Lista todos os pacotes instalados, incluindo a versão mais
   recente.
 * **--outdated (-o):** Implica `--latest`, mas lista *apenas* pacotes que têm
   uma versão mais recente disponível.
-* **--minor-only (-m):** Use com `--latest`. Mostra apenas pacotes que possuem
+* **--minor-only (-m):** Use com `--latest`. Exibe apenas pacotes que possuem
   atualizações menores compatíveis com o SemVer.
-* **--direct (-D):** Restringe a lista de pacotes às suas dependências diretas.
+* **--direct (-D):** Restringe a lista de pacotes às dependências diretas.
 * **--strict:** Retorna um código de saída diferente de zero quando há pacotes
   desatualizados.
 * **--format (-f):** Permite escolher entre o formato de saída de texto (padrão)
@@ -413,58 +413,66 @@ php composer.phar show monolog/monolog 1.0.2
 
 ## outdated
 
-The `outdated` command shows a list of installed packages that have updates available,
-including their current and latest versions. This is basically an alias for
-`composer show -lo`.
+O comando `outdated` exibe uma lista de pacotes instalados que possuem
+atualizações disponíveis, incluindo suas versões atuais e mais recentes. Isso é
+basicamente um alias para `composer show -lo`.
 
-The color coding is as such:
+O código de cores é o seguinte:
 
-- **green (=)**: Dependency is in the latest version and is up to date.
-- **yellow (~)**: Dependency has a new version available that includes backwards compatibility breaks according to semver, so upgrade when
-  you can but it may involve work.
-- **red (!)**: Dependency has a new version that is semver-compatible and you should upgrade it.
+- **verde (=)**: A dependência está na versão mais recente e atualizada.
+- **amarelo (~)**: A dependência possui uma nova versão disponível, que inclui
+  quebra de compatibilidade com versões anteriores de acordo com o SemVer;
+  portanto, atualize quando puder, mas isso pode envolver algum trabalho.
+- **vermelho (!)**: A dependência possui uma nova versão que é compatível com o
+  SemVer e você deve atualizá-la.
 
-### Options
+### Opções {: #opcoes-outdated }
 
-* **--all (-a):** Show all packages, not just outdated (alias for `composer show -l`).
-* **--direct (-D):** Restricts the list of packages to your direct dependencies.
-* **--strict:** Returns non-zero exit code if any package is outdated.
-* **--minor-only (-m):** Only shows packages that have minor SemVer-compatible updates.
-* **--format (-f):** Lets you pick between text (default) or json output format.
+* **--all (-a):** Exibe todos os pacotes, não apenas os desatualizados (alias
+  para `composer show -l`).
+* **--direct (-D):** Restringe a lista de pacotes às dependências diretas.
+* **--strict:** Retorna um código de saída diferente de zero quando há pacotes
+  desatualizados.
+* **--minor-only (-m):** Exibe apenas pacotes que possuem atualizações menores
+  compatíveis com o SemVer.
+* **--format (-f):** Permite escolher entre o formato de saída de texto (padrão)
+  ou json.
 
 ## browse / home
 
-The `browse` (aliased to `home`) opens a package's repository URL or homepage
-in your browser.
+O comando `browse` (ou o alias `home`) abre a URL do repositório ou a página do
+pacote no navegador.
 
-### Options
+### Opções {: #opcoes-browse }
 
-* **--homepage (-H):** Open the homepage instead of the repository URL.
-* **--show (-s):** Only show the homepage or repository URL.
+* **--homepage (-H):** Abre a página do pacote em vez da URL do repositório.
+* **--show (-s):** Apenas exibe a página ou a URL do repositório.
 
 ## suggests
 
-Lists all packages suggested by currently installed set of packages. You can
-optionally pass one or multiple package names in the format of `vendor/package`
-to limit output to suggestions made by those packages only.
+Lista todos os pacotes sugeridos pelo conjunto de pacotes atualmente instalado.
+Opcionalmente, você pode passar um ou mais nomes de pacotes no formato
+`vendor/package` para limitar a saída apenas às sugestões feitas por esses
+pacotes.
 
-Use the `--by-package` or `--by-suggestion` flags to group the output by
-the package offering the suggestions or the suggested packages respectively.
+Use as flags `--by-package` ou `--by-suggestion` para agrupar a saída pelo
+pacote que faz as sugestões ou pelos pacotes sugeridos, respectivamente.
 
-Use the `--verbose (-v)` flag to display the suggesting package and the suggestion reason.
-This implies `--by-package --by-suggestion`, showing both lists.
+Use a flag `--verbose (-v)` para exibir o pacote que faz a sugestão e o motivo
+da sugestão. Isso implica `--by-package --by-suggestion`, mostrando as duas
+listas.
 
-### Options
+### Opções {: #opcoes-suggests }
 
-* **--by-package:** Groups output by suggesting package.
-* **--by-suggestion:** Groups output by suggested package.
-* **--no-dev:** Excludes suggestions from `require-dev` packages.
+* **--by-package:** Agrupa a saída pelo pacote que faz a sugestão.
+* **--by-suggestion:** Agrupa a saída pelo pacote sugerido.
+* **--no-dev:** Exclui sugestões dos pacotes de `require-dev`.
 
 ## depends (why)
 
-The `depends` command tells you which other packages depend on a certain
-package. As with installation `require-dev` relationships are only considered
-for the root package.
+O comando `depends` informa quais outros pacotes dependem de um determinado
+pacote. Assim como na instalação, os relacionamentos em `require-dev` são
+considerados apenas para o pacote raiz.
 
 ```sh
 php composer.phar depends doctrine/lexer
@@ -472,11 +480,11 @@ php composer.phar depends doctrine/lexer
  doctrine/common      v2.6.1 requires doctrine/lexer (1.*)
 ```
 
-You can optionally specify a version constraint after the package to limit the
-search.
+Opcionalmente, você pode especificar uma restrição de versão após o pacote para
+limitar a pesquisa.
 
-Add the `--tree` or `-t` flag to show a recursive tree of why the package is
-depended upon, for example:
+Adicione a flag `--tree` ou `-t` para mostrar uma árvore recursiva do motivo da
+dependência do pacote, por exemplo:
 
 ```sh
 php composer.phar depends psr/log -t
@@ -490,25 +498,25 @@ psr/log 1.0.0 Common interface for logging libraries
    `- __root__ (requires symfony/symfony ^3.0)
 ```
 
-### Options
+### Opções {: #opcoes-depends }
 
-* **--recursive (-r):** Recursively resolves up to the root package.
-* **--tree (-t):** Prints the results as a nested tree, implies -r.
+* **--recursive (-r):** Resolve recursivamente até o pacote raiz.
+* **--tree (-t):** Exibe os resultados como uma árvore aninhada, implica `-r`.
 
 ## prohibits (why-not)
 
-The `prohibits` command tells you which packages are blocking a given package
-from being installed. Specify a version constraint to verify whether upgrades
-can be performed in your project, and if not why not. See the following
-example:
+O comando `prohibits` informa quais pacotes estão impedindo a instalação de um
+determinado pacote. Especifique uma restrição de versão para verificar se as
+atualizações podem ser executadas no seu projeto e, se não, por que não. Veja o
+seguinte exemplo:
 
 ```sh
 php composer.phar prohibits symfony/symfony 3.1
  laravel/framework v5.2.16 requires symfony/var-dumper (2.8.*|3.0.*)
 ```
 
-Note that you can also specify platform requirements, for example to check
-whether you can upgrade your server to PHP 8.0:
+Observe que você também pode especificar os requisitos de plataforma, por
+exemplo, para verificar se você pode atualizar seu servidor para o PHP 8.0:
 
 ```sh
 php composer.phar prohibits php:8
@@ -517,44 +525,48 @@ php composer.phar prohibits php:8
  doctrine/instantiator 1.0.5  requires php (>=5.3,<8.0-DEV)
 ```
 
-As with `depends` you can request a recursive lookup, which will list all
-packages depending on the packages that cause the conflict.
+Assim como `depends`, você pode solicitar uma pesquisa recursiva, que listará
+todos os pacotes que dependem dos pacotes que causam o conflito.
 
-### Options
+### Opções {: #opcoes-prohibits }
 
-* **--recursive (-r):** Recursively resolves up to the root package.
-* **--tree (-t):** Prints the results as a nested tree, implies -r.
+* **--recursive (-r):** Resolve recursivamente até o pacote raiz.
+* **--tree (-t):** Exibe os resultados como uma árvore aninhada, implica `-r`.
 
 ## validate
 
-You should always run the `validate` command before you commit your
-`composer.json` file, and before you tag a release. It will check if your
-`composer.json` is valid.
+Você sempre deve executar o comando `validate` antes de fazer o commit do
+arquivo `composer.json` e antes de criar a tag de uma versão. Ele verificará se
+o `composer.json` é válido.
 
 ```sh
 php composer.phar validate
 ```
 
-### Options
+### Opções {: #opcoes-validate }
 
-* **--no-check-all:** Do not emit a warning if requirements in `composer.json` use unbound or overly strict version constraints.
-* **--no-check-lock:** Do not emit an error if `composer.lock` exists and is not up to date.
-* **--no-check-publish:** Do not emit an error if `composer.json` is unsuitable for publishing as a package on Packagist but is otherwise valid.
-* **--with-dependencies:** Also validate the composer.json of all installed dependencies.
-* **--strict:** Return a non-zero exit code for warnings as well as errors.
+* **--no-check-all:** Não emite um aviso se os requisitos do `composer.json`
+  usarem restrições de versão não acopladas ou excessivamente rígidas.
+* **--no-check-lock:** Não emite um erro se o `composer.lock` existir e não
+  estiver atualizado.
+* **--no-check-publish:** Não emite um erro se o `composer.json` for inadequado
+  para publicação como um pacote no Packagist, mas for válido.
+* **--with-dependencies:** Também valida o `composer.json` de todas as
+  dependências instaladas.
+* **--strict:** Retorna um código de saída diferente de zero para avisos e
+  erros.
 
 ## status
 
-If you often need to modify the code of your dependencies and they are
-installed from source, the `status` command allows you to check if you have
-local changes in any of them.
+Se você precisar modificar frequentemente o código de suas dependências e elas
+são instaladas a partir de `source`, o comando `status` permitirá verificar se
+há alterações locais em alguma delas.
 
 ```sh
 php composer.phar status
 ```
 
-With the `--verbose` option you get some more information about what was
-changed:
+Com a opção `--verbose`, você obtém mais informações sobre o que foi alterado:
 
 ```sh
 php composer.phar status -v
@@ -566,106 +578,111 @@ vendor/seld/jsonlint:
 
 ## self-update (selfupdate)
 
-To update Composer itself to the latest version, run the `self-update`
-command. It will replace your `composer.phar` with the latest version.
+Para atualizar o próprio Composer para a versão mais recente, execute o comando
+`self-update`. Ele substituirá seu `composer.phar` pela versão mais recente.
 
 ```sh
 php composer.phar self-update
 ```
 
-If you would like to instead update to a specific release simply specify it:
+Se você deseja atualizar para uma versão específica, basta especificar:
 
 ```sh
 php composer.phar self-update 1.0.0-alpha7
 ```
 
-If you have installed Composer for your entire system (see [global installation](00-intro.md#globally)),
-you may have to run the command with `root` privileges
+Se você instalou o Composer para todo o sistema (consulte a [instalação global][intro-globally]),
+pode ser necessário executar o comando com privilégios de `root`.
 
 ```sh
 sudo -H composer self-update
 ```
 
-### Options
+### Opções {: #opcoes-self-update }
 
-* **--rollback (-r):** Rollback to the last version you had installed.
-* **--clean-backups:** Delete old backups during an update. This makes the
-  current version of Composer the only backup available after the update.
-* **--no-progress:** Do not output download progress.
-* **--update-keys:** Prompt user for a key update.
-* **--stable:** Force an update to the stable channel.
-* **--preview:** Force an update to the preview channel.
-* **--snapshot:** Force an update to the snapshot channel.
+* **--rollback (-r):** Reverte para a última versão que você instalou.
+* **--clean-backups:** Exclui os backups antigos durante uma atualização. Isso
+  torna a versão atual do Composer o único backup disponível após a atualização.
+* **--no-progress:** Remove a exibição de progresso do download.
+* **--update-keys:** Solicita uma atualização de chave.
+* **--stable:** Força uma atualização para o canal estável.
+* **--preview:** Força uma atualização para o canal preview.
+* **--snapshot:** Força uma atualização para o canal snapshot.
 
 ## config
 
-The `config` command allows you to edit composer config settings and repositories
-in either the local `composer.json` file or the global `config.json` file.
+O comando `config` permite editar configurações e repositórios do Composer tanto
+no arquivo local `composer.json` quanto no arquivo global `config.json`.
 
-Additionally it lets you edit most properties in the local `composer.json`.
+Além disso, permite editar a maioria das propriedades no `composer.json` local.
 
 ```sh
 php composer.phar config --list
 ```
 
-### Usage
+### Uso
 
-`config [options] [setting-key] [setting-value1] ... [setting-valueN]`
+`config [opcoes] [nome-configuracao] [valor-configuracao1] ... [valor-configuracaoN]`
 
-`setting-key` is a configuration option name and `setting-value1` is a
-configuration value.  For settings that can take an array of values (like
-`github-protocols`), more than one setting-value arguments are allowed.
+`nome-configuracao` é um nome de opção de configuração e `valor-configuracao1`
+é um valor de configuração. Para configurações que podem receber uma lista de
+valores (como `github-protocols`), mais de um argumento `valor-configuracao` é
+permitido.
 
-You can also edit the values of the following properties:
+Você também pode editar os valores das seguintes propriedades:
 
 `description`, `homepage`, `keywords`, `license`, `minimum-stability`,
-`name`, `prefer-stable`, `type` and `version`.
+`name`, `prefer-stable`, `type` e `version`.
 
-See the [Config](06-config.md) chapter for valid configuration options.
+Veja o capítulo [Configuração][config] para conhecer as opções de configuração
+válidas.
 
-### Options
+### Opções {: #opcoes-config }
 
-* **--global (-g):** Operate on the global config file located at
-  `$COMPOSER_HOME/config.json` by default.  Without this option, this command
-  affects the local composer.json file or a file specified by `--file`.
-* **--editor (-e):** Open the local composer.json file using in a text editor as
-  defined by the `EDITOR` env variable.  With the `--global` option, this opens
-  the global config file.
-* **--auth (-a):** Affect auth config file (only used for --editor).
-* **--unset:** Remove the configuration element named by `setting-key`.
-* **--list (-l):** Show the list of current config variables.  With the `--global`
-  option this lists the global configuration only.
-* **--file="..." (-f):** Operate on a specific file instead of composer.json. Note
-  that this cannot be used in conjunction with the `--global` option.
-* **--absolute:** Returns absolute paths when fetching *-dir config values
-  instead of relative.
+* **--global (-g):** Opera no arquivo de configuração global localizado em
+  `$COMPOSER_HOME/config.json` por padrão. Sem essa opção, esse comando afeta o
+  arquivo `composer.json` local ou um arquivo especificado por `--file`.
+* **--editor (-e):** Abre o arquivo `composer.json` local usando um editor de
+  texto conforme definido pela variável de ambiente `EDITOR`. Com a opção
+  `--global`, abre o arquivo de configuração global.
+* **--auth (-a):** Afeta o arquivo de configuração de autenticação (usada apenas
+  para `--editor`).
+* **--unset:** Remove o elemento de configuração nomeado por `nome-configuracao`.
+* **--list (-l):** Exibe a lista de variáveis de configuração atuais. Com a
+  opção `--global`, lista apenas as configurações globais.
+* **--file="..." (-f):** Opera em um arquivo específico em vez do
+  `composer.json`. Note que isso não pode ser usado em conjunto com a opção
+  `--global`.
+* **--absolute:** Retorna caminhos absolutos em vez de caminhos relativos ao
+  buscar valores de configuração `*-dir`.
 
-### Modifying Repositories
+### Modificando Repositórios
 
-In addition to modifying the config section, the `config` command also supports making
-changes to the repositories section by using it the following way:
+Além de modificar a seção `config`, o comando `config` também suporta
+alterações na seção `repositories`, usando-o da seguinte maneira:
 
 ```sh
 php composer.phar config repositories.foo vcs https://github.com/foo/bar
 ```
 
-If your repository requires more configuration options, you can instead pass its JSON representation :
+Se o seu repositório exigir mais opções de configuração, você poderá passar sua
+representação JSON:
 
 ```sh
 php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.example.org/my-project/", "trunk-path": "master"}'
 ```
 
-### Modifying Extra Values
+### Modificando Valores Extras
 
-In addition to modifying the config section, the `config` command also supports making
-changes to the extra section by using it the following way:
+Além de modificar a seção `config`, o comando `config` também suporta alterações
+na seção `extra`, usando-o da seguinte maneira:
 
 ```sh
 php composer.phar config extra.foo.bar value
 ```
 
-The dots indicate array nesting, a max depth of 3 levels is allowed though. The above
-would set `"extra": { "foo": { "bar": "value" } }`.
+Os pontos indicam aninhamento de arrays, embora seja permitida uma profundidade
+máxima de 3 níveis. O comando acima definiria `"extra": { "foo": { "bar": "value" } }`.
 
 ## create-project
 
@@ -695,7 +712,7 @@ existing `composer.json` file to bootstrap a project.
 
 By default the command checks for the packages on packagist.org.
 
-### Options
+### Opções {: #opcoes-create-project }
 
 * **--stability (-s):** Minimum stability of package. Defaults to `stable`.
 * **--prefer-source:** Instala os pacotes de `source`, quando disponíveis.
@@ -737,7 +754,8 @@ time. Using classmaps for everything is less convenient in development, but
 using this option you can still use PSR-0/4 for convenience and classmaps for
 performance.
 
-### Options
+### Opções {: #opcoes-dump-autoload }
+
 * **--no-scripts:** Ignora a execução dos scripts definidos no `composer.json`.
 * **--optimize (-o):** Converte o autoloading PSR-0/4 em mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
@@ -758,14 +776,14 @@ Deletes all content from Composer's cache directories.
 Lists the name, version and license of every package installed. Use
 `--format=json` to get machine readable output.
 
-### Options
+### Opções {: #opcoes-clear-cache }
 
 * **--format:** Format of the output: text or json (default: "text")
 * **--no-dev:** Remove dev dependencies from the output
 
 ## run-script
 
-### Options
+### Opções {: #opcoes-run-script }
 
 * **--timeout:** Set the script timeout in seconds, or 0 for no timeout.
 * **--dev:** Sets the dev mode.
@@ -781,7 +799,7 @@ Executes a vendored binary/script. You can execute any command and this will
 ensure that the Composer bin-dir is pushed on your PATH before the command
 runs.
 
-### Options
+### Opções {: #opcoes-exec }
 
 * **--list (-l):** List the available composer binaries.
 
@@ -805,7 +823,7 @@ excluded/ignored files.
 php composer.phar archive vendor/package 2.0.21 --format=zip
 ```
 
-### Options
+### Opções {: #opcoes-archive }
 
 * **--format (-f):** Format of the resulting archive: tar or zip (default:
   "tar")
@@ -984,8 +1002,10 @@ can also set it to `*` to ignore the proxy for all HTTP requests.
 &larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
 
 [article-vendor-binaries]: articles/vendor-binaries.md
-[composer-home]: #composer_home
+[composer-home]: #composer-home
+[config]: 06-config.md
 [config-platform]: 06-config.md#platform
+[intro-globally]: introducao.md#globalmente
 [libraries]: bibliotecas.md
 [schema-repositories]: 04-schema.md#repositories
 [symfony-console]: https://github.com/symfony/console
