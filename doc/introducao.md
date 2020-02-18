@@ -69,8 +69,8 @@ Agora execute `php composer.phar` para executar o Composer.
 
 Você pode instalar o Composer em um diretório específico usando a opção
 `--install-dir` e, adicionalmente, também renomeá-lo usando a opção
-`--filename`. Ao executar o instalador, seguindo [as instruções da página de download][download-page],
-adicione os seguintes parâmetros:
+`--filename`. Ao executar o instalador, seguindo [as instruções da página de
+download][download-page], adicione os seguintes parâmetros:
 
 ```sh
 php composer-setup.php --install-dir=bin --filename=composer
@@ -85,9 +85,9 @@ colocar em um diretório que faça parte da sua variável de ambiente `PATH`, vo
 poderá acessá-lo globalmente. Nos sistemas Unix, você pode até torná-lo
 executável e invocá-lo sem usar diretamente o interpretador `php`.
 
-Após executar o instalador, seguindo [as instruções da página de download][download-page],
-você pode executar isto para mover o composer.phar para um diretório que esteja
-na sua variável `PATH`:
+Após executar o instalador, seguindo [as instruções da página de download]
+[download-page], você pode executar isto para mover o composer.phar para um
+diretório que esteja na sua variável `PATH`:
 
 ```sh
 mv composer.phar /usr/local/bin/composer
@@ -138,8 +138,8 @@ C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
 ```
 
 Adicione o diretório à sua variável de ambiente `PATH`, se ainda não estiver.
-Para obter informações sobre como alterar sua variável `PATH`, consulte
-[este artigo][article-path] e/ou use seu mecanismo de pesquisa preferido.
+Para obter informações sobre como alterar sua variável `PATH`, consulte [este
+artigo][article-path] e/ou use seu mecanismo de pesquisa preferido.
 
 Feche o seu terminal atual. Teste o uso em um novo terminal:
 

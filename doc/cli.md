@@ -96,7 +96,7 @@ das dependências.
 * **--prefer-dist:** O oposto de `--prefer-source`, o Composer instalará a
   partir de `dist`, se possível. Isso pode acelerar substancialmente as
   instalações em servidores de compilação e outros casos de uso em que você
-  normalmente não executa atualizações dos fornecedores. Também é uma maneira de
+  normalmente não executa atualizações dos vendors. Também é uma maneira de
   contornar problemas com o git se você não tiver uma configuração adequada.
 * **--dry-run:** Se você deseja passar por uma instalação sem realmente instalar
   um pacote, pode usar `--dry-run`. Isso simulará a instalação e mostrará o que
@@ -112,11 +112,11 @@ das dependências.
 * **--no-suggest:** Ignora pacotes sugeridos na saída.
 * **--optimize-autoloader (-o):** Converte o autoloading PSR-0/4 em um mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
-  em produção, mas pode demorar um pouco para ser executado, portanto,
-  atualmente não é feito por padrão.
+  em produção, mas pode demorar um pouco para ser executado, portanto, no
+  momento não é feito por padrão.
 * **--classmap-authoritative (-a):** Faz o autoload apenas das classes do mapa
   de classes. Implicitamente habilita `--optimize-autoloader`.
-* **--apcu-autoloader:** Usa o APCu para armazenar em cache as classes
+* **--apcu-autoloader:** Usa a APCu para armazenar em cache as classes
   encontradas/não encontradas.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
@@ -140,7 +140,7 @@ Se você deseja atualizar apenas alguns pacotes e não todos, é possível list�
 da seguinte forma:
 
 ```sh
-php composer.phar update vendor/package vendor/package2
+php composer.phar update vendor/pacote vendor/pacote2
 ```
 
 Você também pode usar curingas para atualizar vários pacotes de uma vez:
@@ -173,11 +173,11 @@ php composer.phar update "vendor/*"
   aquelas que são requisitos de primeiro grau.
 * **--optimize-autoloader (-o):** Converte o autoloading PSR-0/4 em um mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
-  em produção, mas pode demorar um pouco para ser executado, portanto,
-  atualmente não é feito por padrão.
+  em produção, mas pode demorar um pouco para ser executado, portanto, no
+  momento não é feito por padrão.
 * **--classmap-authoritative (-a):** Faz o autoload apenas das classes do mapa
   de classes. Implicitamente habilita `--optimize-autoloader`.
-* **--apcu-autoloader:** Usa o APCu para armazenar em cache as classes
+* **--apcu-autoloader:** Usa a APCu para armazenar em cache as classes
   encontradas/não encontradas.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
@@ -207,7 +207,7 @@ Se você não deseja escolher os requisitos interativamente, poderá passá-los 
 o comando.
 
 ```sh
-php composer.phar require vendor/package:2.* vendor/package2:dev-master
+php composer.phar require vendor/pacote:2.* vendor/pacote2:dev-master
 ```
 
 Se você não especificar um pacote, o Composer solicitará que você procure um
@@ -240,11 +240,11 @@ serem requeridas.
 * **--sort-packages:** Mantém os pacotes ordenados no `composer.json`.
 * **--optimize-autoloader (-o):** Converte o autoloading PSR-0/4 em um mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
-  em produção, mas pode demorar um pouco para ser executado, portanto,
-  atualmente não é feito por padrão.
+  em produção, mas pode demorar um pouco para ser executado, portanto, no
+  momento não é feito por padrão.
 * **--classmap-authoritative (-a):** Faz o autoload apenas das classes do mapa
   de classes. Implicitamente habilita `--optimize-autoloader`.
-* **--apcu-autoloader:** Usa o APCu para armazenar em cache as classes
+* **--apcu-autoloader:** Usa a APCu para armazenar em cache as classes
   encontradas/não encontradas.
 
 ## remove
@@ -253,7 +253,7 @@ O comando `remove` remove pacotes do arquivo `composer.json` presente no
 diretório atual.
 
 ```sh
-php composer.phar remove vendor/package vendor/package2
+php composer.phar remove vendor/pacote vendor/pacote2
 ```
 
 Após remover os requisitos, os requisitos modificados serão desinstalados.
@@ -274,11 +274,11 @@ Após remover os requisitos, os requisitos modificados serão desinstalados.
   também a opção de configuração [`platform`][config-platform].
 * **--optimize-autoloader (-o):** Converte o autoloading PSR-0/4 em um mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
-  em produção, mas pode demorar um pouco para ser executado, portanto,
-  atualmente não é feito por padrão.
+  em produção, mas pode demorar um pouco para ser executado, portanto, no
+  momento não é feito por padrão.
 * **--classmap-authoritative (-a):** Faz o autoload apenas das classes do mapa
   de classes. Implicitamente habilita `--optimize-autoloader`.
-* **--apcu-autoloader:** Usa o APCu para armazenar em cache as classes
+* **--apcu-autoloader:** Usa a APCu para armazenar em cache as classes
   encontradas/não encontradas.
 
 ## check-platform-reqs
@@ -310,9 +310,9 @@ php composer.phar global require friendsofphp/php-cs-fixer
 ```
 
 Agora, o binário `php-cs-fixer` está disponível globalmente. Certifique-se de
-que o diretório global de [binários dos fornecedores][article-vendor-binaries]
-esteja em sua variável de ambiente `$PATH`, você pode obter sua localização com
-o seguinte comando:
+que o diretório global dos [binários dos vendors][article-vendor-binaries] esteja
+em sua variável de ambiente `PATH`, você pode obter sua localização com o
+seguinte comando:
 
 ```sh
 php composer.phar global config bin-dir --absolute
@@ -591,8 +591,9 @@ Se você deseja atualizar para uma versão específica, basta especificar:
 php composer.phar self-update 1.0.0-alpha7
 ```
 
-Se você instalou o Composer para todo o sistema (consulte a [instalação global][intro-globally]),
-pode ser necessário executar o comando com privilégios de `root`.
+Se você instalou o Composer para todo o sistema (consulte a [instalação global]
+[intro-globally]), pode ser necessário executar o comando com privilégios de
+`root`.
 
 ```sh
 sudo -H composer self-update
@@ -647,7 +648,8 @@ válidas.
   `--global`, abre o arquivo de configuração global.
 * **--auth (-a):** Afeta o arquivo de configuração de autenticação (usada apenas
   para `--editor`).
-* **--unset:** Remove o elemento de configuração nomeado por `nome-configuracao`.
+* **--unset:** Remove o elemento de configuração nomeado por
+  `nome-configuracao`.
 * **--list (-l):** Exibe a lista de variáveis de configuração atuais. Com a
   opção `--global`, lista apenas as configurações globais.
 * **--file="..." (-f):** Opera em um arquivo específico em vez do
@@ -669,7 +671,7 @@ Se o seu repositório exigir mais opções de configuração, você poderá pass
 representação JSON:
 
 ```sh
-php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.example.org/my-project/", "trunk-path": "master"}'
+php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.example.org/meu-projeto/", "trunk-path": "master"}'
 ```
 
 ### Modificando Valores Extras
@@ -678,50 +680,53 @@ Além de modificar a seção `config`, o comando `config` também suporta altera
 na seção `extra`, usando-o da seguinte maneira:
 
 ```sh
-php composer.phar config extra.foo.bar value
+php composer.phar config extra.foo.bar valor
 ```
 
 Os pontos indicam aninhamento de arrays, embora seja permitida uma profundidade
-máxima de 3 níveis. O comando acima definiria `"extra": { "foo": { "bar": "value" } }`.
+máxima de 3 níveis. O comando acima definiria
+`"extra": { "foo": { "bar": "valor" } }`.
 
 ## create-project
 
-You can use Composer to create new projects from an existing package. This is
-the equivalent of doing a git clone/svn checkout followed by a `composer install`
-of the vendors.
+Você pode usar o Composer para criar novos projetos a partir de um pacote
+existente. Isso é o equivalente a fazer um `git clone` ou um `svn checkout`
+seguido por um `composer install` dos vendors.
 
-There are several applications for this:
+Existem várias aplicações para isso:
 
-1. You can deploy application packages.
-2. You can check out any package and start developing on patches for example.
-3. Projects with multiple developers can use this feature to bootstrap the
-   initial application for development.
+1. Você pode implantar pacotes de aplicações.
+1. Você pode baixar qualquer pacote e começar a desenvolver patches, por
+   exemplo.
+1. Projetos com vários desenvolvedores podem usar esse recurso para inicializar
+   a aplicação inicial para desenvolvimento.
 
-To create a new project using Composer you can use the `create-project` command.
-Pass it a package name, and the directory to create the project in. You can also
-provide a version as third argument, otherwise the latest version is used.
+Para criar um novo projeto usando o Composer, você pode usar o comando
+`create-project`. Passe o nome de um pacote e o diretório para criar o
+projeto. Você também pode fornecer uma versão como terceiro argumento, caso
+contrário, a versão mais recente será usada.
 
-If the directory does not currently exist, it will be created during installation.
+Se o diretório não existir, será criado durante a instalação.
 
 ```sh
-php composer.phar create-project doctrine/orm path 2.2.*
+php composer.phar create-project doctrine/orm caminho 2.2.*
 ```
 
-It is also possible to run the command without params in a directory with an
-existing `composer.json` file to bootstrap a project.
+Também é possível executar o comando sem parâmetros em um diretório com um
+arquivo `composer.json` existente para inicializar um projeto.
 
-By default the command checks for the packages on packagist.org.
+Por padrão, o comando procura por pacotes no [Packagist][packagist].
 
 ### Opções {: #opcoes-create-project }
 
-* **--stability (-s):** Minimum stability of package. Defaults to `stable`.
+* **--stability (-s):** Estabilidade mínima do pacote. O padrão é `stable`.
 * **--prefer-source:** Instala os pacotes de `source`, quando disponíveis.
 * **--prefer-dist:** Instala os pacotes de `dist`, quando disponíveis.
-* **--repository:** Provide a custom repository to search for the package,
-  which will be used instead of packagist. Can be either an HTTP URL pointing
-  to a `composer` repository, a path to a local `packages.json` file, or a
-  JSON string which similar to what the [repositories](04-schema.md#repositories)
-  key accepts.
+* **--repository:** Fornece um repositório personalizado para pesquisar o
+  pacote, que será usado no lugar do Packagist. Pode ser uma URL HTTP apontando
+  para um repositório do `composer`, um caminho para um arquivo `packages.json`
+  local ou uma string JSON semelhante à string aceita pela chave
+  [repositories][schema-repositories].
 * **--dev:** Instala os pacotes listados em `require-dev` (esse é o
   comportamento padrão).
 * **--no-dev:** Ignora a instalação dos pacotes listados em `require-dev`. A
@@ -729,85 +734,86 @@ By default the command checks for the packages on packagist.org.
 * **--no-scripts:** Ignora a execução dos scripts definidos no pacote raiz.
 * **--no-progress:** Remove a exibição de progresso que pode interferir em
   alguns terminais ou scripts que não tratam caracteres de backspace.
-* **--no-secure-http:** Disable the secure-http config option temporarily while
-  installing the root package. Use at your own risk. Using this flag is a bad
-  idea.
-* **--keep-vcs:** Skip the deletion of the VCS metadata for the created
-  project. This is mostly useful if you run the command in non-interactive
-  mode.
-* **--remove-vcs:** Force-remove the VCS metadata without prompting.
-* **--no-install:** Disables installation of the vendors.
+* **--no-secure-http:** Desabilita a opção de configuração `secure-http`
+  temporariamente ao instalar o pacote raiz. Use por sua conta e risco. Usar
+  essa flag é uma má ideia.
+* **--keep-vcs:** Ignora a exclusão dos metadados do VCS para o projeto criado.
+  Isso é útil principalmente se você executar o comando em modo não interativo.
+* **--remove-vcs:** Força a remoção dos metadados do VCS sem pedir confirmação.
+* **--no-install:** Desabilita a instalação dos vendors.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
   também a opção de configuração [`platform`][config-platform].
 
 ## dump-autoload (dumpautoload)
 
-If you need to update the autoloader because of new classes in a classmap
-package for example, you can use `dump-autoload` to do that without having to
-go through an install or update.
+Se você precisar atualizar o autoloader por causa de novas classes em um pacote
+de mapa de classes, por exemplo, poderá usar `dump-autoload` para fazer isso sem
+precisar passar por uma instalação ou atualização.
 
-Additionally, it can dump an optimized autoloader that converts PSR-0/4 packages
-into classmap ones for performance reasons. In large applications with many
-classes, the autoloader can take up a substantial portion of every request's
-time. Using classmaps for everything is less convenient in development, but
-using this option you can still use PSR-0/4 for convenience and classmaps for
-performance.
+Além disso, ele pode fazer o dump de um autoloader otimizado que converte
+pacotes PSR-0/4 em pacotes de mapa de classes por motivos de desempenho. Em
+aplicações grandes com muitas classes, o autoloader pode ocupar uma porção
+substancial do tempo de cada requisição. O uso de mapas de classes para tudo é
+menos conveniente durante o desenvolvimento, mas, usando essa opção, você ainda
+pode usar PSR-0/4 por conveniência e mapas de classes por desempenho.
 
 ### Opções {: #opcoes-dump-autoload }
 
 * **--no-scripts:** Ignora a execução dos scripts definidos no `composer.json`.
-* **--optimize (-o):** Converte o autoloading PSR-0/4 em mapa de
-  classes para obter um autoloader mais rápido. Isso é recomendado especialmente
-  em produção, mas pode demorar um pouco para ser executado, portanto,
-  atualmente não é feito por padrão.
+* **--optimize (-o):** Converte o autoloading PSR-0/4 em um mapa de classes para
+  obter um autoloader mais rápido. Isso é recomendado especialmente em produção,
+  mas pode demorar um pouco para ser executado, portanto, no momento não é feito
+  por padrão.
 * **--classmap-authoritative (-a):** Faz o autoload apenas das classes do mapa
   de classes. Implicitamente habilita `--optimize`.
-* **--apcu:** Usa APCu para armazenar em cache as classes
-  encontradas/não encontradas.
-* **--no-dev:** Disables autoload-dev rules.
+* **--apcu:** Usa a APCu para armazenar em cache as classes encontradas/não
+  encontradas.
+* **--no-dev:** Desabilita as regras em `autoload-dev`.
 
 ## clear-cache (clearcache)
 
-Deletes all content from Composer's cache directories.
+Exclui todo o conteúdo dos diretórios de cache do Composer.
 
 ## licenses
 
-Lists the name, version and license of every package installed. Use
-`--format=json` to get machine readable output.
+Lista o nome, versão e licença de cada pacote instalado. Use `--format=json`
+para obter uma saída legível para máquinas.
 
-### Opções {: #opcoes-clear-cache }
+### Opções {: #opcoes-licenses }
 
-* **--format:** Format of the output: text or json (default: "text")
-* **--no-dev:** Remove dev dependencies from the output
+* **--format:** Formato da saída: `text` ou `json` (padrão: `text`).
+* **--no-dev:** Remove as dependências de desenvolvimento da saída.
 
 ## run-script
 
 ### Opções {: #opcoes-run-script }
 
-* **--timeout:** Set the script timeout in seconds, or 0 for no timeout.
-* **--dev:** Sets the dev mode.
-* **--no-dev:** Disable dev mode.
-* **--list (-l):** List user defined scripts.
+* **--timeout:** Define o tempo limite do script em segundos ou 0 para
+  desabilitar o tempo limite.
+* **--dev:** Habilita o modo de desenvolvimento.
+* **--no-dev:** Desabilita o modo de desenvolvimento.
+* **--list (-l):** Lista os scripts definidos por quem que está desenvolvendo.
 
-To run [scripts](articles/scripts.md) manually you can use this command,
-give it the script name and optionally any required arguments.
+Para executar [scripts][article-scripts] manualmente, você pode usar esse
+comando, passando o nome do script e, opcionalmente, quaisquer argumentos
+necessários.
 
 ## exec
 
-Executes a vendored binary/script. You can execute any command and this will
-ensure that the Composer bin-dir is pushed on your PATH before the command
-runs.
+Executa um binário ou script de um vendor. Você pode executar qualquer comando e
+isso garantirá que o diretório `bin-dir` do Composer seja adicionado à variável
+`PATH` antes do comando ser executado.
 
 ### Opções {: #opcoes-exec }
 
-* **--list (-l):** List the available composer binaries.
+* **--list (-l):** Lista os binários disponíveis no Composer.
 
 ## diagnose
 
-If you think you found a bug, or something is behaving strangely, you might
-want to run the `diagnose` command to perform automated checks for many common
-problems.
+Se você acha que encontrou um erro ou se algo está se comportando de maneira
+estranha, convém executar o comando `diagnose` para realizar verificações
+automatizadas de muitos problemas comuns.
 
 ```sh
 php composer.phar diagnose
@@ -1001,11 +1007,13 @@ can also set it to `*` to ignore the proxy for all HTTP requests.
 
 &larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
 
+[article-scripts]: articles/scripts.md
 [article-vendor-binaries]: articles/vendor-binaries.md
 [composer-home]: #composer-home
 [config]: 06-config.md
 [config-platform]: 06-config.md#platform
 [intro-globally]: introducao.md#globalmente
 [libraries]: bibliotecas.md
+[packagist]: https://packagist.org/
 [schema-repositories]: 04-schema.md#repositories
 [symfony-console]: https://github.com/symfony/console

@@ -23,21 +23,21 @@ isso adicionando a propriedade [`name`][schema-name] ao `composer.json`:
 ```
 
 Nesse caso, o nome do projeto é `acme/ola-mundo`, onde `acme` é o nome do
-fornecedor. É obrigatório fornecer um nome de fornecedor.
+vendor. É obrigatório fornecer o nome do vendor.
 
-> **Nota:** Se você não sabe o que usar como nome de fornecedor, seu nome de
-> usuário do GitHub geralmente é uma boa aposta. Embora os nomes de pacotes não
-> façam distinção entre maiúsculas e minúsculas, a convenção é usar apenas
-> minúsculas e hífen para separar as palavras.
+> **Nota:** Se você não sabe o que usar como nome do vendor, seu nome de usuário
+> do GitHub geralmente é uma boa aposta. Embora os nomes de pacotes não façam
+> distinção entre maiúsculas e minúsculas, a convenção é usar apenas minúsculas
+> e hífen para separar as palavras.
 
 ## Versionamento de Biblioteca
 
 Na grande maioria dos casos, você manterá sua biblioteca usando algum tipo de
 sistema de controle de versão como git, svn, hg ou fossil. Nesses casos, o
 Composer deduz as versões a partir do seu VCS e você **não deve** especificar
-uma versão no arquivo `composer.json`. (Consulte o [artigo sobre versões][article-versions]
-para aprender sobre como o Composer usa branches e tags do VCS para resolver
-restrições de versão.)
+uma versão no arquivo `composer.json`. (Consulte o [artigo sobre versões]
+[article-versions] para aprender sobre como o Composer usa branches e tags do
+VCS para resolver restrições de versão.)
 
 Se você estiver mantendo pacotes manualmente (ou seja, sem um VCS), precisará
 especificar a versão explicitamente, adicionando uma propriedade `version` no
@@ -141,8 +141,9 @@ pacotes para o `monolog/monolog`. Como isso funcionou? A resposta é Packagist.
 
 O [Packagist][packagist] é o principal repositório de pacotes do Composer e está
 habilitado por padrão. Tudo o que é publicado no Packagist está disponível
-automaticamente através do Composer. Como o [Monolog está no Packagist][packagist-monolog],
-podemos depender dele sem precisar especificar repositórios adicionais.
+automaticamente através do Composer. Como o [Monolog está no Packagist]
+[packagist-monolog], podemos depender dele sem precisar especificar repositórios
+adicionais.
 
 Se quiséssemos compartilhar o `ola-mundo` com o mundo, também iríamos publicá-lo
 no Packagist. Fazer isso é realmente fácil.

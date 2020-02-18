@@ -34,20 +34,20 @@ Como você pode ver, [`require`][schema-require] recebe um objeto que mapeia
 **restrições de versão** (por exemplo, `1.0.*`).
 
 O Composer usa essas informações para procurar o conjunto correto de arquivos
-nos "repositórios" de pacotes que você registra usando a chave
-[`repositories`][schema-repositories] ou no Packagist, o repositório de
-pacotes padrão. No exemplo acima, como nenhum outro repositório foi registrado
-no arquivo `composer.json`, supõe-se que o pacote `monolog/monolog` esteja
-registrado no Packagist. (Veja mais sobre o Packagist [abaixo][packagist] ou
-leia mais sobre repositórios [aqui][repositories]).
+nos "repositórios" de pacotes que você registra usando a chave [`repositories`]
+[schema-repositories] ou no Packagist, o repositório de pacotes padrão. No
+exemplo acima, como nenhum outro repositório foi registrado no arquivo
+`composer.json`, supõe-se que o pacote `monolog/monolog` esteja registrado no
+Packagist. (Veja mais sobre o Packagist [abaixo][packagist] ou leia mais sobre
+repositórios [aqui][repositories]).
 
 ### Nomes de Pacotes
 
-O nome do pacote consiste em um nome de fornecedor e o nome do projeto.
-Geralmente, eles serão idênticos - o nome do fornecedor existe apenas para
-prevenir conflitos de nomes. Por exemplo, isso permite que duas pessoas
-diferentes criem uma biblioteca chamada `json`. Uma pode ser chamada
-`igorw/json` enquanto a outra pode ser `seldaek/json`.
+O nome do pacote consiste no nome do vendor e o nome do projeto. Geralmente,
+eles serão idênticos - o nome do vendor existe apenas para prevenir conflitos de
+nomes. Por exemplo, isso permite que duas pessoas diferentes criem uma
+biblioteca chamada `json`. Uma pode ser chamada `igorw/json` enquanto a outra
+pode ser `seldaek/json`.
 
 Leia mais sobre a publicação e a nomeação de pacotes [aqui][libraries]. (Note
 que você também pode especificar "pacotes de plataforma" como dependências,
@@ -70,7 +70,8 @@ restrições de versão.
 > solicitado e o procura em qualquer repositório registrado usando a chave
 > [`repositories`][schema-repositories]. Se você não registrou nenhum
 > repositório extra ou se ele não encontra um pacote com esse nome nos
-> repositórios que você especificou, ele volta ao Packagist (mais [abaixo][packagist]).
+> repositórios que você especificou, ele volta ao Packagist (mais [abaixo]
+> [packagist]).
 >
 > Quando o Composer encontra o pacote certo, no Packagist ou em um repositório
 > que você especificou, ele usa os recursos de versão do VCS do pacote (ou seja,
@@ -193,8 +194,8 @@ navegar e procurar por pacotes.
 
 É recomendado que qualquer projeto de código aberto usando o Composer publique
 seus pacotes no Packagist. Uma biblioteca não precisa estar no Packagist para
-ser usada pelo Composer, mas isso permite a descoberta e adoção por outras
-pessoas desenvolvedoras mais rapidamente.
+ser usada pelo Composer, mas isso permite a descoberta e adoção mais rápida por
+outras pessoas.
 
 ## Pacotes de Plataforma
 
@@ -269,10 +270,11 @@ $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
 Além do autoloading da PSR-4, o Composer também suporta a PSR-0, mapas de
-classes e autoloading de arquivos. Consulte a referência de [`autoload`][schema-autoload]
-para obter mais informações.
+classes e autoloading de arquivos. Consulte a referência de [`autoload`]
+[schema-autoload] para obter mais informações.
 
-Consulte também a documentação sobre [otimização do autoloader][article-autoloader].
+Consulte também a documentação sobre [otimização do autoloader]
+[article-autoloader].
 
 > **Nota:** O Composer fornece seu próprio autoloader. Se você não quiser
 > usá-lo, poderá incluir os arquivos `vendor/composer/autoload_*.php`, que
