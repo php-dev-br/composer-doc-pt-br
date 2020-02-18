@@ -67,7 +67,7 @@ php composer.phar init
   armazenados no `composer.json` gerado e usados para o preenchimento automático
   ao solicitar a lista de requisitos. Cada repositório pode ser uma URL HTTP
   apontando para um repositório do `composer` ou uma string JSON semelhante à
-  string aceita pela chave [repositories][schema-repositories].
+  string aceita pela chave [repositories][schema-repos].
 
 ## install / i
 
@@ -120,7 +120,7 @@ das dependências.
   encontradas/não encontradas.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
-  também a opção de configuração [`platform`][config-platform].
+  também a opção de configuração [`platform`][conf-platform].
 
 ## update / u
 
@@ -181,7 +181,7 @@ php composer.phar update "vendor/*"
   encontradas/não encontradas.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
-  também a opção de configuração [`platform`][config-platform].
+  também a opção de configuração [`platform`][conf-platform].
 * **--prefer-stable:** Prefere versões estáveis das dependências.
 * **--prefer-lowest:** Prefere as versões mais antigas das dependências. Útil
   para testar versões mínimas de requisitos, geralmente usada com
@@ -232,7 +232,7 @@ serem requeridas.
   pacotes requeridos, incluindo aquelas que são requisitos de primeiro grau.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
-  também a opção de configuração [`platform`][config-platform].
+  também a opção de configuração [`platform`][conf-platform].
 * **--prefer-stable:** Prefere versões estáveis das dependências.
 * **--prefer-lowest:** Prefere as versões mais antigas das dependências. Útil
   para testar versões mínimas de requisitos, geralmente usada com
@@ -271,7 +271,7 @@ Após remover os requisitos, os requisitos modificados serão desinstalados.
   removidos.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
-  também a opção de configuração [`platform`][config-platform].
+  também a opção de configuração [`platform`][conf-platform].
 * **--optimize-autoloader (-o):** Converte o autoloading PSR-0/4 em um mapa de
   classes para obter um autoloader mais rápido. Isso é recomendado especialmente
   em produção, mas pode demorar um pouco para ser executado, portanto, no
@@ -310,9 +310,9 @@ php composer.phar global require friendsofphp/php-cs-fixer
 ```
 
 Agora, o binário `php-cs-fixer` está disponível globalmente. Certifique-se de
-que o diretório global dos [binários dos vendors][article-vendor-binaries] esteja
-em sua variável de ambiente `PATH`, você pode obter sua localização com o
-seguinte comando:
+que o diretório global dos [binários dos vendors][art-binaries] esteja em sua
+variável de ambiente `PATH`, você pode obter sua localização com o seguinte
+comando:
 
 ```sh
 php composer.phar global config bin-dir --absolute
@@ -635,7 +635,7 @@ Você também pode editar os valores das seguintes propriedades:
 `description`, `homepage`, `keywords`, `license`, `minimum-stability`,
 `name`, `prefer-stable`, `type` e `version`.
 
-Veja o capítulo [Configuração][config] para conhecer as opções de configuração
+Veja o capítulo [Configuração][conf] para conhecer as opções de configuração
 válidas.
 
 ### Opções {: #opcoes-config }
@@ -726,7 +726,7 @@ Por padrão, o comando procura por pacotes no [Packagist][packagist].
   pacote, que será usado no lugar do Packagist. Pode ser uma URL HTTP apontando
   para um repositório do `composer`, um caminho para um arquivo `packages.json`
   local ou uma string JSON semelhante à string aceita pela chave
-  [repositories][schema-repositories].
+  [repositories][schema-repos].
 * **--dev:** Instala os pacotes listados em `require-dev` (esse é o
   comportamento padrão).
 * **--no-dev:** Ignora a instalação dos pacotes listados em `require-dev`. A
@@ -743,7 +743,7 @@ Por padrão, o comando procura por pacotes no [Packagist][packagist].
 * **--no-install:** Desabilita a instalação dos vendors.
 * **--ignore-platform-reqs:** Ignora os requisitos `php`, `hhvm`, `lib-*` e
   `ext-*` e força a instalação, mesmo que a máquina local não os cumpra. Veja
-  também a opção de configuração [`platform`][config-platform].
+  também a opção de configuração [`platform`][conf-platform].
 
 ## dump-autoload (dumpautoload)
 
@@ -795,9 +795,8 @@ para obter uma saída legível para máquinas.
 * **--no-dev:** Desabilita o modo de desenvolvimento.
 * **--list (-l):** Lista os scripts definidos por quem que está desenvolvendo.
 
-Para executar [scripts][article-scripts] manualmente, você pode usar esse
-comando, passando o nome do script e, opcionalmente, quaisquer argumentos
-necessários.
+Para executar [scripts][art-scripts] manualmente, você pode usar esse comando,
+passando o nome do script e, opcionalmente, quaisquer argumentos necessários.
 
 ## exec
 
@@ -821,199 +820,219 @@ php composer.phar diagnose
 
 ## archive
 
-This command is used to generate a zip/tar archive for a given package in a
-given version. It can also be used to archive your entire project without
-excluded/ignored files.
+Esse comando é usado para gerar um arquivo zip/tar para um determinado pacote em
+uma determinada versão. Também pode ser usado para arquivar seu projeto inteiro
+sem os arquivos excluídos/ignorados.
 
 ```sh
-php composer.phar archive vendor/package 2.0.21 --format=zip
+php composer.phar archive vendor/pacote 2.0.21 --format=zip
 ```
 
 ### Opções {: #opcoes-archive }
 
-* **--format (-f):** Format of the resulting archive: tar or zip (default:
-  "tar")
-* **--dir:** Write the archive to this directory (default: ".")
-* **--file:** Write the archive with the given file name.
+* **--format (-f):** Formato do arquivo resultante: `tar` ou `zip` (padrão:
+  `tar`).
+* **--dir:** Salva o arquivo neste diretório (padrão: `.`).
+* **--file:** Salva o arquivo com o nome de arquivo especificado.
 
 ## help
 
-To get more information about a certain command, you can use `help`.
+Para obter mais informações sobre um determinado comando, você pode usar `help`.
 
 ```sh
 php composer.phar help install
 ```
 
-## Command-line completion
+## Preenchimento Automático na Linha de Comando
 
-Command-line completion can be enabled by following instructions
-[on this page](https://github.com/bamarni/symfony-console-autocomplete).
+O preenchimento automático na linha de comando pode ser habilitado seguindo as
+instruções [nesta página][console-autocomplete].
 
-## Environment variables
+## Variáveis de Ambiente
 
-You can set a number of environment variables that override certain settings.
-Whenever possible it is recommended to specify these settings in the `config`
-section of `composer.json` instead. It is worth noting that the env vars will
-always take precedence over the values specified in `composer.json`.
+Você pode definir algumas variáveis de ambiente que substituem determinadas
+configurações. Sempre que possível, é recomendável especificar essas
+configurações na seção `config` do `composer.json`. Vale ressaltar que as
+variáveis de ambiente sempre terão precedência sobre os valores especificados no
+`composer.json`.
 
 ### COMPOSER
 
-By setting the `COMPOSER` env variable it is possible to set the filename of
-`composer.json` to something else.
+Ao definir a variável de ambiente `COMPOSER`, é possível definir o nome do
+arquivo `composer.json` como algum outro.
 
-For example:
+Por exemplo:
 
 ```sh
-COMPOSER=composer-other.json php composer.phar install
+COMPOSER=outro-composer.json php composer.phar install
 ```
 
-The generated lock file will use the same name: `composer-other.lock` in this example.
+O arquivo lock gerado usará o mesmo nome: `outro-composer.lock` nesse exemplo.
 
-### COMPOSER_ALLOW_SUPERUSER
+### COMPOSER_ALLOW_SUPERUSER {: #composer-allow-superuser }
 
-If set to 1, this env disables the warning about running commands as root/super user.
-It also disables automatic clearing of sudo sessions, so you should really only set this
-if you use Composer as super user at all times like in docker containers.
+Se definida como `1`, esta variável de ambiente desabilita o aviso sobre a
+execução de comandos como root/superusuário. Ela também desabilita a limpeza
+automática de sessões sudo; portanto, você realmente deve defini-la apenas se
+usar o Composer como superusuário o tempo todo, como em containers do Docker.
 
-### COMPOSER_AUTH
+### COMPOSER_AUTH {: #composer-auth }
 
-The `COMPOSER_AUTH` var allows you to set up authentication as an environment variable.
-The contents of the variable should be a JSON formatted object containing http-basic,
-github-oauth, bitbucket-oauth, ... objects as needed, and following the
-[spec from the config](06-config.md#gitlab-oauth).
+A variável `COMPOSER_AUTH` permite configurar a autenticação como uma variável
+de ambiente. O conteúdo da variável deve ser um objeto JSON contendo objetos
+`http-basic`, `github-oauth`, `bitbucket-oauth`, ..., conforme necessário e
+seguindo as [especificações da configuração][conf-gitlab].
 
-### COMPOSER_BIN_DIR
+### COMPOSER_BIN_DIR {: #composer-bin-dir }
 
-By setting this option you can change the `bin` ([Vendor Binaries][article-vendor-binaries])
-directory to something other than `vendor/bin`.
+Ao definir esta opção, você pode alterar o diretório `bin` ([Binários dos
+Vendors][art-binaries]) para algo diferente de `vendor/bin`.
 
-### COMPOSER_CACHE_DIR
+### COMPOSER_CACHE_DIR {: #composer-cache-dir }
 
-The `COMPOSER_CACHE_DIR` var allows you to change the Composer cache directory,
-which is also configurable via the [`cache-dir`](06-config.md#cache-dir) option.
+A variável `COMPOSER_CACHE_DIR` permite alterar o diretório de cache do
+Composer, que também é configurável através da opção [`cache-dir`][conf-cache].
 
-By default it points to `$COMPOSER_HOME/cache` on \*nix and macOS, and
-`C:\Users\<user>\AppData\Local\Composer` (or `%LOCALAPPDATA%/Composer`) on Windows.
+Por padrão, ela aponta para `$COMPOSER_HOME/cache` no \*nix e macOS e
+`C:\Users\<user>\AppData\Local\Composer` (ou `%LOCALAPPDATA%\Composer`) no
+Windows.
 
-### COMPOSER_CAFILE
+### COMPOSER_CAFILE {: #composer-cafile }
 
-By setting this environmental value, you can set a path to a certificate bundle
-file to be used during SSL/TLS peer verification.
+Ao definir esta variável de ambiente, é possível definir um caminho para um
+arquivo de pacote de certificado que será usado durante a verificação por par
+SSL/TLS.
 
-### COMPOSER_DISCARD_CHANGES
+### COMPOSER_DISCARD_CHANGES {: #composer-discard-changes }
 
-This env var controls the [`discard-changes`](06-config.md#discard-changes) config option.
+Esta variável controla a opção de configuração [`discard-changes`]
+[conf-discard].
 
-### COMPOSER_HOME
+### COMPOSER_HOME {: #composer-home }
 
-The `COMPOSER_HOME` var allows you to change the Composer home directory. This
-is a hidden, global (per-user on the machine) directory that is shared between
-all projects.
+A variável `COMPOSER_HOME` permite alterar o diretório inicial do Composer. Este
+é um diretório oculto global (por usuário na máquina) compartilhado entre todos
+os projetos.
 
-By default it points to `C:\Users\<user>\AppData\Roaming\Composer` on Windows
-and `/Users/<user>/.composer` on macOS. On \*nix systems that follow the [XDG Base
-Directory Specifications](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html),
-it points to `$XDG_CONFIG_HOME/composer`. On other \*nix systems, it points to
+Por padrão, ela aponta para `C:\Users\<user>\AppData\Roaming\Composer` no
+Windows e `/Users/<user>/.composer` no macOS. Em sistemas \*nix que seguem as
+[Especificações de Diretório Base do XDG][art-basedir], ela aponta para
+`$XDG_CONFIG_HOME/composer`. Em outros sistemas \*nix, ela aponta para
 `/home/<user>/.composer`.
 
-#### COMPOSER_HOME/config.json
+#### COMPOSER_HOME/config.json {: #composer-home-config-json }
 
-You may put a `config.json` file into the location which `COMPOSER_HOME` points
-to. Composer will merge this configuration with your project's `composer.json`
-when you run the `install` and `update` commands.
+Você pode colocar um arquivo `config.json` no local para o qual `COMPOSER_HOME`
+aponta. O Composer combinará esta configuração com o `composer.json` do seu
+projeto quando você executar os comandos `install` e `update`.
 
-This file allows you to set [repositories](05-repositories.md) and
-[configuration](06-config.md) for the user's projects.
+Esse arquivo permite definir [repositórios][repos] e [configurações][conf] para
+os seus projetos.
 
-In case global configuration matches _local_ configuration, the _local_
-configuration in the project's `composer.json` always wins.
+Caso a configuração global corresponda à configuração _local_, a configuração _local_
+no `composer.json` do projeto sempre vence.
 
-### COMPOSER_HTACCESS_PROTECT
+### COMPOSER_HTACCESS_PROTECT {: #composer-htaccess-protect }
 
-Defaults to `1`. If set to `0`, Composer will not create `.htaccess` files in the
-composer home, cache, and data directories.
+O padrão é `1`. Se definida como `0`, o Composer não criará arquivos `.htaccess`
+nos diretórios home, cache e data do Composer.
 
-### COMPOSER_MEMORY_LIMIT
+### COMPOSER_MEMORY_LIMIT {: #composer-memory-limit }
 
-If set, the value is used as php's memory_limit.
+Se definida, o valor é usado como `memory_limit` do PHP.
 
-### COMPOSER_MIRROR_PATH_REPOS
+### COMPOSER_MIRROR_PATH_REPOS {: #composer-mirror-path-repos }
 
-If set to 1, this env changes the default path repository strategy to `mirror` instead
-of `symlink`. As it is the default strategy being set it can still be overwritten by
-repository options.
+Se definida como `1`, esta variável de ambiente altera a estratégia padrão do
+repositório de caminhos para `mirror` em vez de `symlink`. Como é a estratégia
+padrão definida, ela ainda pode ser substituída pelas opções do repositório.
 
-### COMPOSER_NO_INTERACTION
+### COMPOSER_NO_INTERACTION {: #composer-no-interaction }
 
-If set to 1, this env var will make Composer behave as if you passed the
-`--no-interaction` flag to every command. This can be set on build boxes/CI.
+Se definida como `1`, esta variável de ambiente fará o Composer se comportar
+como se você passasse a flag `--no-interaction` para todos os comandos. Ela pode
+ser definida em servidores de build/CI.
 
-### COMPOSER_PROCESS_TIMEOUT
+### COMPOSER_PROCESS_TIMEOUT {: #composer-process-timeout }
 
-This env var controls the time Composer waits for commands (such as git
-commands) to finish executing. The default value is 300 seconds (5 minutes).
+Esta variável de ambiente controla o tempo que o Composer espera por comandos
+(como comandos do git) antes de finalizar a execução. O valor padrão é 300
+segundos (5 minutos).
 
-### COMPOSER_ROOT_VERSION
+### COMPOSER_ROOT_VERSION {: #composer-root-version }
 
-By setting this var you can specify the version of the root package, if it can
-not be guessed from VCS info and is not present in `composer.json`.
+Ao definir esta variável, você pode especificar a versão do pacote raiz, se ela
+não puder ser deduzida a partir das informações do VCS e não estiver presente no
+`composer.json`.
 
-### COMPOSER_VENDOR_DIR
+### COMPOSER_VENDOR_DIR {: #composer-vendor-dir }
 
-By setting this var you can make Composer install the dependencies into a
-directory other than `vendor`.
+Ao definir esta variável, você pode fazer com que o Composer instale as
+dependências em um diretório que não seja o `vendor`.
 
-### http_proxy or HTTP_PROXY
+### http_proxy ou HTTP_PROXY {: #http-proxy }
 
-If you are using Composer from behind an HTTP proxy, you can use the standard
-`http_proxy` or `HTTP_PROXY` env vars. Simply set it to the URL of your proxy.
-Many operating systems already set this variable for you.
+Se você estiver usando o Composer por trás de um proxy HTTP, poderá usar a
+variável de ambiente padrão `http_proxy` ou `HTTP_PROXY`. Basta configurá-la
+como a URL do seu proxy. Muitos sistemas operacionais já definem esta variável
+para você.
 
-Using `http_proxy` (lowercased) or even defining both might be preferable since
-some tools like git or curl will only use the lower-cased `http_proxy` version.
-Alternatively you can also define the git proxy using
-`git config --global http.proxy <proxy url>`.
+Usar `http_proxy` (letras minúsculas) ou mesmo definir as duas pode ser
+preferível, pois algumas ferramentas como git ou curl usarão apenas a versão
+`http_proxy` com letras minúsculas. Como alternativa, você também pode definir o
+proxy do git usando `git config --global http.proxy <url-do-proxy>`.
 
-If you are using Composer in a non-CLI context (i.e. integration into a CMS or
-similar use case), and need to support proxies, please provide the `CGI_HTTP_PROXY`
-environment variable instead. See [httpoxy.org](https://httpoxy.org/) for further
-details.
+Se você estiver usando o Composer em um contexto que não seja a CLI (ou seja,
+integração em um CMS ou caso de uso semelhante) e precisar oferecer suporte a
+proxies, forneça a variável de ambiente `CGI_HTTP_PROXY`. Consulte [httpoxy
+.org][httpoxy] para mais detalhes.
 
-### HTTP_PROXY_REQUEST_FULLURI
+### HTTP_PROXY_REQUEST_FULLURI {: #http-proxy-request-fulluri }
 
-If you use a proxy but it does not support the request_fulluri flag, then you
-should set this env var to `false` or `0` to prevent Composer from setting the
-request_fulluri option.
+Se você usar um proxy, mas ele não suportar a flag `request_fulluri`, então você
+deve definir esta variável como `false` ou `0` para impedir que o Composer
+defina a opção `request_fulluri`.
 
-### HTTPS_PROXY_REQUEST_FULLURI
+### HTTPS_PROXY_REQUEST_FULLURI {: #https-proxy-request-fulluri }
 
-If you use a proxy but it does not support the request_fulluri flag for HTTPS
-requests, then you should set this env var to `false` or `0` to prevent Composer
-from setting the request_fulluri option.
+Se você usar um proxy, mas ele não suportar a flag `request_fulluri` para
+requisições HTTPS, então você deve definir esta variável como `false` ou `0`
+para impedir que o Composer defina a opção `request_fulluri`.
 
-### COMPOSER_SELF_UPDATE_TARGET
+### COMPOSER_SELF_UPDATE_TARGET {: #composer-self-update-target }
 
-If set, makes the self-update command write the new Composer phar file into that path instead of overwriting itself. Useful for updating Composer on read-only filesystem.
+Se definida, faz com que o comando `self-update` salve o novo arquivo phar do
+Composer neste caminho em vez de sobrescrever-se. Útil para atualizar o Composer
+em sistemas de arquivos somente leitura.
 
-### no_proxy or NO_PROXY
+### no_proxy ou NO_PROXY {: #no-proxy }
 
-If you are behind a proxy and would like to disable it for certain domains, you
-can use the `no_proxy` or `NO_PROXY` env var. Simply set it to a comma separated list of
-domains the proxy should *not* be used for.
+Se você estiver atrás de um proxy e deseja desabilitá-lo para determinados
+domínios, pode usar a variável de ambiente `no_proxy` ou `NO_PROXY`.
+Simplesmente defina-a como uma lista de domínios separados por vírgula para os
+quais o proxy *não* deve ser usado.
 
-The env var accepts domains, IP addresses, and IP address blocks in CIDR
-notation. You can restrict the filter to a particular port (e.g. `:80`). You
-can also set it to `*` to ignore the proxy for all HTTP requests.
+A variável de ambiente aceita domínios, endereços de IP e blocos de endereços de
+IP em notação CIDR. Você pode restringir o filtro a uma porta específica (por
+exemplo, `:80`). Você também pode configurá-la como `*` para ignorar o proxy
+para todas as requisições HTTP.
 
-&larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
+[Schema](04-schema.md) &rarr;
 
-[article-scripts]: articles/scripts.md
-[article-vendor-binaries]: articles/vendor-binaries.md
+[art-scripts]: articles/scripts.md
+[art-binaries]: articles/vendor-binaries.md
+[art-basedir]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 [composer-home]: #composer-home
-[config]: 06-config.md
-[config-platform]: 06-config.md#platform
+[conf]: 06-config.md
+[conf-cache]:06-config.md#cache-dir
+[conf-discard]: 06-config.md#discard-changes
+[conf-gitlab]: 06-config.md#gitlab-oauth
+[conf-platform]: 06-config.md#platform
+[httpoxy]: https://httpoxy.org
 [intro-globally]: introducao.md#globalmente
 [libraries]: bibliotecas.md
 [packagist]: https://packagist.org/
-[schema-repositories]: 04-schema.md#repositories
+[repos]: 05-repositories.md
+[schema-repos]: 04-schema.md#repositories
 [symfony-console]: https://github.com/symfony/console
+[console-autocomplete]: https://github.com/bamarni/symfony-console-autocomplete

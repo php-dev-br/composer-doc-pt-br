@@ -139,7 +139,7 @@ C:\bin>echo @php "%~dp0composer.phar" %*>composer.bat
 
 Adicione o diretório à sua variável de ambiente `PATH`, se ainda não estiver.
 Para obter informações sobre como alterar sua variável `PATH`, consulte [este
-artigo][article-path] e/ou use seu mecanismo de pesquisa preferido.
+artigo][art-path] e/ou use seu mecanismo de pesquisa preferido.
 
 Feche o seu terminal atual. Teste o uso em um novo terminal:
 
@@ -153,7 +153,7 @@ Composer version 1.0.0 2016-01-10 20:34:53
 Agora que você instalou o Composer, está tudo pronto para usá-lo! Vá para o
 próximo capítulo para uma demonstração curta e simples.
 
-[article-path]: https://www.computerhope.com/issues/ch000549.htm
+[art-path]: https://www.computerhope.com/issues/ch000549.htm
 [basic-usage]: uso-basico.md
 [bundler-page]: https://bundler.io/
 [cli-global]: cli.md#global

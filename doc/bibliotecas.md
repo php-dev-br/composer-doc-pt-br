@@ -36,8 +36,8 @@ Na grande maioria dos casos, você manterá sua biblioteca usando algum tipo de
 sistema de controle de versão como git, svn, hg ou fossil. Nesses casos, o
 Composer deduz as versões a partir do seu VCS e você **não deve** especificar
 uma versão no arquivo `composer.json`. (Consulte o [artigo sobre versões]
-[article-versions] para aprender sobre como o Composer usa branches e tags do
-VCS para resolver restrições de versão.)
+[art-versions] para aprender sobre como o Composer usa branches e tags do VCS
+para resolver restrições de versão.)
 
 Se você estiver mantendo pacotes manualmente (ou seja, sem um VCS), precisará
 especificar a versão explicitamente, adicionando uma propriedade `version` no
@@ -63,7 +63,7 @@ que, em seguida, faz a correspondência com a restrição de versão que você
 forneceu.
 
 Para saber mais sobre como o Composer trata tags e branches e como resolve
-restrições de versão de pacote, leia o artigo sobre [versões][article-versions].
+restrições de versão de pacote, leia o artigo sobre [versões][art-versions].
 
 ## Arquivo Lock
 
@@ -121,7 +121,7 @@ pacotes ao `composer.json` do blog:
 ```
 
 Para obter mais detalhes sobre como os repositórios de pacotes funcionam e quais
-outros tipos estão disponíveis, consulte [Repositórios][repositories].
+outros tipos estão disponíveis, consulte [Repositórios][repos].
 
 Isso é tudo. Agora você pode instalar as dependências executando o comando
 [`install`][cli-install] do Composer!
@@ -154,10 +154,10 @@ que você envie a URL ao seu repositório VCS; neste momento o Packagist começa
 a pesquisá-lo. Uma vez feito isso, seu pacote estará disponível para qualquer
 pessoa!
 
-[article-versions]: articles/versions.md
+[art-versions]: articles/versions.md
 [cli-install]: cli.md#install
 [packagist]: https://packagist.org/
 [packagist-monolog]: https://packagist.org/packages/monolog/monolog
-[repositories]: 05-repositories.md
+[repos]: 05-repositories.md
 [schema-name]: 04-schema.md#name
 [schema-require]: 04-schema.md#require

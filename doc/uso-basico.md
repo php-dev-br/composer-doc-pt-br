@@ -30,16 +30,16 @@ quais pacotes seu projeto depende.
 ```
 
 Como você pode ver, [`require`][schema-require] recebe um objeto que mapeia
-**nomes de pacotes** (por exemplo, `monolog/monolog`) para
-**restrições de versão** (por exemplo, `1.0.*`).
+**nomes de pacotes** (por exemplo, `monolog/monolog`) para **restrições de
+versão** (por exemplo, `1.0.*`).
 
 O Composer usa essas informações para procurar o conjunto correto de arquivos
 nos "repositórios" de pacotes que você registra usando a chave [`repositories`]
-[schema-repositories] ou no Packagist, o repositório de pacotes padrão. No
-exemplo acima, como nenhum outro repositório foi registrado no arquivo
-`composer.json`, supõe-se que o pacote `monolog/monolog` esteja registrado no
-Packagist. (Veja mais sobre o Packagist [abaixo][packagist] ou leia mais sobre
-repositórios [aqui][repositories]).
+[schema-repos] ou no Packagist, o repositório de pacotes padrão. No exemplo
+acima, como nenhum outro repositório foi registrado no arquivo `composer.json`,
+supõe-se que o pacote `monolog/monolog` esteja registrado no Packagist. (Veja
+mais sobre o Packagist [abaixo][packagist] ou leia mais sobre repositórios
+[aqui][repos]).
 
 ### Nomes de Pacotes
 
@@ -49,35 +49,34 @@ nomes. Por exemplo, isso permite que duas pessoas diferentes criem uma
 biblioteca chamada `json`. Uma pode ser chamada `igorw/json` enquanto a outra
 pode ser `seldaek/json`.
 
-Leia mais sobre a publicação e a nomeação de pacotes [aqui][libraries]. (Note
-que você também pode especificar "pacotes de plataforma" como dependências,
-permitindo que você exija determinadas versões do software do servidor. Consulte
-os [pacotes de plataforma][platform-packages] abaixo.)
+Leia mais sobre a publicação e a nomeação de pacotes [aqui][lib]. (Note que você
+também pode especificar "pacotes de plataforma" como dependências, permitindo
+que você exija determinadas versões do software do servidor. Consulte os
+[pacotes de plataforma][platform-packages] abaixo.)
 
 ### Restrições de Versão de Pacote
 
 Em nosso exemplo, estamos solicitando o pacote Monolog com a restrição de versão
 [`1.0.*`][semver-monolog]. Isso significa qualquer versão no branch de
-desenvolvimento `1.0` ou qualquer versão maior ou igual a 1.0 e menor que
-1.1 (`>=1.0 <1.1`).
+desenvolvimento `1.0` ou qualquer versão maior ou igual a 1.0 e menor que 1.1
+(`>=1.0 <1.1`).
 
-Leia o [artigo sobre versões][article-versions] para obter informações mais
+Leia o [artigo sobre versões][art-versions] para obter informações mais
 detalhadas sobre versões, como as versões se relacionam entre si e sobre as
 restrições de versão.
 
 > **Como o Composer baixa os arquivos corretos?** Quando você especifica uma
 > dependência no `composer.json`, o Composer primeiro pega o nome do pacote
 > solicitado e o procura em qualquer repositório registrado usando a chave
-> [`repositories`][schema-repositories]. Se você não registrou nenhum
-> repositório extra ou se ele não encontra um pacote com esse nome nos
-> repositórios que você especificou, ele volta ao Packagist (mais [abaixo]
-> [packagist]).
+> [`repositories`][schema-repos]. Se você não registrou nenhum repositório extra
+> ou se ele não encontra um pacote com esse nome nos repositórios que você
+> especificou, ele volta ao Packagist (mais [abaixo][packagist]).
 >
 > Quando o Composer encontra o pacote certo, no Packagist ou em um repositório
 > que você especificou, ele usa os recursos de versão do VCS do pacote (ou seja,
 > branches e tags) para tentar encontrar a melhor correspondência para a
 > restrição de versão que você especificou. Leia sobre versões e resolução de
-> pacotes no [artigo sobre versões][article-versions].
+> pacotes no [artigo sobre versões][art-versions].
 
 > **Nota:** Se você está tentando requisitar um pacote mas o Composer gera um
 > erro referente à estabilidade do pacote, a versão que você especificou pode
@@ -105,11 +104,10 @@ Quando você executa esse comando, uma destas duas coisas pode acontecer:
 Se você nunca executou o comando antes e também não há nenhum `composer.lock`
 presente, o Composer simplesmente resolve todas as dependências listadas no seu
 arquivo `composer.json` e baixa a versão mais recente dos arquivos no diretório
-`vendor` do seu projeto. (O diretório `vendor` é o local convencional para
-todos os códigos de terceiros em um projeto). Em nosso exemplo acima, você
-acabaria com os arquivos-fonte do Monolog em `vendor/monolog/monolog/`. Se o
-Monolog listasse quaisquer dependências, elas também estariam em pastas em
-`vendor/`.
+`vendor` do seu projeto. (O diretório `vendor` é o local convencional para todos
+os códigos de terceiros em um projeto). Em nosso exemplo acima, você acabaria
+com os arquivos-fonte do Monolog em `vendor/monolog/monolog/`. Se o Monolog
+listasse quaisquer dependências, elas também estariam em pastas em `vendor/`.
 
 > **Dica:** Se você estiver usando o git no seu projeto, provavelmente desejará
 > adicionar `vendor` ao `.gitignore`. Você realmente não deseja adicionar todo
@@ -178,7 +176,7 @@ php composer.phar update monolog/monolog [...]
 ```
 
 > **Nota:** Para bibliotecas, não é necessário fazer o commit do arquivo lock,
-> consulte também: [Bibliotecas - Arquivo Lock][libraries-lock-file].
+> consulte também: [Bibliotecas - Arquivo Lock][lib-lock].
 
 ## Packagist
 
@@ -248,15 +246,14 @@ Você pode até adicionar seu próprio código ao autoloader, adicionando um cam
 }
 ```
 
-O Composer registrará um autoloader [PSR-4][php-fig-psr4] para o namespace
-`Acme`.
+O Composer registrará um autoloader [PSR-4][php-psr4] para o namespace `Acme`.
 
 Você define um mapeamento de namespaces para diretórios. O diretório `src`
 estaria na raiz do seu projeto, no mesmo nível que o diretório `vendor`. Um
 exemplo de nome de arquivo seria `src/Foo.php` contendo uma classe `Acme\Foo`.
 
 Após adicionar o campo [`autoload`][schema-autoload], é necessário executar
-novamente o [`dump-autoload`][cli-dump-autoload] para gerar novamente o arquivo
+novamente o [`dump-autoload`][cli-dump] para gerar novamente o arquivo
 `vendor/autoload.php`.
 
 A inclusão desse arquivo também retornará a instância do autoloader, para que
@@ -274,29 +271,29 @@ classes e autoloading de arquivos. Consulte a referência de [`autoload`]
 [schema-autoload] para obter mais informações.
 
 Consulte também a documentação sobre [otimização do autoloader]
-[article-autoloader].
+[art-autoloader].
 
 > **Nota:** O Composer fornece seu próprio autoloader. Se você não quiser
 > usá-lo, poderá incluir os arquivos `vendor/composer/autoload_*.php`, que
 > retornam arrays associativos que permitem configurar seu próprio autoloader.
 
-[article-autoloader]: articles/autoloader-optimization.md
-[article-versions]: articles/versions.md
-[cli-dump-autoload]: cli.md#dump-autoload
+[art-autoloader]: articles/autoloader-optimization.md
+[art-versions]: articles/versions.md
+[cli-dump]: cli.md#dump-autoload
 [cli-install]: cli.md#install
 [cli-show]: cli.md#show
 [cli-update]: cli.md#update
 [intro]: introducao.md
 [intro-localmente]: introducao.md#localmente
-[libraries]: bibliotecas.md
-[libraries-lock-file]: bibliotecas.md#arquivo-lock
-[repositories]: 05-repositories.md
-[php-fig-psr4]: http://www.php-fig.org/psr/psr-4/
-[platform-packages]: #pacotes-de-plataforma
-[schema]: 04-schema.md
-[schema-autoload]: 04-schema.md#autoload
-[schema-require]: 04-schema.md#require
-[schema-repositories]: 04-schema.md#repositories
-[semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*
+[lib]: bibliotecas.md
+[lib-lock]: bibliotecas.md#arquivo-lock
 [packagist]: #packagist
 [packagist-site]: https://packagist.org/
+[php-psr4]: http://www.php-fig.org/psr/psr-4/
+[platform-packages]: #pacotes-de-plataforma
+[repos]: 05-repositories.md
+[schema]: 04-schema.md
+[schema-autoload]: 04-schema.md#autoload
+[schema-repos]: 04-schema.md#repositories
+[schema-require]: 04-schema.md#require
+[semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*
