@@ -820,9 +820,9 @@ php composer.phar diagnose
 
 ## archive
 
-Esse comando é usado para gerar um arquivo zip/tar para um determinado pacote em
-uma determinada versão. Também pode ser usado para arquivar seu projeto inteiro
-sem os arquivos excluídos/ignorados.
+Esse comando é usado para gerar um arquivo compactado zip/tar para um
+determinado pacote em uma determinada versão. Também pode ser usado para
+arquivar seu projeto inteiro sem os arquivos excluídos/ignorados.
 
 ```sh
 php composer.phar archive vendor/pacote 2.0.21 --format=zip
@@ -830,10 +830,10 @@ php composer.phar archive vendor/pacote 2.0.21 --format=zip
 
 ### Opções {: #opcoes-archive }
 
-* **--format (-f):** Formato do arquivo resultante: `tar` ou `zip` (padrão:
-  `tar`).
-* **--dir:** Salva o arquivo neste diretório (padrão: `.`).
-* **--file:** Salva o arquivo com o nome de arquivo especificado.
+* **--format (-f):** Formato do arquivo compactado resultante: `tar` ou `zip`
+  (padrão: `tar`).
+* **--dir:** Salva o arquivo compactado neste diretório (padrão: `.`).
+* **--file:** Salva o arquivo compactado com o nome de arquivo especificado.
 
 ## help
 

@@ -209,7 +209,7 @@ inclui o próprio PHP, extensões PHP e algumas bibliotecas do sistema.
   por exemplo, `^2.3`.
 
 * `ext-<nome>` permite exigir extensões PHP (incluindo extensões nativas). O
-  versionamento pode ser bastante inconsistente aqui, portanto é uma boa idéia
+  versionamento pode ser bastante inconsistente aqui, portanto é uma boa ideia
   definir a restrição como `*`. Um exemplo de um nome de pacote de extensão é
   `ext-gd`.
 
@@ -289,7 +289,7 @@ Consulte também a documentação sobre [otimização do autoloader]
 [lib-lock]: bibliotecas.md#arquivo-lock
 [packagist]: #packagist
 [packagist-site]: https://packagist.org/
-[php-psr4]: http://www.php-fig.org/psr/psr-4/
+[php-psr4]: https://www.php-fig.org/psr/psr-4/
 [platform-packages]: #pacotes-de-plataforma
 [repos]: 05-repositories.md
 [schema]: esquema.md
