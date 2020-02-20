@@ -154,10 +154,10 @@ que você envie a URL ao seu repositório VCS; neste momento o Packagist começa
 a pesquisá-lo. Uma vez feito isso, seu pacote estará disponível para qualquer
 pessoa!
 
-[art-versions]: articles/versions.md
+[art-versions]: artigos/versions.md
 [cli-install]: cli.md#install
 [packagist]: https://packagist.org/
 [packagist-monolog]: https://packagist.org/packages/monolog/monolog
 [repos]: 05-repositories.md
-[schema-name]: 04-schema.md#name
-[schema-require]: 04-schema.md#require
+[schema-name]: esquema.md#name
+[schema-require]: esquema.md#require

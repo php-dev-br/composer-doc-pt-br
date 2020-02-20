@@ -1017,10 +1017,8 @@ IP em notação CIDR. Você pode restringir o filtro a uma porta específica (po
 exemplo, `:80`). Você também pode configurá-la como `*` para ignorar o proxy
 para todas as requisições HTTP.
 
-[Schema](04-schema.md) &rarr;
-
-[art-scripts]: articles/scripts.md
-[art-binaries]: articles/vendor-binaries.md
+[art-scripts]: artigos/scripts.md
+[art-binaries]: artigos/vendor-binaries.md
 [art-basedir]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 [composer-home]: #composer-home
 [conf]: 06-config.md
@@ -1033,6 +1031,6 @@ para todas as requisições HTTP.
 [libraries]: bibliotecas.md
 [packagist]: https://packagist.org/
 [repos]: 05-repositories.md
-[schema-repos]: 04-schema.md#repositories
+[schema-repos]: esquema.md#repositories
 [symfony-console]: https://github.com/symfony/console
 [console-autocomplete]: https://github.com/bamarni/symfony-console-autocomplete

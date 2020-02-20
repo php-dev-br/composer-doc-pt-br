@@ -6,6 +6,7 @@
 * [Uso Básico][basic-usage]
 * [Bibliotecas][lib]
 * [Interface de Linha de Comando / Comandos][cli]
+* [Esquema][schema]
 
 ## Artigos
 
@@ -15,3 +16,4 @@
 [intro]: introducao.md
 [lib]: bibliotecas.md
 [cli]: cli.md
+[schema]: esquema.md

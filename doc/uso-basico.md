@@ -277,8 +277,8 @@ Consulte também a documentação sobre [otimização do autoloader]
 > usá-lo, poderá incluir os arquivos `vendor/composer/autoload_*.php`, que
 > retornam arrays associativos que permitem configurar seu próprio autoloader.
 
-[art-autoloader]: articles/autoloader-optimization.md
-[art-versions]: articles/versions.md
+[art-autoloader]: artigos/autoloader-optimization.md
+[art-versions]: artigos/versions.md
 [cli-dump]: cli.md#dump-autoload
 [cli-install]: cli.md#install
 [cli-show]: cli.md#show
@@ -292,8 +292,8 @@ Consulte também a documentação sobre [otimização do autoloader]
 [php-psr4]: http://www.php-fig.org/psr/psr-4/
 [platform-packages]: #pacotes-de-plataforma
 [repos]: 05-repositories.md
-[schema]: 04-schema.md
-[schema-autoload]: 04-schema.md#autoload
-[schema-repos]: 04-schema.md#repositories
-[schema-require]: 04-schema.md#require
+[schema]: esquema.md
+[schema-autoload]: esquema.md#autoload
+[schema-repos]: esquema.md#repositories
+[schema-require]: esquema.md#require
 [semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*
