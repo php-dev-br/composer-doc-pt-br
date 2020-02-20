@@ -108,7 +108,7 @@ instalação. É recomendável omitir este campo e usar o padrão `library`.
 
 ### keywords
 
-Uma lista de palavras-chave às quais o pacote está relacionado. Elas podem ser
+Um array de palavras-chave às quais o pacote está relacionado. Elas podem ser
 usadas para pesquisa e filtragem.
 
 Exemplos:
@@ -129,23 +129,23 @@ Opcional.
 
 ### readme
 
-A relative path to the readme document.
+Um caminho relativo para o documento `README`.
 
 Opcional.
 
 ### time
 
-Release date of the version.
+Data de lançamento da versão.
 
-Must be in `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format.
+Deve estar no formato `YYYY-MM-DD` ou `YYYY-MM-DD HH:MM:SS`.
 
 Opcional.
 
 ### license
 
-The license of the package. This can be either a string or an array of strings.
+A licença do pacote. Pode ser uma string ou um array de strings.
 
-The recommended notation for the most common licenses is (alphabetical):
+A notação recomendada para as licenças mais comuns é (em ordem alfabética):
 
 - Apache-2.0
 - BSD-2-Clause
@@ -157,12 +157,13 @@ The recommended notation for the most common licenses is (alphabetical):
 - LGPL-3.0-only / LGPL-3.0-or-later
 - MIT
 
-Optional, but it is highly recommended to supply this. More identifiers are
-listed at the [SPDX Open Source License Registry](https://spdx.org/licenses/).
+Opcional, mas é altamente recomendável fornecê-la. Mais identificadores estão
+listados no [Registro de Licenças de Código Aberto SPDX][licenses].
 
-For closed-source software, you may use `"proprietary"` as the license identifier.
+Para software de código fechado, você pode usar `proprietary` como identificador
+da licença.
 
-An Example:
+Um exemplo:
 
 ```json
 {
@@ -170,10 +171,10 @@ An Example:
 }
 ```
 
-For a package, when there is a choice between licenses ("disjunctive license"),
-multiple can be specified as array.
+Para um pacote, quando há uma escolha entre as licenças ("licenças
+disjuntivas"), várias podem ser especificadas como array.
 
-An Example for disjunctive licenses:
+Um exemplo usando licenças disjuntivas:
 
 ```json
 {
@@ -184,7 +185,8 @@ An Example for disjunctive licenses:
 }
 ```
 
-Alternatively they can be separated with "or" and enclosed in parenthesis;
+Alternativamente, elas podem ser separadas por `or` e colocadas entre
+parênteses;
 
 ```json
 {
@@ -192,21 +194,22 @@ Alternatively they can be separated with "or" and enclosed in parenthesis;
 }
 ```
 
-Similarly when multiple licenses need to be applied ("conjunctive license"),
-they should be separated with "and" and enclosed in parenthesis.
+Da mesma forma, quando várias licenças precisam ser aplicadas ("licenças
+conjuntivas"), elas devem ser separadas por `and` e colocadas entre parênteses;
 
 ### authors
 
-The authors of the package. This is an array of objects.
+As pessoas que criaram o pacote, listadas em um array de objetos.
 
-Each author object can have following properties:
+Cada objeto de pessoa pode ter as seguintes propriedades:
 
-* **name:** The author's name. Usually their real name.
-* **email:** The author's email address.
-* **homepage:** An URL to the author's website.
-* **role:** The author's role in the project (e.g. developer or translator)
+* **name:** O nome da pessoa. Geralmente o nome verdadeiro.
+* **email:** O endereço de e-mail da pessoa.
+* **homepage:** Uma URL para o site da pessoa.
+* **role:** A função da pessoa no projeto (por exemplo, desenvolvedora ou
+  tradutora).
 
-An example:
+Um exemplo:
 
 ```json
 {
@@ -227,25 +230,25 @@ An example:
 }
 ```
 
-Optional, but highly recommended.
+Opcional, mas altamente recomendada.
 
 ### support
 
-Various information to get support about the project.
+Várias informações para obter suporte para o projeto.
 
-Support information includes the following:
+As informações de suporte incluem as seguintes:
 
-* **email:** Email address for support.
-* **issues:** URL to the issue tracker.
-* **forum:** URL to the forum.
-* **wiki:** URL to the wiki.
-* **irc:** IRC channel for support, as irc://server/channel.
-* **source:** URL to browse or download the sources.
-* **docs:** URL to the documentation.
-* **rss:** URL to the RSS feed.
-* **chat:** URL to the chat channel.
+* **email:** Endereço de e-mail para suporte.
+* **issues:** URL do sistema para acompanhamento de issues.
+* **forum:** URL do fórum.
+* **wiki:** URL da wiki.
+* **irc:** canal IRC para suporte, como `irc://servidor/canal`.
+* **source:** URL para pesquisar ou baixar o código-fonte.
+* **docs:** URL da documentação.
+* **rss:** URL para o feed RSS.
+* **chat:** URL para o canal de chat.
 
-An example:
+Um exemplo:
 
 ```json
 {
@@ -258,13 +261,13 @@ An example:
 
 Opcional.
 
-### Package links
+### Links de Pacotes
 
-All of the following take an object which maps package names to
-versions of the package via version constraints. Read more about
-versions [here](artigos/versions.md).
+Todos os itens a seguir recebem um objeto que mapeia nomes de pacotes para
+versões do pacote através de restrições de versão. Leia mais sobre versões
+[aqui][art-versions].
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -274,15 +277,16 @@ Example:
 }
 ```
 
-All links are optional fields.
+Todos os links são campos opcionais.
 
-`require` and `require-dev` additionally support stability flags ([root-only](#root-package)).
-These allow you to further restrict or expand the stability of a package beyond
-the scope of the [minimum-stability](#minimum-stability) setting. You can apply
-them to a constraint, or apply them to an empty constraint if you want to
-allow unstable packages of a dependency for example.
+`require` e `require-dev` também oferecem suporte a flags de estabilidade
+([root-only][root-package]). Elas permitem restringir ou expandir ainda mais a
+estabilidade de um pacote além do escopo da configuração [minimum-stability]
+[min-stability]. Você pode aplicá-las a uma restrição ou aplicá-las a uma
+restrição vazia, se desejar permitir pacotes instáveis de uma dependência, por
+exemplo.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -293,14 +297,16 @@ Example:
 }
 ```
 
-If one of your dependencies has a dependency on an unstable package you need to
-explicitly require it as well, along with its sufficient stability flag.
+Se uma de suas dependências depender de um pacote instável, você também
+precisará requisitá-lo explicitamente, juntamente com a flag de estabilidade
+necessária.
 
-Example:
+Exemplo:
 
-Assuming `doctrine/doctrine-fixtures-bundle` requires `"doctrine/data-fixtures": "dev-master"`
-then inside the root composer.json you need to add the second line below to allow dev
-releases for the `doctrine/data-fixtures` package :
+Assumindo que `doctrine/doctrine-fixtures-bundle` requer
+`"doctrine/data-fixtures": "dev-master"`, então dentro do `composer.json`raiz,
+você precisará adicionar a segunda linha abaixo para permitir versões de
+desenvolvimento do pacote `doctrine/data-fixtures`:
 
 ```json
 {
@@ -311,14 +317,14 @@ releases for the `doctrine/data-fixtures` package :
 }
 ```
 
-`require` and `require-dev` additionally support explicit references (i.e.
-commit) for dev versions to make sure they are locked to a given state, even
-when you run update. These only work if you explicitly require a dev version
-and append the reference with `#<ref>`. This is also a
-[root-only](#root-package) feature and will be ignored in
-dependencies.
+Além disso, `require` e `require-dev` suportam referências explícitas (ou seja,
+commits) para versões de desenvolvimento para garantir que elas estejam travadas
+em um determinado estado, mesmo quando você executa a atualização. Elas
+funcionam apenas se você requisitar explicitamente uma versão de desenvolvimento
+e adicionar a referência com `#<ref>`. Este também é um recurso [root-only]
+[root-package] e será ignorado nas dependências.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -329,21 +335,22 @@ Example:
 }
 ```
 
-> **Note:** This feature has severe technical limitations, as the
-> composer.json metadata will still be read from the branch name you specify
-> before the hash. You should therefore only use this as a temporary solution
-> during development to remediate transient issues, until you can switch to
-> tagged releases. The Composer team does not actively support this feature
-> and will not accept bug reports related to it.
+> **Nota:** Esse recurso tem graves limitações técnicas, pois os metadados do
+> `composer.json` ainda serão lidos a partir do nome do branch que você
+> especificar antes do hash. Portanto, você deve usar isso apenas como uma
+> solução temporária durante o desenvolvimento para corrigir problemas
+> transitórios, até poder alternar para versões de tag. O time do Composer não
+> suporta ativamente esse recurso e não aceita relatórios de erros relacionados
+> a ele.
 
-It is also possible to inline-alias a package constraint so that it matches
-a constraint that it otherwise would not. For more information [see the
-aliases article](artigos/aliases.md).
+Também é possível criar um alias em linha de uma restrição de pacote, para que
+ela corresponda a uma restrição que de outra forma não corresponderia. Para
+obter mais informações, [consulte o artigo sobre aliases][art-aliases].
 
-`require` and `require-dev` also support references to specific PHP versions
-and PHP extensions your project needs to run successfully.
+`require` e `require-dev` também suportam referências a versões específicas do
+PHP e de extensões PHP que seu projeto precisa para executar com sucesso.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -354,38 +361,39 @@ Example:
 }
 ```
 
-> **Note:** It is important to list PHP extensions your project requires.
-> Not all PHP installations are created equal: some may miss extensions you
-> may consider as standard (such as `ext-mysqli` which is not installed by
-> default in Fedora/CentOS minimal installation systems). Failure to list
-> required PHP extensions may lead to a bad user experience: Composer will
-> install your package without any errors but it will then fail at run-time.
-> The `composer show --platform` command lists all PHP extensions available on
-> your system. You may use it to help you compile the list of extensions you
-> use and require. Alternatively you may use third party tools to analyze
-> your project for the list of extensions used.
+> **Nota:** É importante listar as extensões PHP que seu projeto requer. Nem
+> todas as instalações PHP são criadas da mesma forma: algumas podem não possuir
+> extensões que você pode considerar como padrão (como `ext-mysqli`, que não é
+> instalada por padrão nas instalações mínimas dos sistemas Fedora/CentOS).
+> Não listar as extensões PHP necessárias pode levar a uma experiência ruim do
+> usuário: o Composer instalará seu pacote sem erros, mas ele falhará em tempo
+> de execução. O comando `composer show --platform` lista todas as extensões PHP
+> disponíveis no seu sistema. Você pode usá-lo para te ajudar a compilar a lista
+> de extensões que você usa e precisa. Como alternativa, você pode usar
+> ferramentas de terceiros para analisar seu projeto para obter a lista de
+> extensões usadas.
 
 #### require
 
-Lists packages required by this package. The package will not be installed
-unless those requirements can be met.
+Lista os pacotes exigidos por este pacote. O pacote não será instalado, a menos
+que estes requisitos possam ser atendidos.
 
-#### require-dev <span>([root-only](#root-package))</span>
+#### require-dev <span>([root-only](#pacote-raiz))</span> {: #require-dev }
 
-Lists packages required for developing this package, or running
-tests, etc. The dev requirements of the root package are installed by default.
-Both `install` or `update` support the `--no-dev` option that prevents dev
-dependencies from being installed.
+Lista os pacotes necessários para desenvolver este pacote, executar testes, etc.
+Os requisitos de desenvolvimento do pacote raiz são instalados por padrão. Tanto
+`install` quanto `update` suportam a opção `--no-dev`, que impede a instalação
+das dependências de desenvolvimento.
 
 #### conflict
 
-Lists packages that conflict with this version of this package. They
-will not be allowed to be installed together with your package.
+Lista os pacotes que entram em conflito com esta versão deste pacote. Eles não
+poderão ser instalados junto com o seu pacote.
 
-Note that when specifying ranges like `<1.0 >=1.1` in a `conflict` link,
-this will state a conflict with all versions that are less than 1.0 *and* equal
-or newer than 1.1 at the same time, which is probably not what you want. You
-probably want to go for `<1.0 || >=1.1` in this case.
+Observe que, ao especificar intervalos como `<1.0 >=1.1` em um link de
+`conflict`, isso indicará um conflito com todas as versões inferiores a 1.0 *e*
+iguais ou mais recentes que 1.1 ao mesmo tempo, o que provavelmente não é o que
+você deseja. Você provavelmente quer escolher `<1.0 || >=1.1`, neste caso.
 
 #### replace
 
@@ -422,7 +430,7 @@ strictly required.
 The format is like package links above, except that the values are free text
 and not version constraints.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -459,7 +467,7 @@ The PSR-4 references are all combined, during install/update, into a single
 key => value array which may be found in the generated file
 `vendor/composer/autoload_psr4.php`.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -506,7 +514,7 @@ backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
 The PSR-0 references are all combined, during install/update, into a single key => value
 array which may be found in the generated file `vendor/composer/autoload_namespaces.php`.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -566,7 +574,7 @@ You can use the classmap generation support to define autoloading for all librar
 that do not follow PSR-0/4. To configure this you specify all directories or files
 to search for classes.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -582,7 +590,7 @@ If you want to require certain files explicitly on every request then you can us
 the `files` autoloading mechanism. This is useful if your package includes PHP functions
 that cannot be autoloaded by PHP.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -602,7 +610,7 @@ The classmap generator will ignore all files in the paths configured here. The p
 root directory (i.e. composer.json location), and support `*` to match anything but a slash, and `**` to
 match anything. `**` is implicitly added to the end of the paths.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -619,7 +627,7 @@ The autoloader can have quite a substantial impact on your request time
 [article about optimizing the autoloader](artigos/autoloader-optimization.md)
 for more details on how to reduce this impact.
 
-### autoload-dev <span>([root-only](#root-package))</span>
+### autoload-dev <span>([root-only](#pacote-raiz))</span>
 
 This section allows to define autoload rules for development purposes.
 
@@ -630,7 +638,7 @@ your package as a dependency.
 Therefore, it is a good idea to rely on a dedicated path for your unit tests
 and to add it within the autoload-dev section.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -651,7 +659,7 @@ Example:
 
 A list of paths which should get appended to PHP's `include_path`.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -692,7 +700,7 @@ To do that, `autoload` and `target-dir` are defined as follows:
 
 Opcional.
 
-### minimum-stability <span>([root-only](#root-package))</span>
+### minimum-stability <span>([root-only](#pacote-raiz))</span> {: #minimum-stability }
 
 This defines the default behavior for filtering packages by stability. This
 defaults to `stable`, so if you rely on a `dev` package, you should specify
@@ -707,7 +715,7 @@ specify in a `require` block (see [package links](#package-links) for more detai
 Available options (in order of stability) are `dev`, `alpha`, `beta`, `RC`,
 and `stable`.
 
-### prefer-stable <span>([root-only](#root-package))</span>
+### prefer-stable <span>([root-only](#pacote-raiz))</span> {: #prefer-stable }
 
 When this is enabled, Composer will prefer more stable packages over unstable
 ones when finding compatible stable packages is possible. If you require a
@@ -716,7 +724,7 @@ selected granted that the minimum-stability allows for it.
 
 Use `"prefer-stable": true` to enable.
 
-### repositories <span>([root-only](#root-package))</span>
+### repositories <span>([root-only](#pacote-raiz))</span> {: #repositories }
 
 Custom package repositories to use.
 
@@ -744,7 +752,7 @@ The following repository types are supported:
 
 For more information on any of these, see [Repositories](05-repositories.md).
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -809,12 +817,12 @@ are to be considered unordered so consistent behaviour cannot be guaranteed.
 }
  ```
 
-### config <span>([root-only](#root-package))</span>
+### config <span>([root-only](#pacote-raiz))</span> {: #config }
 
 A set of configuration options. It is only used for projects. See
 [Config](06-config.md) for a description of each individual option.
 
-### scripts <span>([root-only](#root-package))</span>
+### scripts <span>([root-only](#pacote-raiz))</span> {: #scripts }
 
 Composer allows you to hook into various parts of the installation process
 through the use of scripts.
@@ -855,7 +863,7 @@ The following options are supported:
   excluded them. A leading slash will only match at the beginning of the project
   relative path. An asterisk will not expand to a directory separator.
 
-Example:
+Exemplo:
 
 ```json
 {
@@ -923,8 +931,13 @@ Opcional.
 
 &larr; [Command-line interface](03-cli.md)  |  [Repositories](05-repositories.md) &rarr;
 
+[art-aliases]: artigos/aliases.md
 [art-installers]: artigos/custom-installers.md
+[art-versions]: artigos/versions.md
 [json-schema]: http://json-schema.org
+[licenses]: https://spdx.org/licenses/
+[min-stability]: #minimum-stability
+[root-package]: #pacote-raiz
 [schema-page]: https://getcomposer.org/schema.json
 [sf-standard]: https://github.com/symfony/symfony-standard
 [silverstripe-installer]: https://github.com/silverstripe/silverstripe-installer
