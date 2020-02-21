@@ -954,8 +954,6 @@ Então `composer show -s` retornará `versions : * dev-latest-testing`.
 
 Opcional.
 
-[Repositories](05-repositories.md) &rarr;
-
 [art-aliases]: artigos/aliases.md
 [art-autoloader]: artigos/autoloader-optimization.md
 [art-binaries]: artigos/vendor-binaries.md
@@ -969,7 +967,7 @@ Opcional.
 [package-links]: #links-de-pacotes
 [php-psr0]: https://www.php-fig.org/psr/psr-0/
 [php-psr4]: https://www.php-fig.org/psr/psr-4/
-[repos]: 05-repositories.md
+[repos]: repositorios.md
 [root-package]: #pacote-raiz
 [schema-page]: https://getcomposer.org/schema.json
 [sf-standard]: https://github.com/symfony/symfony-standard

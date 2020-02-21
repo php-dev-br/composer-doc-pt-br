@@ -291,7 +291,7 @@ Consulte também a documentação sobre [otimização do autoloader]
 [packagist-site]: https://packagist.org/
 [php-psr4]: https://www.php-fig.org/psr/psr-4/
 [platform-packages]: #pacotes-de-plataforma
-[repos]: 05-repositories.md
+[repos]: repositorios.md
 [schema]: esquema.md
 [schema-autoload]: esquema.md#autoload
 [schema-repos]: esquema.md#repositories

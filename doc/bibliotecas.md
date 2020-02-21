@@ -158,6 +158,6 @@ pessoa!
 [cli-install]: cli.md#install
 [packagist]: https://packagist.org/
 [packagist-monolog]: https://packagist.org/packages/monolog/monolog
-[repos]: 05-repositories.md
+[repos]: repositorios.md
 [schema-name]: esquema.md#name
 [schema-require]: esquema.md#require

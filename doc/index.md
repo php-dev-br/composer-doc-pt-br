@@ -7,6 +7,7 @@
 * [Bibliotecas][lib]
 * [Interface de Linha de Comando / Comandos][cli]
 * [Esquema][schema]
+* [Repositórios][repos]
 
 ## Artigos
 
@@ -17,3 +18,4 @@
 [lib]: bibliotecas.md
 [cli]: cli.md
 [schema]: esquema.md
+[repos]: repositorios.md

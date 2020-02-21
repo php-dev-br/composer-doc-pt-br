@@ -1030,7 +1030,7 @@ para todas as requisições HTTP.
 [intro-globally]: introducao.md#globalmente
 [libraries]: bibliotecas.md
 [packagist]: https://packagist.org/
-[repos]: 05-repositories.md
+[repos]: repositorios.md
 [schema-repos]: esquema.md#repositories
 [symfony-console]: https://github.com/symfony/console
 [console-autocomplete]: https://github.com/bamarni/symfony-console-autocomplete
