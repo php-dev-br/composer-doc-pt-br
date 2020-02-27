@@ -253,7 +253,7 @@ Um exemplo:
 ```json
 {
     "support": {
-        "email": "support@example.org",
+        "email": "suporte@exemplo.org.br",
         "irc": "irc://irc.freenode.org/composer"
     }
 }
@@ -774,11 +774,11 @@ Exemplo:
     "repositories": [
         {
             "type": "composer",
-            "url": "http://packages.example.com"
+            "url": "http://packages.exemplo.com.br"
         },
         {
             "type": "composer",
-            "url": "https://packages.example.com",
+            "url": "https://packages.exemplo.com.br",
             "options": {
                 "ssl": {
                     "verify_peer": "true"

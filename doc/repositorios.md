@@ -11,9 +11,9 @@ entender alguns dos conceitos básicos sobre os quais o Composer é construído.
 ### Pacote
 
 O Composer é um gerenciador de dependências. Ele instala pacotes localmente. Um
-pacote é essencialmente um diretório que contém alguma coisa. Neste caso, é
-código PHP, mas em teoria poderia ser qualquer coisa. E ele contém uma descrição
-do pacote que possui um nome e uma versão. O nome e a versão são usados para
+pacote é essencialmente um diretório que contém alguma coisa. Neste caso, código
+PHP, mas em teoria poderia ser qualquer coisa. E ele contém uma descrição do
+pacote que possui um nome e uma versão. O nome e a versão são usados para
 identificar o pacote.
 
 De fato, internamente o Composer vê cada versão como um pacote separado. Embora
@@ -25,51 +25,52 @@ para a instalação é a definição da fonte, que descreve onde obter o conteú
 pacote. Os dados do pacote apontam para o conteúdo do pacote. E há duas opções
 aqui: `dist` e `source`.
 
-**Dist:** `dist` é uma versão empacotada dos dados do pacote. Geralmente é uma
-versão lançada, normalmente é uma versão estável.
+**Dist:** é uma versão empacotada dos dados do pacote. Geralmente é uma versão
+lançada, normalmente é uma versão estável.
 
-**Source:** `source` é usada para desenvolvimento. Ela geralmente se origina de
-um repositório de código-fonte, como o git. Você pode obter o código-fonte
-quando quiser modificar o pacote baixado.
+**Source:** é usada para desenvolvimento. Ela geralmente se origina de um
+repositório de código-fonte, como o git. Você pode obter o código-fonte quando
+quiser modificar o pacote baixado.
 
 Os pacotes podem fornecer uma dessas ou até mesmo as duas. Dependendo de certos
 fatores, como as opções fornecidas pela pessoa e a estabilidade do pacote, uma
-terá a preferência.
+delas terá a preferência.
 
-### Repository
+### Repositório
 
-A repository is a package source. It's a list of packages/versions. Composer
-will look in all your repositories to find the packages your project requires.
+Um repositório é uma fonte de pacotes. É uma lista de pacotes/versões. O
+Composer procurará em todos os seus repositórios para encontrar os pacotes que
+seu projeto exige.
 
-By default only the Packagist repository is registered in Composer. You can
-add more repositories to your project by declaring them in `composer.json`.
+Por padrão, apenas o repositório Packagist está registrado no Composer. Você
+pode adicionar mais repositórios ao seu projeto declarando-os no
+`composer.json`.
 
-Repositories are only available to the root package and the repositories
-defined in your dependencies will not be loaded. Read the
-[FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md) if you
-want to learn why.
+Os repositórios estão disponíveis apenas para o pacote raiz e os repositórios
+definidos em suas dependências não serão carregados. Leia a [FAQ]
+[faq-recursive-repos] se quiser saber o porquê.
 
-## Types
+## Tipos
 
-### Composer
+### composer
 
-The main repository type is the `composer` repository. It uses a single
-`packages.json` file that contains all of the package metadata.
+O principal tipo de repositório é o repositório `composer`. Ele usa um único
+arquivo `packages.json` que contém todos os metadados dos pacotes.
 
-This is also the repository type that packagist uses. To reference a
-`composer` repository, supply the path before the `packages.json` file.
-In the case of packagist, that file is located at `/packages.json`, so the URL of
-the repository would be `repo.packagist.org`. For `example.org/packages.json` the
-repository URL would be `example.org`.
+Este também é o tipo de repositório que o Packagist usa. Para referenciar um
+repositório `composer`, forneça o caminho antes do arquivo `packages.json`. No
+caso do Packagist, esse arquivo está localizado em `/packages.json`, portanto, a
+URL do repositório seria `repo.packagist.org`. Para
+`exemplo.org.br/packages.json`, a URL do repositório seria `exemplo.org.br`.
 
 #### packages
 
-The only required field is `packages`. The JSON structure is as follows:
+O único campo obrigatório é `packages`. A estrutura JSON é a seguinte:
 
 ```json
 {
     "packages": {
-        "vendor/package-name": {
+        "nome-vendor/nome-pacote": {
             "dev-master": { @composer.json },
             "1.0.x-dev": { @composer.json },
             "0.0.1": { @composer.json },
@@ -79,14 +80,14 @@ The only required field is `packages`. The JSON structure is as follows:
 }
 ```
 
-The `@composer.json` marker would be the contents of the `composer.json` from
-that package version including as a minimum:
+O marcador `@composer.json` seria o conteúdo do `composer.json` dessa versão do
+pacote, incluindo no mínimo:
 
-* name
-* version
-* dist or source
+* `name`
+* `version`
+* `dist` ou `source`
 
-Here is a minimal package definition:
+Aqui está uma definição mínima de pacote:
 
 ```json
 {
@@ -99,15 +100,16 @@ Here is a minimal package definition:
 }
 ```
 
-It may include any of the other fields specified in the [schema](04-schema.md).
+Ela pode incluir qualquer um dos outros campos especificados no [esquema]
+[schema].
 
 #### notify-batch
 
-The `notify-batch` field allows you to specify a URL that will be called
-every time a user installs a package. The URL can be either an absolute path
-(that will use the same domain as the repository) or a fully qualified URL.
+O campo `notify-batch` permite especificar uma URL que será chamada sempre que
+alguém instalar um pacote. A URL pode ser um caminho absoluto (que usará o mesmo
+domínio que o repositório) ou uma URL completamente qualificada.
 
-An example value:
+Um exemplo de valor:
 
 ```json
 {
@@ -115,9 +117,9 @@ An example value:
 }
 ```
 
-For `example.org/packages.json` containing a `monolog/monolog` package, this
-would send a `POST` request to `example.org/downloads/` with following
-JSON request body:
+Para `exemplo.org.br/packages.json` contendo um pacote `monolog/monolog`, isso
+enviaria uma requisição `POST` para `exemplo.org.br/downloads/` com o seguinte
+corpo da requisição JSON:
 
 ```json
 {
@@ -127,22 +129,21 @@ JSON request body:
 }
 ```
 
-The version field will contain the normalized representation of the version
-number.
+O campo `version` conterá a representação normalizada do número da versão.
 
-This field is optional.
+Este campo é opcional.
 
-#### provider-includes and providers-url
+#### provider-includes e providers-url
 
-The `provider-includes` field allows you to list a set of files that list
-package names provided by this repository. The hash should be a sha256 of
-the files in this case.
+O campo `provider-includes` permite listar um conjunto de arquivos que listam
+nomes de pacotes fornecidos por este repositório. O hash deve ser um sha256 dos
+arquivos nesse caso.
 
-The `providers-url` describes how provider files are found on the server. It
-is an absolute path from the repository root. It must contain the placeholders
-`%package%` and `%hash%`.
+O campo `providers-url` descreve como os arquivos do provedor são encontrados no
+servidor. É um caminho absoluto da raiz do repositório. Deve conter os
+placeholders `%package%` e `%hash%`.
 
-An example:
+Um exemplo:
 
 ```json
 {
@@ -158,8 +159,8 @@ An example:
 }
 ```
 
-Those files contain lists of package names and hashes to verify the file
-integrity, for example:
+Esses arquivos contêm listas de nomes de pacotes e hashes para verificar a
+integridade do arquivo, por exemplo:
 
 ```json
 {
@@ -174,42 +175,44 @@ integrity, for example:
 }
 ```
 
-The file above declares that acme/foo and acme/bar can be found in this
-repository, by loading the file referenced by `providers-url`, replacing
-`%package%` by the vendor namespaced package name and `%hash%` by the
-sha256 field. Those files themselves contain package definitions as
-described [above](#packages).
+O arquivo acima declara que `acme/foo` e `acme/bar` podem ser encontrados neste
+repositório, carregando o arquivo referenciado por `providers-url`, substituindo
+`%package%` pelo nome do pacote com o nome do vendor e `%hash%` pelo campo
+`sha256`. Esses arquivos contêm definições de pacotes, conforme descrito [acima]
+[packages].
 
-These fields are optional. You probably don't need them for your own custom
-repository.
+Estes campos são opcionais. Você provavelmente não precisa deles para seu
+próprio repositório personalizado.
 
-#### stream options
+#### Opções de Stream
 
-The `packages.json` file is loaded using a PHP stream. You can set extra
-options on that stream using the `options` parameter. You can set any valid
-PHP stream context option. See [Context options and
-parameters](https://php.net/manual/en/context.php) for more information.
+O arquivo `packages.json` é carregado usando um stream PHP. Você pode definir
+opções extras para esse stream usando o parâmetro `options`. Você pode definir
+qualquer opção de contexto de stream PHP válida. Consulte [Opções e parâmetros
+de contexto][php-context] para obter mais informações.
 
 ### VCS
 
-VCS stands for version control system. This includes versioning systems like
-git, svn, fossil or hg. Composer has a repository type for installing packages
-from these systems.
+VCS significa sistema de controle de versão. Isso inclui sistemas de
+versionamento como git, svn, fossil ou hg. O Composer possui um tipo de
+repositório para instalar pacotes desses sistemas.
 
-#### Loading a package from a VCS repository
+#### Carregando um Pacote de um Repositório VCS
 
-There are a few use cases for this. The most common one is maintaining your
-own fork of a third party library. If you are using a certain library for your
-project and you decide to change something in the library, you will want your
-project to use the patched version. If the library is on GitHub (this is the
-case most of the time), you can simply fork it there and push your changes to
-your fork. After that you update the project's `composer.json`. All you have
-to do is add your fork as a repository and update the version constraint to
-point to your custom branch. In `composer.json`, you should prefix your custom
-branch name with `"dev-"`. For version constraint naming conventions see
-[Libraries](02-libraries.md) for more information.
+Existem alguns casos de uso para isso. O mais comum é manter seu próprio fork de
+uma biblioteca de terceiros. Se você estiver usando uma determinada biblioteca
+para seu projeto e decidir alterar algo na biblioteca, desejará que seu projeto
+use a versão alterada. Se a biblioteca estiver no GitHub (esse é o caso na
+maioria das vezes), você pode simplesmente fazer o fork dela lá e fazer o push
+das suas alterações para o seu fork. Depois disso, você atualiza o
+`composer.json` do projeto. Tudo que você precisa fazer é adicionar seu fork
+como um repositório e atualizar a restrição de versão para apontar para seu
+branch personalizado. No `composer.json`, você deve prefixar o nome do seu
+branch personalizado com `"dev-"`. Para convenções de nomenclatura de restrições
+de versão, consulte [Bibliotecas][libraries] para obter mais informações.
 
-Example assuming you patched monolog to fix a bug in the `bugfix` branch:
+Exemplo assumindo que você alterou o monolog para corrigir um erro no branch
+`bugfix`:
 
 ```json
 {
@@ -226,12 +229,12 @@ Example assuming you patched monolog to fix a bug in the `bugfix` branch:
 ```
 
 When you run `php composer.phar update`, you should get your modified version
-of `monolog/monolog` instead of the one from packagist.
+of `monolog/monolog` instead of the one from Packagist.
 
 Note that you should not rename the package unless you really intend to fork
 it in the long term, and completely move away from the original package.
 Composer will correctly pick your package over the original one since the
-custom repository has priority over packagist. If you want to rename the
+custom repository has priority over Packagist. If you want to rename the
 package, you should do so in the default (often master) branch and not in a
 feature branch, since the package name is taken from the default branch.
 
@@ -251,12 +254,12 @@ GitHub and BitBucket:
 ```json
 {
     "require": {
-        "vendor/my-private-repo": "dev-master"
+        "nome-vendor/meu-repo-privado": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url":  "git@bitbucket.org:vendor/my-private-repo.git"
+            "url":  "git@bitbucket.org:nome-vendor/meu-repo-privado.git"
         }
     ]
 }
@@ -307,8 +310,8 @@ the credentials like this (more info [here](https://getcomposer.org/doc/06-confi
 {
     "bitbucket-oauth": {
         "bitbucket.org": {
-            "consumer-key": "myKey",
-            "consumer-secret": "mySecret"
+            "consumer-key": "minha-chave",
+            "consumer-secret": "meu-segredo"
         }
     }
 }
@@ -330,7 +333,7 @@ repository like this:
     "repositories": [
         {
             "type": "vcs",
-            "url": "http://svn.example.org/projectA/",
+            "url": "http://svn.exemplo.org.br/projeto-a/",
             "trunk-path": "Trunk",
             "branches-path": "Branches",
             "tags-path": "Tags"
@@ -353,9 +356,9 @@ http-basic section of your config (See [Schema](04-schema.md)):
 ```json
 {
     "http-basic": {
-        "svn.example.org": {
-            "username": "username",
-            "password": "password"
+        "svn.exemplo.org.br": {
+            "username": "usuario",
+            "password": "senha"
         }
     }
 }
@@ -371,7 +374,7 @@ for this server will be overwritten. To change this behavior by setting the
     "repositories": [
         {
             "type": "vcs",
-            "url": "http://svn.example.org/projectA/",
+            "url": "http://svn.exemplo.org.br/projeto-a/",
             "svn-cache-credentials": false
         }
     ]
@@ -542,7 +545,7 @@ The `"package"` key in a `package` repository may be set to an array to define m
 
 ## Hosting your own
 
-While you will probably want to put your packages on packagist most of the
+While you will probably want to put your packages on Packagist most of the
 time, there are some use cases for hosting your own repository.
 
 * **Private company packages:** If you are part of a company that uses Composer
@@ -550,7 +553,7 @@ time, there are some use cases for hosting your own repository.
 
 * **Separate ecosystem:** If you have a project which has its own ecosystem,
   and the packages aren't really reusable by the greater PHP community, you
-  might want to keep them separate to packagist. An example of this would be
+  might want to keep them separate to Packagist. An example of this would be
   wordpress plugins.
 
 For hosting your own packages, a native `composer` type of repository is
@@ -569,7 +572,7 @@ Check out [Packagist.com](https://packagist.com/) for more information.
 ### Satis
 
 Satis is a static `composer` repository generator. It is a bit like an ultra-
-lightweight, static file-based version of packagist.
+lightweight, static file-based version of Packagist.
 
 You give it a `composer.json` containing repositories, typically VCS and
 package repository definitions. It will fetch all the packages that are
@@ -715,3 +718,9 @@ composer config -g repo.packagist false
 ```
 
 &larr; [Schema](04-schema.md)  |  [Config](06-config.md) &rarr;
+
+[faq-recursive-repos]: faqs/why-can't-composer-load-repositories-recursively.md
+[libraries]: bibliotecas.md
+[packages]: #packages
+[schema]: esquema.md
+[php-context]: https://www.php.net/manual/pt_BR/context.php

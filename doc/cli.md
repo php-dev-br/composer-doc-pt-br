@@ -146,7 +146,7 @@ php composer.phar update vendor/pacote vendor/pacote2
 Você também pode usar curingas para atualizar vários pacotes de uma vez:
 
 ```sh
-php composer.phar update "vendor/*"
+php composer.phar update "nome-vendor/*"
 ```
 
 ### Opções {: #opcoes-update }
@@ -671,7 +671,7 @@ Se o seu repositório exigir mais opções de configuração, você poderá pass
 representação JSON:
 
 ```sh
-php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.example.org/meu-projeto/", "trunk-path": "master"}'
+php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.exemplo.org.br/meu-projeto/", "trunk-path": "master"}'
 ```
 
 ### Modificando Valores Extras
@@ -914,11 +914,11 @@ A variável `COMPOSER_HOME` permite alterar o diretório inicial do Composer. Es
 é um diretório oculto global (por usuário na máquina) compartilhado entre todos
 os projetos.
 
-Por padrão, ela aponta para `C:\Users\<user>\AppData\Roaming\Composer` no
-Windows e `/Users/<user>/.composer` no macOS. Em sistemas \*nix que seguem as
+Por padrão, ela aponta para `C:\Users\<usuario>\AppData\Roaming\Composer` no
+Windows e `/Users/<usuario>/.composer` no macOS. Em sistemas \*nix que seguem as
 [Especificações de Diretório Base do XDG][art-basedir], ela aponta para
 `$XDG_CONFIG_HOME/composer`. Em outros sistemas \*nix, ela aponta para
-`/home/<user>/.composer`.
+`/home/<usuario>/.composer`.
 
 #### COMPOSER_HOME/config.json {: #composer-home-config-json }
 
