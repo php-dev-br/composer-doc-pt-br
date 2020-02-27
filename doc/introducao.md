@@ -86,7 +86,7 @@ poderá acessá-lo globalmente. Nos sistemas Unix, você pode até torná-lo
 executável e invocá-lo sem usar diretamente o interpretador `php`.
 
 Após executar o instalador, seguindo [as instruções da página de download]
-[download-page], você pode executar isto para mover o composer.phar para um
+[download-page], você pode executar isto para mover o `composer.phar` para um
 diretório que esteja na sua variável `PATH`:
 
 ```sh

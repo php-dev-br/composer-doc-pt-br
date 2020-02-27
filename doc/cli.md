@@ -146,7 +146,7 @@ php composer.phar update vendor/pacote vendor/pacote2
 Você também pode usar curingas para atualizar vários pacotes de uma vez:
 
 ```sh
-php composer.phar update "nome-vendor/*"
+php composer.phar update "vendor/*"
 ```
 
 ### Opções {: #opcoes-update }

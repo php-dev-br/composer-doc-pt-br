@@ -11,13 +11,13 @@ entender alguns dos conceitos básicos sobre os quais o Composer é construído.
 ### Pacote
 
 O Composer é um gerenciador de dependências. Ele instala pacotes localmente. Um
-pacote é essencialmente um diretório que contém alguma coisa. Neste caso, código
+pacote é essencialmente um diretório que contém alguma coisa. Nesse caso, código
 PHP, mas em teoria poderia ser qualquer coisa. E ele contém uma descrição do
 pacote que possui um nome e uma versão. O nome e a versão são usados para
 identificar o pacote.
 
 De fato, internamente o Composer vê cada versão como um pacote separado. Embora
-esta distinção não importe quando você estiver usando o Composer, ela é muito
+essa distinção não importe quando você estiver usando o Composer, ela é muito
 importante quando você quiser alterar o pacote.
 
 Além do nome e da versão, existem metadados úteis. A informação mais relevante
@@ -26,7 +26,7 @@ pacote. Os dados do pacote apontam para o conteúdo do pacote. E há duas opçõ
 aqui: `dist` e `source`.
 
 **Dist:** é uma versão empacotada dos dados do pacote. Geralmente é uma versão
-lançada, normalmente é uma versão estável.
+publicada, normalmente é uma versão estável.
 
 **Source:** é usada para desenvolvimento. Ela geralmente se origina de um
 repositório de código-fonte, como o git. Você pode obter o código-fonte quando
@@ -70,7 +70,7 @@ O único campo obrigatório é `packages`. A estrutura JSON é a seguinte:
 ```json
 {
     "packages": {
-        "nome-vendor/nome-pacote": {
+        "vendor/nome-pacote": {
             "dev-master": { @composer.json },
             "1.0.x-dev": { @composer.json },
             "0.0.1": { @composer.json },
@@ -136,8 +136,8 @@ Este campo é opcional.
 #### provider-includes e providers-url
 
 O campo `provider-includes` permite listar um conjunto de arquivos que listam
-nomes de pacotes fornecidos por este repositório. O hash deve ser um sha256 dos
-arquivos nesse caso.
+nomes de pacotes fornecidos por este repositório. Nesse caso, o hash deve ser um
+sha256 dos arquivos.
 
 O campo `providers-url` descreve como os arquivos do provedor são encontrados no
 servidor. É um caminho absoluto da raiz do repositório. Deve conter os
@@ -208,7 +208,7 @@ das suas alterações para o seu fork. Depois disso, você atualiza o
 `composer.json` do projeto. Tudo que você precisa fazer é adicionar seu fork
 como um repositório e atualizar a restrição de versão para apontar para seu
 branch personalizado. No `composer.json`, você deve prefixar o nome do seu
-branch personalizado com `"dev-"`. Para convenções de nomenclatura de restrições
+branch personalizado com `dev-`. Para convenções de nomenclatura de restrições
 de versão, consulte [Bibliotecas][libraries] para obter mais informações.
 
 Exemplo assumindo que você alterou o monolog para corrigir um erro no branch
@@ -228,84 +228,97 @@ Exemplo assumindo que você alterou o monolog para corrigir um erro no branch
 }
 ```
 
-When you run `php composer.phar update`, you should get your modified version
-of `monolog/monolog` instead of the one from Packagist.
+Quando você executar `php composer.phar update`, você deve obter sua versão
+modificada do `monolog/monolog` em vez da versão do Packagist.
 
-Note that you should not rename the package unless you really intend to fork
-it in the long term, and completely move away from the original package.
-Composer will correctly pick your package over the original one since the
-custom repository has priority over Packagist. If you want to rename the
-package, you should do so in the default (often master) branch and not in a
-feature branch, since the package name is taken from the default branch.
+Observe que você não deve renomear o pacote, a menos que realmente pretenda
+fazer o fork do projeto a longo prazo e se afastar completamente do pacote
+original. O Composer selecionará seu pacote corretamente no lugar do original,
+já que o repositório personalizado tem prioridade sobre o Packagist. Se você
+deseja renomear o pacote, deve fazê-lo no branch padrão (geralmente `master`) e
+não no feature branch, pois o nome do pacote é obtido do branch padrão.
 
-Also note that the override will not work if you change the `name` property
-in your forked repository's `composer.json` file as this needs to match the
-original for the override to work.
+Observe também que a substituição não funcionará se você alterar a propriedade
+`name` no arquivo `composer.json` do repositório criado pelo fork, pois ela
+precisa corresponder à original para a substituição funcionar.
 
-If other dependencies rely on the package you forked, it is possible to
-inline-alias it so that it matches a constraint that it otherwise would not.
-For more information [see the aliases article](articles/aliases.md).
+Se outra dependência depender do pacote criado pelo fork, é possível adicionar
+um alias em linha para que ela corresponda a uma restrição que, de outra forma,
+ela não iria. Para obter mais informações, [consulte o artigo sobre aliases]
+[art-aliases].
 
-#### Using private repositories
+#### Usando Repositórios Privados
 
-Exactly the same solution allows you to work with your private repositories at
-GitHub and BitBucket:
+Exatamente a mesma solução permite que você trabalhe com seus repositórios
+privados no GitHub e BitBucket:
 
 ```json
 {
     "require": {
-        "nome-vendor/meu-repo-privado": "dev-master"
+        "vendor/meu-repo-privado": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url":  "git@bitbucket.org:nome-vendor/meu-repo-privado.git"
+            "url":  "git@bitbucket.org:vendor/meu-repo-privado.git"
         }
     ]
 }
 ```
 
-The only requirement is the installation of SSH keys for a git client.
+O único requisito é a instalação de chaves SSH para um cliente git.
 
-#### Git alternatives
+#### Alternativas ao Git
 
-Git is not the only version control system supported by the VCS repository.
-The following are supported:
+Git não é o único sistema de controle de versão suportado pelo repositório VCS.
+Os seguintes são suportados:
 
-* **Git:** [git-scm.com](https://git-scm.com)
-* **Subversion:** [subversion.apache.org](https://subversion.apache.org)
-* **Mercurial:** [mercurial-scm.org](https://www.mercurial-scm.org)
-* **Fossil**: [fossil-scm.org](https://www.fossil-scm.org/)
+* **Git:** [git-scm.com][vcs-git]
+* **Subversion:** [subversion.apache.org][vcs-svn]
+* **Mercurial:** [mercurial-scm.org][vcs-hg]
+* **Fossil**: [fossil-scm.org][vcs-fossil]
 
-To get packages from these systems you need to have their respective clients
-installed. That can be inconvenient. And for this reason there is special
-support for GitHub and BitBucket that use the APIs provided by these sites, to
-fetch the packages without having to install the version control system. The
-VCS repository provides `dist`s for them that fetch the packages as zips.
+Para obter pacotes desses sistemas, você precisa ter seus respectivos clientes
+instalados. Isso pode ser inconveniente. E por esse motivo, há suporte especial
+ao GitHub e BitBucket que usa as APIs fornecidas por esses sites para buscar os
+pacotes sem precisar instalar o sistema de controle de versão. O repositório VCS
+fornece opções `dist` para eles que buscam os pacotes como arquivos zip.
 
-* **GitHub:** [github.com](https://github.com) (Git)
-* **BitBucket:** [bitbucket.org](https://bitbucket.org) (Git and Mercurial)
+* **GitHub:** [github.com][github] (Git)
+* **BitBucket:** [bitbucket.org][bitbucket] (Git e Mercurial)
 
-The VCS driver to be used is detected automatically based on the URL. However,
-should you need to specify one for whatever reason, you can use `git-bitbucket`,
-`hg-bitbucket`, `github`, `gitlab`, `perforce`, `fossil`, `git`, `svn` or `hg`
-as the repository type instead of `vcs`.
+O driver VCS a ser usado é detectado automaticamente com base na URL.
+Entretanto, se você precisar especificar um por qualquer motivo, poderá usar
+`git-bitbucket`, `hg-bitbucket`, `github`, `gitlab`, `perforce`, `fossil`,
+`git`, `svn` ou `hg` como o tipo de repositório em vez de `vcs`.
 
-If you set the `no-api` key to `true` on a github repository it will clone the
-repository as it would with any other git repository instead of using the
-GitHub API. But unlike using the `git` driver directly, Composer will still
-attempt to use github's zip files.
+Se você definir a chave `no-api` como `true` em um repositório `github`, clonará
+o repositório como faria com qualquer outro repositório git, em vez de usar a
+API do GitHub. Porém, diferente de usar o driver `git` diretamente, o Composer
+ainda tentará usar os arquivos zip do GitHub.
 
-Please note:
-* **To let Composer choose which driver to use** the repository type needs to be defined as "vcs"
-* **If you already used a private repository**, this means Composer should have cloned it in cache. If you want to install the same package with drivers, remember to launch the command `composer clearcache` followed by the command `composer update` to update composer cache and install the package from dist.
+Note que:
 
-#### BitBucket Driver Configuration
+* **Para permitir que o Composer escolha qual driver usar**, o tipo de
+  repositório precisa ser definido como `vcs`;
+* **Se você já usou um repositório privado**, isso significa que o Composer deve
+  ter clonado ele no cache. Se você deseja instalar o mesmo pacote com drivers,
+  lembre-se de executar o comando `composer clearcache` seguido do comando
+  `composer update` para atualizar o cache do Composer e instalar o pacote a
+  partir de `dist`.
 
-The BitBucket driver uses OAuth to access your private repositories via the BitBucket REST APIs and you will need to create an OAuth consumer to use the driver, please refer to [Atlassian's Documentation](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html). You will need to fill the callback url with something to satisfy BitBucket, but the address does not need to go anywhere and is not used by Composer.
+#### Configuração do Driver do BitBucket
 
-After creating an OAuth consumer in the BitBucket control panel, you need to setup your auth.json file with
-the credentials like this (more info [here](https://getcomposer.org/doc/06-config.md#bitbucket-oauth)):
+O driver do BitBucket usa OAuth para acessar seus repositórios privados por meio
+das APIs REST do BitBucket e você precisará criar um consumidor OAuth para usar
+o driver, consulte a [Documentação da Atlassian][bitbucket-oauth]. Você
+precisará preencher a URL de callback com algo para satisfazer o BitBucket, mas
+o endereço não precisa ir a lugar algum e não é usado pelo Composer.
+
+Depois de criar um consumidor OAuth no painel de controle do BitBucket, você
+precisa configurar o arquivo `auth.json` com as credenciais desta forma (mais
+informações [aqui][config-bitbucket]):
+
 ```json
 {
     "bitbucket-oauth": {
@@ -316,17 +329,20 @@ the credentials like this (more info [here](https://getcomposer.org/doc/06-confi
     }
 }
 ```
-**Note that the repository endpoint needs to be https rather than git.**
 
-Alternatively if you prefer not to have your OAuth credentials on your filesystem you may export the ```bitbucket-oauth``` block above to the [COMPOSER_AUTH](https://getcomposer.org/doc/03-cli.md#composer-auth) environment variable instead.
+**Observe que o endpoint do repositório precisa ser `https` em vez de `git`.**
 
-#### Subversion Options
+Como alternativa, se você preferir não ter suas credenciais OAuth em seu sistema
+de arquivos, poderá exportar o bloco `bitbucket-oauth` acima para a variável de
+ambiente [COMPOSER_AUTH][composer-auth].
 
-Since Subversion has no native concept of branches and tags, Composer assumes
-by default that code is located in `$url/trunk`, `$url/branches` and
-`$url/tags`. If your repository has a different layout you can change those
-values. For example if you used capitalized names you could configure the
-repository like this:
+#### Opções do Subversion
+
+Como o Subversion não possui um conceito nativo de branches e tags, o Composer
+assume por padrão que o código está localizado em `$url/trunk`, `$url/branches`
+e `$url/tags`. Se seu repositório tiver um layout diferente, você poderá alterar
+esses valores. Por exemplo, se você usasse nomes com iniciais em maiúsculas,
+poderia configurar o repositório desta forma:
 
 ```json
 {
@@ -342,16 +358,16 @@ repository like this:
 }
 ```
 
-If you have no branches or tags directory you can disable them entirely by
-setting the `branches-path` or `tags-path` to `false`.
+Se você não tiver um diretório `branches` ou `tags`, poderá desabilitá-los
+completamente definindo `branches-path` ou `tags-path` como `false`.
 
-If the package is in a sub-directory, e.g. `/trunk/foo/bar/composer.json` and
-`/tags/1.0/foo/bar/composer.json`, then you can make Composer access it by
-setting the `"package-path"` option to the sub-directory, in this example it
-would be `"package-path": "foo/bar/"`.
+Se o pacote estiver em um subdiretório, por exemplo,
+`/trunk/foo/bar/composer.json` e `/tags/1.0/foo/bar/composer.json`, você pode
+fazer o Composer acessá-lo definindo a opção `package-path` com o subdiretório,
+nesse exemplo seria `"package-path": "foo/bar/"`.
 
-If you have a private Subversion repository you can save credentials in the
-http-basic section of your config (See [Schema](04-schema.md)):
+Se você possui um repositório Subversion privado, pode salvar as credenciais na
+seção `http-basic` da sua configuração (consulte [Esquema][schema]):
 
 ```json
 {
@@ -364,10 +380,11 @@ http-basic section of your config (See [Schema](04-schema.md)):
 }
 ```
 
-If your Subversion client is configured to store credentials by default these
-credentials will be saved for the current user and existing saved credentials
-for this server will be overwritten. To change this behavior by setting the
-`"svn-cache-credentials"` option in your repository configuration:
+Se o seu cliente Subversion estiver configurado para armazenar credenciais por
+padrão, essas credenciais serão salvas para o usuário atual e as credenciais
+salvas anteriormente para esse servidor serão substituídas. Você pode alterar
+esse comportamento definindo a opção `svn-cache-credentials` como `false` na
+configuração do seu repositório:
 
 ```json
 {
@@ -383,12 +400,12 @@ for this server will be overwritten. To change this behavior by setting the
 
 ### PEAR
 
-It is possible to install packages from any PEAR channel by using the `pear`
-repository. Composer will prefix all package names with `pear-{channelName}/`
-to avoid conflicts. All packages are also aliased with prefix
-`pear-{channelAlias}/`.
+É possível instalar pacotes de qualquer canal PEAR usando o repositório `pear`.
+O Composer prefixará todos os nomes de pacotes com `pear-{NomeCanal}/` para
+evitar conflitos. Todos os pacotes também têm alias com o prefixo
+`pear-{AliasCanal}/`.
 
-Example using `pear2.php.net`:
+Exemplo usando `pear2.php.net`:
 
 ```json
 {
@@ -405,54 +422,55 @@ Example using `pear2.php.net`:
 }
 ```
 
-In this case the short name of the channel is `pear2`, so the
-`PEAR2_HTTP_Request` package name becomes `pear-pear2/PEAR2_HTTP_Request`.
+Nesse caso, o nome abreviado do canal é `pear2`, portanto, o nome do pacote
+`PEAR2_HTTP_Request` se torna `pear-pear2/PEAR2_HTTP_Request`.
 
-> **Note:** The `pear` repository requires doing quite a few requests per
-> package, so this may considerably slow down the installation process.
+> **Nota:** O repositório `pear` requer várias requisições por pacote, portanto,
+> isso pode retardar consideravelmente o processo de instalação.
 
-#### Custom vendor alias
+#### Alias de Vendor Personalizado
 
-It is possible to alias PEAR channel packages with a custom vendor name.
+É possível criar um alias de pacotes de canais PEAR com um nome de vendor
+personalizado.
 
-Example:
+Exemplo:
 
-Suppose you have a private PEAR repository and wish to use Composer to
-incorporate dependencies from a VCS. Your PEAR repository contains the
-following packages:
+Suponha que você tenha um repositório PEAR privado e deseje usar o Composer para
+incorporar dependências de um VCS. Seu repositório PEAR contém os seguintes
+pacotes:
 
- * `BasePackage`
- * `IntermediatePackage`, which depends on `BasePackage`
- * `TopLevelPackage1` and `TopLevelPackage2` which both depend
-    on `IntermediatePackage`
+ * `PacoteBase`
+ * `PacoteIntermediario`, que depende do `PacoteBase`
+ * `PacoteDeAltoNivel1` e `PacoteDeAltoNivel2`, que dependem do
+   `PacoteIntermediario`
 
-Without a vendor alias, Composer will use the PEAR channel name as the
-vendor portion of the package name:
+Sem um alias de vendor, o Composer usará o nome do canal PEAR como a parte do
+vendor no nome do pacote:
 
- * `pear-pear.foobar.repo/BasePackage`
- * `pear-pear.foobar.repo/IntermediatePackage`
- * `pear-pear.foobar.repo/TopLevelPackage1`
- * `pear-pear.foobar.repo/TopLevelPackage2`
+ * `pear-pear.foobar.repo/PacoteBase`
+ * `pear-pear.foobar.repo/PacoteIntermediario`
+ * `pear-pear.foobar.repo/PacoteDeAltoNivel1`
+ * `pear-pear.foobar.repo/PacoteDeAltoNivel2`
 
-Suppose at a later time you wish to migrate your PEAR packages to a
-Composer repository and naming scheme, and adopt the vendor name of `foobar`.
-Projects using your PEAR packages would not see the updated packages, since
-they have a different vendor name (`foobar/IntermediatePackage` vs
-`pear-pear.foobar.repo/IntermediatePackage`).
+Suponha que posteriormente você deseje migrar seus pacotes PEAR para um esquema
+de nomenclatura e repositório do Composer e adote o nome de vendor `foobar`.
+Os projetos que usam seus pacotes PEAR não veriam os pacotes atualizados, pois
+eles têm um nome de vendor diferente (`foobar/PacoteIntermediario` vs.
+`pear-pear.foobar.repo/PacoteIntermediario`).
 
-By specifying `vendor-alias` for the PEAR repository from the start, you can
-avoid this scenario and future-proof your package names.
+Ao especificar `vendor-alias` para o repositório PEAR desde o início, você pode
+evitar esse cenário e proteger os nomes de seus pacotes de mudanças futuras.
 
-To illustrate, the following example would get the `BasePackage`,
-`TopLevelPackage1`, and `TopLevelPackage2` packages from your PEAR repository
-and `IntermediatePackage` from a Github repository:
+Para ilustrar, o exemplo a seguir obteria os pacotes `PacoteBase`,
+`PacoteDeAltoNivel1` e `PacoteDeAltoNivel2` do seu repositório PEAR e o
+`PacoteIntermediario` de um repositório do GitHub:
 
 ```json
 {
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/foobar/intermediate.git"
+            "url": "https://github.com/foobar/intermediario.git"
         },
         {
             "type": "pear",
@@ -461,24 +479,23 @@ and `IntermediatePackage` from a Github repository:
         }
     ],
     "require": {
-        "foobar/TopLevelPackage1": "*",
-        "foobar/TopLevelPackage2": "*"
+        "foobar/PacoteDeAltoNivel1": "*",
+        "foobar/PacoteDeAltoNivel2": "*"
     }
 }
 ```
 
 ### Package
 
-If you want to use a project that does not support Composer through any of the
-means above, you still can define the package yourself by using a `package`
-repository.
+Se você deseja usar um projeto que não oferece suporte ao Composer por qualquer
+um dos meios acima, você mesmo ainda pode definir o pacote usando um repositório
+`package`.
 
-Basically, you define the same information that is included in the `composer`
-repository's `packages.json`, but only for a single package. Again, the
-minimum required fields are `name`, `version`, and either of `dist` or
-`source`.
+Basicamente, você define as mesmas informações incluídas no `packages.json` do
+repositório `composer`, mas apenas para um único pacote. Novamente, os campos
+mínimos necessários são `name`, `version` e `dist` ou `source`.
 
-Here is an example for the smarty template engine:
+Aqui está um exemplo para o mecanismo de template Smarty:
 
 ```json
 {
@@ -509,17 +526,20 @@ Here is an example for the smarty template engine:
 }
 ```
 
-Typically you would leave the source part off, as you don't really need it.
+Normalmente, você não incluiria a parte `source`, pois realmente não precisa
+dela.
 
-> **Note**: This repository type has a few limitations and should be avoided
-> whenever possible:
+> **Nota**: Esse tipo de repositório possui algumas limitações e deve ser
+> evitado sempre que possível:
 >
-> - Composer will not update the package unless you change the `version` field.
-> - Composer will not update the commit references, so if you use `master` as
->   reference you will have to delete the package to force an update, and will
->   have to deal with an unstable lock file.
+> - O Composer não atualizará o pacote, a menos que você altere o campo
+>   `version`.
+> - O Composer não atualizará as referências dos commits, portanto, se você usar
+>   `master` como referência, terá que excluir o pacote para forçar uma
+>   atualização e precisará lidar com um arquivo lock instável.
 
-The `"package"` key in a `package` repository may be set to an array to define multiple versions of a package:
+A chave `package` em um repositório `package` pode ser definida como um array
+para definir várias versões de um pacote:
 
 ```json
 {
@@ -543,71 +563,72 @@ The `"package"` key in a `package` repository may be set to an array to define m
 }
 ```
 
-## Hosting your own
+## Hospedando Seu Próprio Repositório
 
-While you will probably want to put your packages on Packagist most of the
-time, there are some use cases for hosting your own repository.
+Embora você provavelmente deseje colocar seus pacotes no Packagist na maioria
+das vezes, existem alguns casos de uso para hospedar seu próprio repositório.
 
-* **Private company packages:** If you are part of a company that uses Composer
-  for their packages internally, you might want to keep those packages private.
+* **Pacotes de empresas privadas:** Se você faz parte de uma empresa que usa o
+  Composer para seus pacotes internamente, convém manter esses pacotes privados.
 
-* **Separate ecosystem:** If you have a project which has its own ecosystem,
-  and the packages aren't really reusable by the greater PHP community, you
-  might want to keep them separate to Packagist. An example of this would be
-  wordpress plugins.
+* **Ecossistema separado:** Se você tem um projeto que possui seu próprio
+  ecossistema e os pacotes não são realmente reutilizáveis pela imensa
+  comunidade PHP, convém mantê-los separados do Packagist. Um exemplo disso
+  seriam os plugins do WordPress.
 
-For hosting your own packages, a native `composer` type of repository is
-recommended, which provides the best performance.
+Para hospedar seus próprios pacotes, é recomendado o tipo de repositório nativo
+`composer`, que oferece o melhor desempenho.
 
-There are a few tools that can help you create a `composer` repository.
+Existem algumas ferramentas que podem te ajudar a criar um repositório
+`composer`.
 
-### Private Packagist
+### Packagist Privado
 
-[Private Packagist](https://packagist.com/) is a hosted or self-hosted
-application providing private package hosting as well as mirroring of
-GitHub, Packagist.org and other package repositories.
+[Packagist Privado][packagist] é uma aplicação hospedada ou com hospedagem
+própria que fornece hospedagem de pacotes privados, além do espelhamento do
+GitHub, Packagist.org e outros repositórios de pacotes.
 
-Check out [Packagist.com](https://packagist.com/) for more information.
+Visite [Packagist.com][packagist] para obter mais informações.
 
 ### Satis
 
-Satis is a static `composer` repository generator. It is a bit like an ultra-
-lightweight, static file-based version of Packagist.
+Satis é um gerador de repositórios `composer` estáticos. Parece um pouco com uma
+versão ultra leve e estática do Packagist, baseada em arquivos.
 
-You give it a `composer.json` containing repositories, typically VCS and
-package repository definitions. It will fetch all the packages that are
-`require`d and dump a `packages.json` that is your `composer` repository.
+Você fornece a ele um `composer.json` contendo repositórios, geralmente VCS, e
+definições de repositórios de pacotes. Ele buscará todos os pacotes que estão em
+`require` e fará o dump de um `packages.json`, que é o seu repositório
+`composer`.
 
-Check [the satis GitHub repository](https://github.com/composer/satis) and
-the [Satis article](articles/handling-private-packages-with-satis.md) for more
-information.
+Verifique [o repositório do Satis no GitHub][github-satis] e o [artigo sobre o
+Satis][art-satis] para obter mais informações.
 
 ### Artifact
 
-There are some cases, when there is no ability to have one of the previously
-mentioned repository types online, even the VCS one. Typical example could be
-cross-organisation library exchange through built artifacts. Of course, most
-of the times they are private. To simplify maintenance, one can simply use a
-repository of type `artifact` with a folder containing ZIP archives of those
-private packages:
+Existem alguns casos em que não é possível ter online nenhum dos tipos de
+repositório mencionados anteriormente, nem mesmo o VCS. Um exemplo típico pode
+ser a troca de bibliotecas entre organizações através de artefatos construídos.
+Claro, na maioria das vezes eles são privados. Para simplificar a manutenção,
+pode-se simplesmente usar um repositório do tipo `artifact` com um diretório
+contendo arquivos zip desses pacotes privados:
 
 ```json
 {
     "repositories": [
         {
             "type": "artifact",
-            "url": "path/to/directory/with/zips/"
+            "url": "caminho/para/o/diretorio/com/zips/"
         }
     ],
     "require": {
-        "private-vendor-one/core": "15.6.2",
-        "private-vendor-two/connectivity": "*",
+        "vendor-privado-um/core": "15.6.2",
+        "vendor-privado-dois/connectivity": "*",
         "acme-corp/parser": "10.3.5"
     }
 }
 ```
 
-Each zip artifact is a ZIP archive with `composer.json` in root folder:
+Cada artefato zip é um arquivo zip com um `composer.json` no diretório raiz:
 
 ```sh
 unzip -l acme-corp-parser-10.3.5.zip
@@ -616,69 +637,72 @@ composer.json
 ...
 ```
 
-If there are two archives with different versions of a package, they are both
-imported. When an archive with a newer version is added in the artifact folder
-and you run `update`, that version will be imported as well and Composer will
-update to the latest version.
+Se houver dois arquivos com versões diferentes de um pacote, eles serão
+importados. Quando um arquivo com uma versão mais recente for adicionado no
+diretório de artefatos e você executar `update`, essa versão também será
+importada e o Composer atualizará para a versão mais recente.
 
 ### Path
 
-In addition to the artifact repository, you can use the path one, which allows
-you to depend on a local directory, either absolute or relative. This can be
-especially useful when dealing with monolithic repositories.
+Além do repositório `artifact`, é possível usar o repositório `path`, que
+permite depender de um diretório local, absoluto ou relativo. Isso pode ser
+especialmente útil ao lidar com repositórios monolíticos.
 
-For instance, if you have the following directory structure in your repository:
+Por exemplo, se você possui a seguinte estrutura de diretórios no seu
+repositório:
+
 ```
-- apps
-\_ my-app
-  \_ composer.json
-- packages
-\_ my-package
-  \_ composer.json
+apps
+└── minha-aplicacao
+    └── composer.json
+pacotes
+└── meu-pacote
+    └── composer.json
 ```
 
-Then, to add the package `my/package` as a dependency, in your
-`apps/my-app/composer.json` file, you can use the following configuration:
+Então, para adicionar o pacote `meu/pacote` como uma dependência, no arquivo
+`apps/minha-aplicacao/composer.json`, você pode usar a seguinte configuração:
 
 ```json
 {
     "repositories": [
         {
             "type": "path",
-            "url": "../../packages/my-package"
+            "url": "../../pacotes/meu-pacote"
         }
     ],
     "require": {
-        "my/package": "*"
+        "meu/pacote": "*"
     }
 }
 ```
 
-If the package is a local VCS repository, the version may be inferred by
-the branch or tag that is currently checked out. Otherwise, the version should
-be explicitly defined in the package's `composer.json` file. If the version
-cannot be resolved by these means, it is assumed to be `dev-master`.
+Se o pacote for um repositório VCS local, a versão poderá ser inferida a partir
+do branch ou tag do qual foi feito o checkout. Caso contrário, a versão deverá
+ser explicitamente definida no arquivo `composer.json` do pacote. Se a versão
+não puder ser resolvida por esses meios, presume-se que seja `dev-master`.
 
-The local package will be symlinked if possible, in which case the output in
-the console will read `Symlinking from ../../packages/my-package`. If symlinking
-is _not_ possible the package will be copied. In that case, the console will
-output `Mirrored from ../../packages/my-package`.
+Se possível, será criado um link simbólico do pacote local; nesse caso a saída
+no console exibirá `Symlinking from ../../pacotes/meu-pacote`. Se a criação do
+link simbólico _não_ for possível, o pacote será copiado. Nesse caso, o console
+exibirá `Mirrored from ../../pacotes/meu-pacote`.
 
-Instead of default fallback strategy you can force to use symlink with
-`"symlink": true` or mirroring with `"symlink": false` option. Forcing
-mirroring can be useful when deploying or generating package from a
-monolithic repository.
+Em vez da estratégia de fallback padrão, você pode forçar o uso do link
+simbólico com a opção `"symlink": true` ou o espelhamento com a opção
+`"symlink": false`. Forçar o espelhamento pode ser útil ao implantar ou gerar
+pacotes a partir de um repositório monolítico.
 
-> **Note:** On Windows, directory symlinks are implemented using NTFS junctions
-> because they can be created by non-admin users. Mirroring will always be used
-> on versions below Windows 7 or if `proc_open` has been disabled.
+> **Nota:** No Windows, os links simbólicos de diretório são implementados
+> usando junções NTFS porque elas podem ser criadas por usuários não
+> administradores. O espelhamento sempre será usado nas versões abaixo do
+> Windows 7 ou se `proc_open` estiver desabilitado.
 
 ```json
 {
     "repositories": [
         {
             "type": "path",
-            "url": "../../packages/my-package",
+            "url": "../../pacotes/meu-pacote",
             "options": {
                 "symlink": false
             }
@@ -687,18 +711,18 @@ monolithic repository.
 }
 ```
 
-Leading tildes are expanded to the current user's home folder, and environment
-variables are parsed in both Windows and Linux/Mac notations. For example
-`~/git/mypackage` will automatically load the mypackage clone from
-`/home/<username>/git/mypackage`, equivalent to `$HOME/git/mypackage` or
-`%USERPROFILE%/git/mypackage`.
+O til no início dos caminhos é expandido para a pasta inicial do usuário atual
+e as variáveis de ambiente são processadas usando as notações do Windows e
+Linux/Mac. Por exemplo, `~/git/meu-pacote` automaticamente carregará o clone de
+`meu-pacote` de `/home/<usuario>/git/meu-pacote`, equivalente a
+`$HOME/git/meu-pacote` ou `%USERPROFILE%/git/meu-pacote`.
 
-> **Note:** Repository paths can also contain wildcards like ``*`` and ``?``.
-> For details, see the [PHP glob function](http://php.net/glob).
+> **Nota:** Caminhos de repositórios também podem conter curingas como `*` e
+>`?`. Para mais detalhes, consulte a [função glob do PHP][php-glob].
 
-## Disabling Packagist.org
+## Desabilitando o Packagist.org
 
-You can disable the default Packagist.org repository by adding this to your
+Você pode desabilitar o repositório padrão Packagist.org adicionando isto ao seu
 `composer.json`:
 
 ```json
@@ -711,16 +735,31 @@ You can disable the default Packagist.org repository by adding this to your
 }
 ```
 
-You can disable Packagist.org globally by using the global config flag:
+Você pode desabilitar o Packagist.org globalmente usando a flag de configuração
+global:
 
 ```bash
 composer config -g repo.packagist false
 ```
 
-&larr; [Schema](04-schema.md)  |  [Config](06-config.md) &rarr;
+[Config](06-config.md) &rarr;
 
+[art-aliases]: artigos/aliases.md
+[art-satis]: artigos/handling-private-packages-with-satis.md
+[bitbucket]: https://bitbucket.org
+[bitbucket-oauth]: https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html
+[composer-auth]: cli.md#composer-auth
+[config-bitbucket]: 06-config.md#bitbucket-oauth
 [faq-recursive-repos]: faqs/why-can't-composer-load-repositories-recursively.md
+[github]: https://github.com
+[github-satis]: https://github.com/composer/satis
 [libraries]: bibliotecas.md
 [packages]: #packages
-[schema]: esquema.md
+[packagist]: https://packagist.com/
 [php-context]: https://www.php.net/manual/pt_BR/context.php
+[php-glob]: https://php.net/glob
+[schema]: esquema.md
+[vcs-fossil]: https://www.fossil-scm.org/
+[vcs-git]: https://git-scm.com
+[vcs-hg]: https://www.mercurial-scm.org
+[vcs-svn]: https://subversion.apache.org
