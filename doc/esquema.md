@@ -837,7 +837,7 @@ comportamento consistente não pode ser garantido.
 ### config <span>([root-only][root-package])</span> {: #config }
 
 Um conjunto de opções de configuração. É usada apenas para projetos. Consulte
-[Configurações][conf] para obter uma descrição de cada opção individual.
+[Config][conf] para obter uma descrição de cada opção individual.
 
 ### scripts <span>([root-only][root-package])</span> {: #scripts }
 
@@ -960,7 +960,7 @@ Opcional.
 [art-installers]: artigos/custom-installers.md
 [art-scripts]: artigos/scripts.md
 [art-versions]: artigos/versions.md
-[conf]: 06-config.md
+[conf]: config.md
 [json-schema]: https://json-schema.org/
 [licenses]: https://spdx.org/licenses/
 [min-stability]: #minimum-stability

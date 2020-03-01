@@ -8,6 +8,7 @@
 * [Interface de Linha de Comando / Comandos][cli]
 * [Esquema][schema]
 * [Repositórios][repos]
+* [Config][conf]
 
 ## Artigos
 
@@ -19,3 +20,4 @@
 [cli]: cli.md
 [schema]: esquema.md
 [repos]: repositorios.md
+[conf]: config.md

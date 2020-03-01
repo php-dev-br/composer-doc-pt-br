@@ -635,8 +635,7 @@ Você também pode editar os valores das seguintes propriedades:
 `description`, `homepage`, `keywords`, `license`, `minimum-stability`,
 `name`, `prefer-stable`, `type` e `version`.
 
-Veja o capítulo [Configuração][conf] para conhecer as opções de configuração
-válidas.
+Veja o capítulo [Config][conf] para conhecer as opções de configuração válidas.
 
 ### Opções {: #opcoes-config }
 
@@ -1021,11 +1020,11 @@ para todas as requisições HTTP.
 [art-binaries]: artigos/vendor-binaries.md
 [art-basedir]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 [composer-home]: #composer-home
-[conf]: 06-config.md
-[conf-cache]:06-config.md#cache-dir
-[conf-discard]: 06-config.md#discard-changes
-[conf-gitlab]: 06-config.md#gitlab-oauth
-[conf-platform]: 06-config.md#platform
+[conf]: config.md
+[conf-cache]: config.md#cache-dir
+[conf-discard]: config.md#discard-changes
+[conf-gitlab]: config.md#gitlab-oauth
+[conf-platform]: config.md#platform
 [httpoxy]: https://httpoxy.org
 [intro-globally]: introducao.md#globalmente
 [libraries]: bibliotecas.md

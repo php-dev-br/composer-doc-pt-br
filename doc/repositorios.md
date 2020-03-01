@@ -317,7 +317,7 @@ o endereço não precisa ir a lugar algum e não é usado pelo Composer.
 
 Depois de criar um consumidor OAuth no painel de controle do BitBucket, você
 precisa configurar o arquivo `auth.json` com as credenciais desta forma (mais
-informações [aqui][config-bitbucket]):
+informações [aqui][conf-bitbucket]):
 
 ```json
 {
@@ -742,14 +742,12 @@ global:
 composer config -g repo.packagist false
 ```
 
-[Config](06-config.md) &rarr;
-
 [art-aliases]: artigos/aliases.md
 [art-satis]: artigos/handling-private-packages-with-satis.md
 [bitbucket]: https://bitbucket.org
 [bitbucket-oauth]: https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html
 [composer-auth]: cli.md#composer-auth
-[config-bitbucket]: 06-config.md#bitbucket-oauth
+[conf-bitbucket]: config.md#bitbucket-oauth
 [faq-recursive-repos]: faqs/why-can't-composer-load-repositories-recursively.md
 [github]: https://github.com
 [github-satis]: https://github.com/composer/satis
