@@ -3,21 +3,23 @@
 ## Livro
 
 * [Introdução][intro]
-* [Uso Básico][basic-usage]
+* [Uso Básico][usage]
 * [Bibliotecas][lib]
 * [Interface de Linha de Comando / Comandos][cli]
 * [Esquema][schema]
 * [Repositórios][repos]
 * [Config][conf]
+* [Comunidade][community]
 
 ## Artigos
 
 ## FAQs
 
-[basic-usage]: uso-basico.md
+[cli]: cli.md
+[community]: comunidade.md
+[conf]: config.md
 [intro]: introducao.md
 [lib]: bibliotecas.md
-[cli]: cli.md
-[schema]: esquema.md
 [repos]: repositorios.md
-[conf]: config.md
+[schema]: esquema.md
+[usage]: uso-basico.md

@@ -301,8 +301,6 @@ Exemplo:
 O padrão é `true`. Se definida como `false`, O Composer não criará arquivos
 `.htaccess` nos diretórios inicial, de cache e de dados do Composer.
 
-[Community](07-community.md) &rarr;
-
 [art-troubleshooting]: artigos/troubleshooting.md#api-rate-limit-and-oauth-tokens
 [atlassian-oauth]: https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html
 [cli-composer-home]: cli.md#composer-home
