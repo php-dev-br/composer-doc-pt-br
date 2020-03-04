@@ -13,6 +13,8 @@
 
 ## Artigos
 
+* [Aliases][art-aliases]
+
 ## FAQs
 
 [cli]: cli.md
@@ -23,3 +25,5 @@
 [repos]: repositorios.md
 [schema]: esquema.md
 [usage]: uso-basico.md
+
+[art-aliases]: artigos/aliases.md
