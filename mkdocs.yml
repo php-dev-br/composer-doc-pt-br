@@ -12,7 +12,10 @@ theme:
     custom_dir: theme/readthedocs
     prev_next_buttons_location: bottom
     static_templates:
+        # config files
         - .nojekyll
+        - CNAME
+        # templates
         - 404.html
         - pesquisar.html
 
