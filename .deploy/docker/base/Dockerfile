@@ -7,7 +7,9 @@ LABEL maintainer="Adiel Cristo <adiel@adielcristo.com>"
 ARG MKDOCS_VERSION=1.0.4
 
 # Install dependencies and tools
-RUN pip install --upgrade \
+RUN apk add --no-cache --update --virtual .build-deps \
+        git && \
+    pip install --upgrade \
         pip \
         mkdocs==${MKDOCS_VERSION}
 

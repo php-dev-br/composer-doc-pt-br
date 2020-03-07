@@ -7,6 +7,6 @@ Thumbs.db
 
 ### application ###
 
+build
 .deploy/local/.env
 .env.local
-build
