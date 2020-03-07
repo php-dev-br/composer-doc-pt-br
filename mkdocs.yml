@@ -12,6 +12,7 @@ theme:
     custom_dir: theme/readthedocs
     prev_next_buttons_location: bottom
     static_templates:
+        - .nojekyll
         - 404.html
         - pesquisar.html
 

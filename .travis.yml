@@ -37,7 +37,6 @@ script:
         -v ${PWD}:/var/www
         ${DOCKER_IMAGE_PYTHON_TEST}
         mkdocs build
-    - touch build/.nojekyll
 
 deploy:
     provider:      pages
