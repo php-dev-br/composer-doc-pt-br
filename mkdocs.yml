@@ -35,7 +35,7 @@ edit_uri: edit/1.9/doc/
 # navigation
 
 nav:
-    - Documentação: index.md
+    - index.md
     - Livro:
         - introducao.md
         - uso-basico.md
