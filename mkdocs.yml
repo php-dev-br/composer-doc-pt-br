@@ -17,6 +17,10 @@ theme:
 
 # extensions
 
+plugins:
+    - search:
+        lang: ['pt']
+
 markdown_extensions:
     - attr_list
     - toc:
