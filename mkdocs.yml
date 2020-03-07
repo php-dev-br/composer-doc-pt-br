@@ -1,6 +1,7 @@
 # config
 
 site_name: Documentação do Composer
+site_description: "Tradução da Documentação do Composer para Português Brasileiro"
 docs_dir: doc
 site_dir: build
 use_directory_urls: false
