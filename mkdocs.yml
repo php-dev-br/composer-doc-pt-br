@@ -1,3 +1,5 @@
+# config
+
 site_name: Documentação do Composer
 docs_dir: doc
 site_dir: build
@@ -9,6 +11,9 @@ theme:
     name: readthedocs
     custom_dir: theme/readthedocs
     prev_next_buttons_location: bottom
+    static_templates:
+        - 404.html
+        - pesquisar.html
 
 # extensions
 

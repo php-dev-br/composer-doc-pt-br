@@ -11,12 +11,6 @@
 * [Config][conf]
 * [Comunidade][community]
 
-## Artigos
-
-* [Aliases][art-aliases]
-
-## FAQs
-
 [cli]: cli.md
 [community]: comunidade.md
 [conf]: config.md
@@ -26,4 +20,10 @@
 [schema]: esquema.md
 [usage]: uso-basico.md
 
+## Artigos
+
+* [Aliases][art-aliases]
+
 [art-aliases]: artigos/aliases.md
+
+## FAQs
