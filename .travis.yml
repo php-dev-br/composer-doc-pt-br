@@ -14,9 +14,9 @@ services:
     - docker
 
 env:
-    - DOCKER_IMAGE_PYTHON=python:3.8-alpine
-    - DOCKER_IMAGE_PYTHON_BASE=adielcristo/composer-doc-pt-br:base
-    - DOCKER_IMAGE_PYTHON_TEST=adielcristo/composer-doc-pt-br:test
+    - DOCKER_IMAGE_PYTHON="python:3.8-alpine"
+    - DOCKER_IMAGE_PYTHON_BASE="adielcristo/composer-doc-pt-br:base"
+    - DOCKER_IMAGE_PYTHON_TEST="adielcristo/composer-doc-pt-br:test"
 
 install:
     - >
