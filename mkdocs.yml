@@ -1,4 +1,39 @@
 site_name: Documentação do Composer
 docs_dir: doc
 site_dir: build
-theme: readthedocs
+use_directory_urls: false
+
+# theme
+
+theme:
+    name: readthedocs
+    custom_dir: theme/readthedocs
+    prev_next_buttons_location: bottom
+
+# extensions
+
+markdown_extensions:
+    - attr_list
+    - toc:
+        permalink: true
+
+# github
+
+repo_url: https://github.com/adielcristo/composer-doc-pt-br
+edit_uri: edit/1.9/doc/
+
+# navigation
+
+nav:
+    - Documentação: index.md
+    - Livro:
+        - introducao.md
+        - uso-basico.md
+        - bibliotecas.md
+        - 'CLI / Comandos': cli.md
+        - esquema.md
+        - repositorios.md
+        - config.md
+        - comunidade.md
+    - Artigos:
+        - artigos/aliases.md

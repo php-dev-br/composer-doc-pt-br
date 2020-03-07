@@ -5,7 +5,7 @@
 * [Introdução][intro]
 * [Uso Básico][usage]
 * [Bibliotecas][lib]
-* [Interface de Linha de Comando / Comandos][cli]
+* [CLI / Comandos][cli]
 * [Esquema][schema]
 * [Repositórios][repos]
 * [Config][conf]
