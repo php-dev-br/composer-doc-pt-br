@@ -13,11 +13,11 @@ necessários para o uso do Docker Compose no ambiente Windows._**
     ```
     .deploy/local
     ├── bin
-    │   ├── check-env.sh
-    │   ├── install-env.sh
-    │   └── set-aliases.sh
+    │   ├── check-env.sh
+    │   ├── install-env.sh
+    │   └── set-aliases.sh
     ├── services
-    │   └── nginx
+    │   └── nginx
     ├── docker-compose.yaml
     └── .env.dist
     .env
@@ -34,12 +34,10 @@ necessários para o uso do Docker Compose no ambiente Windows._**
     | COMPOSE_PROJECT_DIR      | O diretório docker-compose do projeto para configuração local. |
     | COMPOSE_PROJECT_NAME     | Nome do projeto usado como prefixo ao criar os containers.     |
     | DEV_HOST_PORT_HTTP       | Porta HTTP usada na máquina host. Padrão: 80.                  |
-    | DEV_GID                  | O ID do grupo (`$GID`) do usuário na máquina host.             |
-    | DEV_UID                  | O ID do usuário (`$UID`) na máquina host.                      |
+    | DOCKER_HOST_GID          | O ID do grupo (`$GID`) do usuário na máquina host.             |
+    | DOCKER_HOST_UID          | O ID do usuário (`$UID`) na máquina host.                      |
     | DOCKER_IMAGE_PYTHON      | Imagem usada pela imagem base do python.                       |
     | DOCKER_IMAGE_PYTHON_BASE | Imagem base do python.                                         |
-    | DOCKER_IMAGE_PYTHON_DEV  | Imagem de desenvolvimento do python.                           |
-    | DOCKER_IMAGE_PYTHON_TEST | Imagem de teste do python.                                     |
 
     Para obter o `$GID` e o `$UID`, execute os seguintes comandos:
 
@@ -69,13 +67,6 @@ necessários para o uso do Docker Compose no ambiente Windows._**
 1. Crie as imagens do Docker:
 
     ```
-    docker build \
-        --rm \
-        --build-arg DOCKER_IMAGE_PYTHON=${DOCKER_IMAGE_PYTHON} \
-        --cache-from ${DOCKER_IMAGE_PYTHON} \
-        -t ${DOCKER_IMAGE_PYTHON_BASE} \
-        .deploy/docker/base
-
     dc build --parallel --force-rm
     ```
 

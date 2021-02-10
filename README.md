@@ -1,13 +1,18 @@
-# Documentação do Composer - Português do Brasil
+# Composer Documentation - Brazilian Portuguese
 
-## Requisitos
+## Requirements
 
 * [MkDocs][req-mkdocs]
 
-## Desenvolvimento
+## Development
 
 * [Local][doc-local]
 
+## Contributing
+
+* [Instructions][doc-contrib]
+
+[doc-contrib]: CONTRIBUTING.md
 [doc-local]: .deploy/local/README.md
 
 [req-mkdocs]: https://www.mkdocs.org/

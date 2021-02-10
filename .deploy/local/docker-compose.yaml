@@ -1,13 +1,13 @@
-version: "3.7"
+version: "3.8"
 
 services:
     python:
-        image: ${DOCKER_IMAGE_PYTHON_DEV}
+        image: ${DOCKER_IMAGE_PYTHON_BASE}
         build:
             context: ""
-            dockerfile: ../docker/dev/Dockerfile
+            dockerfile: ../docker/python/base/Dockerfile
             args:
-                DOCKER_IMAGE_PYTHON_BASE: ${DOCKER_IMAGE_PYTHON_BASE}
+                DOCKER_IMAGE_PYTHON: ${DOCKER_IMAGE_PYTHON}
         restart: always
         command: mkdocs serve -a 0.0.0.0:8000
         ports:
