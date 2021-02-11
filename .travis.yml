@@ -47,8 +47,10 @@ script:
         mkdocs build
 
 deploy:
-    provider:      pages
-    skip_cleanup:  true
-    github_token:  ${GITHUB_TOKEN}
-    local_dir:     build
+    provider: pages
+    skip_cleanup: true
+    github_token: ${GITHUB_TOKEN}
+    local_dir: build
     target_branch: gh-pages
+    on:
+        all_branches: true
