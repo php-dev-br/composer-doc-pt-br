@@ -9,6 +9,8 @@ python:
 branches:
     only:
         - '1.9'
+        - '1.10'
+        - '2.0'
 
 services:
     - docker
