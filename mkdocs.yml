@@ -15,7 +15,6 @@ theme:
     static_templates:
         # config files
         - .nojekyll
-        - CNAME
         # templates
         - 404.html
         - pesquisar.html
