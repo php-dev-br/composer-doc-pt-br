@@ -21,3 +21,4 @@ services:
             - .env
             # application
             - ../../.env.local
+        user: ${DOCKER_HOST_UID}:${DOCKER_HOST_GID}
