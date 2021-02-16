@@ -11,6 +11,13 @@
 * [Config][book-config]
 * [Comunidade][book-community]
 
+## Artigos
+
+* [Aliases][article-aliases]
+
+## FAQs
+
+[article-aliases]: artigos/aliases.md
 [book-cli]: cli.md
 [book-community]: comunidade.md
 [book-config]: config.md
@@ -19,11 +26,3 @@
 [book-repos]: repositorios.md
 [book-schema]: esquema.md
 [book-usage]: uso-basico.md
-
-## Artigos
-
-* [Aliases][article-aliases]
-
-[article-aliases]: artigos/aliases.md
-
-## FAQs

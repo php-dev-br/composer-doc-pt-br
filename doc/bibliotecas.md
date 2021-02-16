@@ -149,7 +149,7 @@ Se quiséssemos compartilhar o `ola-mundo` com o mundo, também iríamos public�
 no Packagist.
 
 Você acessa o [Packagist][page-packagist] e clica no botão “Submit”. Você será
-solicitado a se inscrever, caso ainda não o tenha feito, e então poderá enviar a
+solicitado a se inscrever, caso ainda não o tenha feito, e então poderá enviar o
 URL do seu repositório VCS. A partir daí, o Packagist começará a pesquisá-lo.
 Feito isso, o seu pacote estará disponível para qualquer pessoa!
 
