@@ -42,7 +42,7 @@ As seguintes opções estão disponíveis em todos os comandos:
 ## init
 
 No capítulo [Bibliotecas][book-libs], vimos como criar um `composer.json`
-manualmente. Também existe um comando `init` disponível para fazer isso.
+manualmente. Também existe um comando `init` disponível para isso.
 
 Ao executar o comando, ele solicitará interativamente que você preencha os
 campos, enquanto usa alguns padrões inteligentes.
@@ -56,14 +56,14 @@ php composer.phar init
 * **--name:** nome do pacote.
 * **--description:** descrição do pacote.
 * **--author:** nome da pessoa que criou o pacote.
-* **--type:** tipo de pacote.
+* **--type:** tipo do pacote.
 * **--homepage:** página do pacote.
 * **--require:** pacote requerido com uma restrição de versão. Deve estar no
   formato `foo/bar:1.0.0`.
 * **--require-dev:** requisitos de desenvolvimento, consulte **--require**.
 * **--stability (-s):** valor para o campo `minimum-stability`.
 * **--license (-l):** licença do pacote.
-* **--repository:** fornece um (ou mais) repositórios personalizados. Eles serão
+* **--repository:** fornece um ou mais repositórios personalizados. Eles serão
   armazenados no `composer.json` gerado e usados para o preenchimento automático
   ao solicitar a lista de requisitos. Cada repositório pode ser um URL HTTP
   apontando para um repositório do `composer` ou uma string JSON semelhante à
@@ -123,6 +123,9 @@ das dependências.
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
 [book-platform].
+* **--ignore-platform-req:** ignora um requisito de plataforma específico
+  (`php`, `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina
+  local não atenda a ele.
 
 ## update / u
 
@@ -207,7 +210,7 @@ php composer.phar update vendor/pacote:2.0.1 vendor/pacote2:3.0.*
 * **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
-  [book-platform].
+[book-platform].
 * **--ignore-platform-req:** ignora um requisito de plataforma específico
   (`php`, `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina
   local não atenda a ele.
@@ -233,8 +236,8 @@ execução do comando.
 php composer.phar require
 ```
 
-Depois de adicionar/alterar os requisitos, os requisitos modificados serão
-instalados ou atualizados.
+Após adicionar/alterar os requisitos, os requisitos modificados serão instalados
+ou atualizados.
 
 Se você não quiser escolher os requisitos interativamente, pode passá-los para
 o comando:
@@ -269,7 +272,7 @@ serem requeridas.
 * **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
-  [book-platform].
+[book-platform].
 * **--ignore-platform-req:** ignora um requisito de plataforma específico
   (`php`, `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina
   local não atenda a ele.
@@ -320,7 +323,7 @@ Após remover os requisitos, os requisitos modificados serão desinstalados.
 * **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
-  [book-platform].
+[book-platform].
 * **--ignore-platform-req:** ignora um requisito de plataforma específico
   (`php`, `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina
   local não atenda a ele.
@@ -767,7 +770,7 @@ php composer.phar create-project doctrine/orm caminho 2.2.*
 Também é possível executar o comando sem parâmetros em um diretório com um
 arquivo `composer.json` existente para inicializar um projeto.
 
-Por padrão, o comando procura por pacotes no [page-packagist][page-packagist].
+Por padrão, o comando procura por pacotes no [Packagist][page-packagist].
 
 ### Opções {: #opcoes-create-project }
 
@@ -796,7 +799,7 @@ Por padrão, o comando procura por pacotes no [page-packagist][page-packagist].
 * **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
-  [book-platform].
+[book-platform].
 
 ## dump-autoload (dumpautoload)
 
