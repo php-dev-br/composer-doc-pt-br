@@ -59,9 +59,9 @@ arquivo `packages.json` que contém todos os metadados dos pacotes.
 
 Este também é o tipo de repositório que o Packagist usa. Para referenciar um
 repositório `composer`, forneça o caminho antes do arquivo `packages.json`. No
-caso do Packagist, esse arquivo está localizado em `/packages.json`, portanto, a
+caso do Packagist, esse arquivo está localizado em `/packages.json`, portanto, o
 URL do repositório seria `repo.packagist.org`. Para
-`exemplo.org.br/packages.json`, a URL do repositório seria `exemplo.org.br`.
+`exemplo.org.br/packages.json`, o URL do repositório seria `exemplo.org.br`.
 
 #### packages
 
@@ -105,9 +105,9 @@ Ela pode incluir qualquer um dos outros campos especificados no [esquema]
 
 #### notify-batch
 
-O campo `notify-batch` permite especificar uma URL que será chamada sempre que
-alguém instalar um pacote. A URL pode ser um caminho absoluto (que usará o mesmo
-domínio que o repositório) ou uma URL completamente qualificada.
+O campo `notify-batch` permite especificar um URL que será chamada sempre que
+alguém instalar um pacote. O URL pode ser um caminho absoluto (que usará o mesmo
+domínio que o repositório) ou um URL completamente qualificado.
 
 Um exemplo de valor:
 
@@ -287,7 +287,7 @@ fornece opções `dist` para eles que buscam os pacotes como arquivos zip.
 * **GitHub:** [github.com][github] (Git)
 * **BitBucket:** [bitbucket.org][bitbucket] (Git e Mercurial)
 
-O driver VCS a ser usado é detectado automaticamente com base na URL.
+O driver VCS a ser usado é detectado automaticamente com base no URL.
 Entretanto, se você precisar especificar um por qualquer motivo, poderá usar
 `git-bitbucket`, `hg-bitbucket`, `github`, `gitlab`, `perforce`, `fossil`,
 `git`, `svn` ou `hg` como o tipo de repositório em vez de `vcs`.
@@ -312,7 +312,7 @@ Note que:
 O driver do BitBucket usa OAuth para acessar seus repositórios privados por meio
 das APIs REST do BitBucket e você precisará criar um consumidor OAuth para usar
 o driver, consulte a [Documentação da Atlassian][bitbucket-oauth]. Você
-precisará preencher a URL de callback com algo para satisfazer o BitBucket, mas
+precisará preencher o URL de callback com algo para satisfazer o BitBucket, mas
 o endereço não precisa ir a lugar algum e não é usado pelo Composer.
 
 Depois de criar um consumidor OAuth no painel de controle do BitBucket, você

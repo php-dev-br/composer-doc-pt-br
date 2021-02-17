@@ -63,10 +63,10 @@ padrão é `prompt`.
 O padrão é `["https", "ssh", "git"]`. Uma lista de protocolos a serem usados ao
 clonar de github.com, em ordem de prioridade. Por padrão, `git` está presente,
 mas apenas se [secure-http][secure-http] estiver desabilitada, pois o protocolo
-git não é criptografado. Se você deseja que as URLs de push do seu repositório
+git não é criptografado. Se você deseja que os URLs de push do seu repositório
 remoto `origin` usem https e não ssh (`git@github.com:...`), defina a lista de
-protocolos como somente `["https"]` e o Composer parará de substituir a URL de
-push por uma URL ssh.
+protocolos como somente `["https"]` e o Composer parará de substituir o URL de
+push por um URL ssh.
 
 ## github-oauth
 
@@ -94,15 +94,15 @@ especificados com a opção [`gitlab-domains`][gitlab-domains].
 
 ## disable-tls
 
-O padrão é `false`. Se definida como `true`, todas as URLs HTTPS serão acessadas
+O padrão é `false`. Se definida como `true`, todos os URLs HTTPS serão acessados
 com HTTP e nenhuma criptografia no nível de rede será usada. Habilitar esta
 opção é um risco à segurança e NÃO é recomendado. A melhor maneira é habilitar a
 extensão `php_openssl` no `php.ini`.
 
 ## secure-http
 
-O padrão é `true`. Se definida como `true`, somente as URLs HTTPS poderão ser
-baixadas pelo Composer. Se você realmente precisa de acesso HTTP a alguma coisa,
+O padrão é `true`. Se definida como `true`, somente os URLs HTTPS poderão ser
+baixados pelo Composer. Se você realmente precisa de acesso HTTP a alguma coisa,
 pode desabilitá-la, mas usar o [Let's Encrypt][letsencrypt] para obter um
 certificado SSL gratuito geralmente é uma alternativa melhor.
 
@@ -263,7 +263,7 @@ repositório git, em vez de usar a API do GitHub. Mas, em vez de usar o driver
 
 ## notify-on-install
 
-O padrão é `true`. O Composer permite que repositórios definam uma URL de
+O padrão é `true`. O Composer permite que repositórios definam um URL de
 notificação, para que sejam notificados sempre que um pacote desse repositório
 for instalado. Esta opção permite desabilitar esse comportamento.
 

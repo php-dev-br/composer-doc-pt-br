@@ -29,6 +29,7 @@
 | placeholder    | placeholder                                      |         |
 | pull           | fazer o pull                                     | VCS     |
 | push           | fazer o push                                     | VCS     |
+| sensible       | sensível                                         |         |
 | stream         | stream                                           | PHP     |
 | tag            | tag                                              | VCS     |
 | template       | template                                         |         |
