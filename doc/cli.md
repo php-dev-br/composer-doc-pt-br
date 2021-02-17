@@ -345,7 +345,7 @@ correspondem aos requisitos de plataforma dos pacotes instalados. Isso pode ser
 usado para verificar se um servidor de produção possui todas as extensões
 necessárias para executar um projeto após a instalação, por exemplo.
 
-Diferente de `update`/`install`, esse comando ignorará as configurações em
+Diferente de `update`/`install`, este comando ignorará as configurações em
 `config.platform` e verificará os pacotes reais da plataforma para garantir que
 você tenha as dependências de plataforma necessárias.
 
@@ -355,11 +355,11 @@ O comando `global` permite executar outros comandos, como `install`, `remove`,
 `require` ou `update`, como se você os estivesse executando a partir do
 diretório [COMPOSER_HOME][book-composer-home].
 
-Isso é apenas um auxiliar para gerenciar um projeto armazenado em um local
-central que pode conter ferramentas da CLI ou plugins do Composer que você
-deseja disponibilizar em qualquer lugar.
+Este é apenas um auxiliar para gerenciar um projeto armazenado num local central
+que pode conter ferramentas CLI ou plugins do Composer que você deseja ter
+disponíveis em qualquer lugar.
 
-Isso pode ser usado para instalar utilitários da CLI globalmente. Aqui está um
+Ele pode ser usado para instalar utilitários CLI globalmente. Aqui está um
 exemplo:
 
 ```sh
@@ -367,16 +367,16 @@ php composer.phar global require friendsofphp/php-cs-fixer
 ```
 
 Agora, o binário `php-cs-fixer` está disponível globalmente. Certifique-se de
-que o diretório global dos [binários dos vendors][article-binaries] esteja em sua
-variável de ambiente `PATH`, você pode obter sua localização com o seguinte
-comando:
+que o diretório global dos [binários dos vendors][article-binaries] esteja na
+sua variável de ambiente `PATH`. Você pode obter a sua localização com o
+seguinte comando:
 
 ```sh
 php composer.phar global config bin-dir --absolute
 ```
 
-Se você desejar atualizar o binário posteriormente, pode executar uma
-atualização global:
+Se você desejar atualizar o binário mais tarde, pode executar uma atualização
+global:
 
 ```sh
 php composer.phar global update
