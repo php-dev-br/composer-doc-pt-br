@@ -185,8 +185,8 @@ php composer.phar update vendor/pacote:2.0.1 vendor/pacote2:3.0.*
   geração do autoloader ignora as regras em `autoload-dev`.
 * **--no-install:** não executa a etapa de instalação após atualizar o arquivo
   `composer.lock`.
-* **--lock:** atualiza apenas o hash do arquivo lock para suprimir o aviso sobre
-  o arquivo lock estar desatualizado.
+* **--lock:** atualiza apenas o hash do arquivo lock para suprimir o alerta
+  sobre o arquivo lock estar desatualizado.
 * **--with:** restrição de versão temporária para adicionar, por exemplo,
   `foo/bar:1.0.0` ou `foo/bar=1.0.0`.
 * **--no-autoloader:** ignora a geração do autoloader.
@@ -340,10 +340,10 @@ Após remover os requisitos, os requisitos modificados serão desinstalados.
 
 ## check-platform-reqs
 
-O comando `check-platform-reqs` verifica se as versões do PHP e das extensões
-correspondem aos requisitos de plataforma dos pacotes instalados. Isso pode ser
-usado para verificar se um servidor de produção possui todas as extensões
-necessárias para executar um projeto após a instalação, por exemplo.
+O comando `check-platform-reqs` verifica se as suas versões do PHP e das
+extensões correspondem aos requisitos de plataforma dos pacotes instalados. Isso
+pode ser usado para verificar se um servidor de produção possui todas as
+extensões necessárias para executar um projeto após a instalação, por exemplo.
 
 Diferente de `update`/`install`, este comando ignorará as configurações em
 `config.platform` e verificará os pacotes reais da plataforma para garantir que
@@ -385,8 +385,8 @@ php composer.phar global update
 ## search
 
 O comando `search` permite pesquisar nos repositórios de pacotes do projeto
-atual. Geralmente será o Packagist. Você simplesmente passa os termos que deseja
-pesquisar.
+atual. Geralmente, será o Packagist. Você simplesmente passa os termos que
+deseja pesquisar.
 
 ```sh
 php composer.phar search monolog
@@ -415,7 +415,7 @@ php composer.phar show monolog/*
 monolog/monolog 1.19.0 Sends your logs to files, sockets, inboxes, databases and various web services
 ```
 
-Se você deseja ver os detalhes de um determinado pacote, pode passar o nome do
+Se você quiser ver os detalhes de um determinado pacote, pode passar o nome do
 pacote.
 
 ```sh
@@ -437,8 +437,8 @@ requires
 php >=5.3.0
 ```
 
-Você pode até passar a versão do pacote, o que informará os detalhes dessa
-versão específica.
+Você pode até mesmo passar a versão do pacote, o que informará os detalhes
+daquela versão específica.
 
 ```sh
 php composer.phar show monolog/monolog 1.0.2
@@ -446,23 +446,25 @@ php composer.phar show monolog/monolog 1.0.2
 
 ### Opções {: #opcoes-show }
 
-* **--all :** lista todos os pacotes disponíveis em todos os repositórios.
-* **--installed (-i):** lista os pacotes que estão instalados (isso está
-  habilitado por padrão e a opção está obsoleta).
+* **--all:** lista todos os pacotes disponíveis em todos os seus repositórios.
+* **--installed (-i):** lista os pacotes que estão instalados (esta opção está
+  habilitada por padrão e se tornou obsoleta).
+* **--locked:** lista os pacotes fixados do `composer.lock`.
 * **--platform (-p):** lista apenas pacotes de plataforma (PHP e extensões).
 * **--available (-a):** lista apenas os pacotes disponíveis.
 * **--self (-s):** lista as informações do pacote raiz.
 * **--name-only (-N):** lista apenas os nomes dos pacotes.
 * **--path (-P):** lista os caminhos dos pacotes.
 * **--tree (-t):** lista as dependências como uma árvore. Se você passar um nome
-  de pacote, isso exibirá a árvore de dependências para esse pacote.
-* **--latest (-l):** lista todos os pacotes instalados, incluindo a versão mais
-  recente.
-* **--outdated (-o):** implica `--latest`, mas lista *apenas* pacotes que têm
+  de pacote, essa opção exibirá a árvore de dependências desse pacote.
+* **--latest (-l):** lista todos os pacotes instalados, incluindo a sua versão
+  mais recente.
+* **--outdated (-o):** implica `--latest`, mas lista *apenas* os pacotes que têm
   uma versão mais recente disponível.
-* **--minor-only (-m):** use com `--latest`. Exibe apenas pacotes que possuem
+* **--no-dev:** filtra as dependências de desenvolvimento da lista de pacotes.
+* **--minor-only (-m):** use com `--latest`. Exibe apenas os pacotes que possuem
   atualizações menores compatíveis com o SemVer.
-* **--direct (-D):** restringe a lista de pacotes às dependências diretas.
+* **--direct (-D):** restringe a lista de pacotes às suas dependências diretas.
 * **--strict:** retorna um código de saída diferente de zero quando há pacotes
   desatualizados.
 * **--format (-f):** permite escolher entre o formato de saída de texto (padrão)
@@ -470,35 +472,38 @@ php composer.phar show monolog/monolog 1.0.2
 
 ## outdated
 
-O comando `outdated` exibe uma lista de pacotes instalados que possuem
-atualizações disponíveis, incluindo suas versões atuais e mais recentes. Isso é
-basicamente um alias para `composer show -lo`.
+O comando `outdated` exibe uma lista de pacotes instalados que têm atualizações
+disponíveis, incluindo as suas versões atuais e mais recentes. Ele é basicamente
+um apelido para `composer show -lo`.
 
 O código de cores é o seguinte:
 
 - **verde (=)**: A dependência está na versão mais recente e atualizada.
 - **amarelo (~)**: A dependência possui uma nova versão disponível, que inclui
-  quebra de compatibilidade com versões anteriores de acordo com o SemVer;
-  portanto, atualize quando puder, mas isso pode envolver algum trabalho.
+  quebra de compatibilidade com versões anteriores de acordo com o SemVer, então
+  atualize quando puder, mas isso pode envolver algum trabalho.
 - **vermelho (!)**: A dependência possui uma nova versão que é compatível com o
-  SemVer e você deve atualizá-la.
+  SemVer e você deveria atualizá-la.
 
 ### Opções {: #opcoes-outdated }
 
-* **--all (-a):** exibe todos os pacotes, não apenas os desatualizados (alias
+* **--all (-a):** exibe todos os pacotes, não apenas os desatualizados (apelido
   para `composer show -l`).
-* **--direct (-D):** restringe a lista de pacotes às dependências diretas.
+* **--direct (-D):** restringe a lista de pacotes às suas dependências diretas.
 * **--strict:** retorna um código de saída diferente de zero quando há pacotes
   desatualizados.
-* **--minor-only (-m):** exibe apenas pacotes que possuem atualizações menores
-  compatíveis com o SemVer.
+* **--minor-only (-m):** exibe apenas os pacotes que possuem atualizações
+  menores compatíveis com o SemVer.
 * **--format (-f):** permite escolher entre o formato de saída de texto (padrão)
   ou json.
+* **--no-dev:** não exibe dependências de desenvolvimento desatualizadas.
+* **--locked:** exibe as atualizações dos pacotes do arquivo lock,
+  independentemente do que está atualmente no diretório `vendor`.
 
 ## browse / home
 
-O comando `browse` (ou o alias `home`) abre o URL do repositório ou a página do
-pacote no navegador.
+O comando `browse` (ou o apelido `home`) abre o URL do repositório ou a página
+do pacote no navegador.
 
 ### Opções {: #opcoes-browse }
 
@@ -508,22 +513,29 @@ pacote no navegador.
 ## suggests
 
 Lista todos os pacotes sugeridos pelo conjunto de pacotes atualmente instalado.
-Opcionalmente, você pode passar um ou mais nomes de pacotes no formato
+Você pode, opcionalmente, passar um ou vários nomes de pacotes no formato
 `vendor/pacote` para limitar a saída apenas às sugestões feitas por esses
 pacotes.
 
-Use as flags `--by-package` ou `--by-suggestion` para agrupar a saída pelo
-pacote que faz as sugestões ou pelos pacotes sugeridos, respectivamente.
+Use as flags `--by-package` (padrão) ou `--by-suggestion` para agrupar a saída
+pelo pacote que oferece as sugestões ou pelos pacotes sugeridos,
+respectivamente.
 
-Use a flag `--verbose (-v)` para exibir o pacote que faz a sugestão e o motivo
-da sugestão. Isso implica `--by-package --by-suggestion`, mostrando as duas
-listas.
+Se você quiser apenas uma lista de nomes de pacotes sugeridos, use `--list`.
 
 ### Opções {: #opcoes-suggests }
 
-* **--by-package:** agrupa a saída pelo pacote que faz a sugestão.
-* **--by-suggestion:** agrupa a saída pelo pacote sugerido.
-* **--no-dev:** exclui sugestões dos pacotes de `require-dev`.
+* **--by-package:** agrupa a saída por pacote que oferece a sugestão (padrão).
+* **--by-suggestion:** agrupa a saída por pacote sugerido.
+* **--all:** exibe sugestões de todas as dependências, incluindo as transitivas
+  (por padrão, apenas as sugestões das dependências diretas são exibidas).
+* **--list:** exibe apenas a lista dos nomes dos pacotes sugeridos.
+* **--no-dev:** exclui as sugestões dos pacotes de `require-dev`.
+
+## fund
+
+Descobre como ajudar a financiar a manutenção das suas dependências. Este
+comando lista todos os links de financiamento das dependências instaladas.
 
 ## depends (why)
 
@@ -593,8 +605,8 @@ todos os pacotes que dependem dos pacotes que causam o conflito.
 ## validate
 
 Você sempre deve executar o comando `validate` antes de fazer o commit do
-arquivo `composer.json` e antes de criar a tag de uma versão. Ele verificará se
-o `composer.json` é válido.
+arquivo `composer.json`, e antes de criar a tag de uma versão. Ele verificará se
+o seu `composer.json` é válido.
 
 ```sh
 php composer.phar validate
@@ -602,22 +614,22 @@ php composer.phar validate
 
 ### Opções {: #opcoes-validate }
 
-* **--no-check-all:** não emite um aviso se os requisitos do `composer.json`
-  usarem restrições de versão não acopladas ou excessivamente rígidas.
+* **--no-check-all:** não emite um alerta se os requisitos do `composer.json`
+  usarem restrições de versão não associadas ou excessivamente rígidas.
 * **--no-check-lock:** não emite um erro se o `composer.lock` existir e não
   estiver atualizado.
-* **--no-check-publish:** não emite um erro se o `composer.json` for inadequado
-  para publicação como um pacote no Packagist, mas for válido.
+* **--no-check-publish:** não emite um erro se o `composer.json` não for
+  adequado para publicação como um pacote no Packagist, mas for válido.
 * **--with-dependencies:** também valida o `composer.json` de todas as
   dependências instaladas.
-* **--strict:** retorna um código de saída diferente de zero para avisos e
+* **--strict:** retorna um código de saída diferente de zero para os alertas e
   erros.
 
 ## status
 
-Se você precisar modificar frequentemente o código de suas dependências e elas
-são instaladas a partir de `source`, o comando `status` permitirá verificar se
-há alterações locais em alguma delas.
+Se você precisar modificar frequentemente o código das suas dependências, e elas
+são instaladas a partir do código-fonte, o comando `status` permitirá verificar
+se há alterações locais em alguma delas.
 
 ```sh
 php composer.phar status
@@ -928,7 +940,7 @@ O arquivo lock gerado usará o mesmo nome: `outro-composer.lock` nesse exemplo.
 
 ### COMPOSER_ALLOW_SUPERUSER {: #composer-allow-superuser }
 
-Se definida como `1`, esta variável de ambiente desabilita o aviso sobre a
+Se definida como `1`, esta variável de ambiente desabilita o alerta sobre a
 execução de comandos como root/superusuário. Ela também desabilita a limpeza
 automática de sessões sudo; portanto, você realmente deve defini-la apenas se
 usar o Composer como superusuário o tempo todo, como em containers do Docker.

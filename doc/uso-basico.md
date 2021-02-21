@@ -172,7 +172,7 @@ equivalente a excluir o arquivo `composer.lock` e executar `install` novamente.)
 php composer.phar update
 ```
 
-> **Nota:** O Composer exibirá um aviso ao executar um comando `install` se o
+> **Nota:** O Composer exibirá um alerta ao executar um comando `install` se o
 > `composer.lock` não tiver sido atualizado depois que foram feitas alterações
 > no `composer.json` que podem afetar a resolução de dependências.
 

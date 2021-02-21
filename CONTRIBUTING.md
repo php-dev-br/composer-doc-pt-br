@@ -34,3 +34,4 @@
 | tag            | tag                                              | VCS     |
 | template       | template                                         |         |
 | vendor         | vendor                                           |         |
+| warning        | alerta                                           |         |
