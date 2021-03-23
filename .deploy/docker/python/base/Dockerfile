@@ -6,7 +6,7 @@ LABEL maintainer="Adiel Cristo <adiel@adielcristo.com>"
 
 # Alpine packages
 ARG PACKAGE_GCC="gcc=10.2.1_pre1-r3"
-ARG PACKAGE_GIT="git=2.30.1-r0"
+ARG PACKAGE_GIT="git=2.30.2-r0"
 ARG PACKAGE_MUSL_DEV="musl-dev=1.2.2-r0"
 
 # Pip packages
