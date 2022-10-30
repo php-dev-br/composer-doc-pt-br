@@ -2,14 +2,12 @@
 
 ## Setup
 
-### Development
-
-#### Docker
+### Docker
 
 1. Install [Docker][docker-install] and [Docker Compose][compose-install], and
    add the binaries to the `PATH` environment variable.
 
-##### Docker Environment Variables
+#### Docker Environment Variables
 
 1. Create an `.env` file from `.env.dist` in the project root (or update the
    existing one) and set up the required environment variables:
@@ -31,7 +29,7 @@
     source .env
     ```
 
-##### Containers
+#### Containers
 
 1. Build the docker images:
 
