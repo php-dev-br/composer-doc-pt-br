@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: format('{{{0}:{1}}}', github.repository, github.ref_name)
+  IMAGE_NAME: ${{ format('{{{0}:{1}}}', github.repository, github.ref_name) }}
 
 jobs:
   build-and-push-image:
