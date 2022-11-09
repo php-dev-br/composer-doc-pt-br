@@ -7,7 +7,7 @@ LABEL maintainer="Adiel Cristo <adiel@adielcristo.com>"
 RUN apk update && \
     apk add --no-cache --virtual .build-deps \
         gcc=11.2.1_git20220219-r2 \
-        musl-dev=1.2.3-r0 && \
+        musl-dev=1.2.3-r1 && \
     apk add --virtual .tool-deps \
         git=2.36.3-r0 && \
     pip install \
