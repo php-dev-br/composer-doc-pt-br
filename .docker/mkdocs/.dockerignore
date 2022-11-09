@@ -1,0 +1,29 @@
+### local ###
+
+.DS_Store
+Thumbs.db
+
+.idea
+.bashrc
+
+### docker ###
+
+.docker
+.dockerignore
+
+### git ###
+
+.git
+.gitignore
+
+### github ###
+
+.github
+
+### application ###
+
+CONTRIBUTING.md
+README.md
+
+.env
+.env.dist

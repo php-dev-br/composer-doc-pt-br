@@ -1,9 +1,10 @@
 services:
     python:
-        image: composer-doc-pt-br-python:dev
+        image: composer-doc-pt-br-mkdocs:dev
         build:
             context: ""
-            dockerfile: python/Dockerfile
+            dockerfile: mkdocs/Dockerfile
+            target: dev
         restart: always
         command: mkdocs serve -a 0.0.0.0:${MKDOCS_PORT_HTTP}
         ports:
