@@ -29,11 +29,12 @@ ENV BUILD_COMMIT_SHA=${BUILD_COMMIT_SHA}
 COPY . /var/www
 WORKDIR /var/www
 
-RUN mkdocs build && echo ${BUILD_COMMIT_SHA}
+RUN mkdocs build && \
+    echo "Commit: ${BUILD_COMMIT_SHA}"
 
 ### prod ###
 
 FROM scratch AS prod
 LABEL maintainer="Adiel Cristo <adiel@adielcristo.com>"
 
-COPY --from=build /var/www/build /var/www/public/docs/composer
+COPY --from=build /var/www/build /var/www/build
