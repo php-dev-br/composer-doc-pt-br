@@ -3,6 +3,8 @@ name: push-image
 on:
   push:
     branches:
+      - 1.10
+      - 2.2
       - 2.4
   workflow_dispatch:
 

@@ -1,5 +1,11 @@
 # Composer Documentation - Brazilian Portuguese
 
+## Status
+
+|              [2.4][branch_2_4]              |              [2.2][branch_2_2]              |              [1.10][branch_1_10]              |
+|:-------------------------------------------:|:-------------------------------------------:|:---------------------------------------------:|
+| [![Build Status][build_img_2_4]][build_2_4] | [![Build Status][build_img_2_2]][build_2_2] | [![Build Status][build_img_1_10]][build_1_10] |
+
 ## Setup
 
 ### Docker
@@ -77,6 +83,24 @@
 ## Contributing
 
 * [Instructions][doc-contrib]
+
+[branch_1_10]: https://github.com/adielcristo/composer-doc-pt-br/tree/1.10
+
+[build_1_10]: https://github.com/adielcristo/composer-doc-pt-br/actions
+
+[build_img_1_10]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/push-image.yaml/badge.svg?branch=1.10
+
+[branch_2_2]: https://github.com/adielcristo/composer-doc-pt-br/tree/2.2
+
+[build_2_2]: https://github.com/adielcristo/composer-doc-pt-br/actions
+
+[build_img_2_2]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/push-image.yaml/badge.svg?branch=2.2
+
+[branch_2_4]: https://github.com/adielcristo/composer-doc-pt-br/tree/2.4
+
+[build_2_4]: https://github.com/adielcristo/composer-doc-pt-br/actions
+
+[build_img_2_4]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/push-image.yaml/badge.svg?branch=2.4
 
 [compose-install]: https://docs.docker.com/compose/install/
 
