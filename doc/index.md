@@ -18,11 +18,19 @@
 ## FAQs
 
 [article-aliases]: artigos/aliases.md
+
 [book-cli]: cli.md
+
 [book-community]: comunidade.md
+
 [book-config]: config.md
+
 [book-intro]: introducao.md
+
 [book-libs]: bibliotecas.md
+
 [book-repos]: repositorios.md
+
 [book-schema]: esquema.md
+
 [book-usage]: uso-basico.md

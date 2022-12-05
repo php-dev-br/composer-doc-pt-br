@@ -1,10 +1,10 @@
 ### local ###
 
-.idea
-.env
+.idea/
 
 .bashrc
+.env
 
 ### application ###
 
-build
+build/
