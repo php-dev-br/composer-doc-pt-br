@@ -3,7 +3,7 @@
 ## Glossary
 
 | Term           | Translation                                      | Context |
-| -------------- | ------------------------------------------------ | ------- |
+|----------------|--------------------------------------------------|---------|
 | autoload       | autoload                                         | PHP     |
 | autoloader     | autoloader                                       | PHP     |
 | branch         | branch                                           | VCS     |
@@ -34,3 +34,4 @@
 | tag            | tag                                              | VCS     |
 | template       | template                                         |         |
 | vendor         | vendor                                           |         |
+| warning        | alerta                                           |         |

@@ -1,0 +1,29 @@
+services:
+    python:
+        image: composer-doc-pt-br-mkdocs:dev
+        build:
+            context: ""
+            dockerfile: mkdocs/Dockerfile
+            target: dev
+        restart: always
+        command: mkdocs serve -a 0.0.0.0:${MKDOCS_PORT_HTTP}
+        ports:
+            - ${DOCKER_HOST_PORT_HTTP}:${MKDOCS_PORT_HTTP}
+        volumes:
+            - application:/var/www
+        working_dir: /var/www
+        env_file:
+            - ../.env
+
+networks:
+    default:
+        name: ${DOCKER_NETWORK_DEFAULT}
+
+volumes:
+    application:
+        name: ${DOCKER_VOLUME_APPLICATION}
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ${COMPOSE_PROJECT_DIR}/..

@@ -185,8 +185,8 @@ php composer.phar update vendor/pacote:2.0.1 vendor/pacote2:3.0.*
   geração do autoloader ignora as regras em `autoload-dev`.
 * **--no-install:** não executa a etapa de instalação após atualizar o arquivo
   `composer.lock`.
-* **--lock:** atualiza apenas o hash do arquivo lock para suprimir o aviso sobre
-  o arquivo lock estar desatualizado.
+* **--lock:** atualiza apenas o hash do arquivo lock para suprimir o alerta
+  sobre o arquivo lock estar desatualizado.
 * **--with:** restrição de versão temporária para adicionar, por exemplo,
   `foo/bar:1.0.0` ou `foo/bar=1.0.0`.
 * **--no-autoloader:** ignora a geração do autoloader.
@@ -340,10 +340,10 @@ Após remover os requisitos, os requisitos modificados serão desinstalados.
 
 ## check-platform-reqs
 
-O comando `check-platform-reqs` verifica se as versões do PHP e das extensões
-correspondem aos requisitos de plataforma dos pacotes instalados. Isso pode ser
-usado para verificar se um servidor de produção possui todas as extensões
-necessárias para executar um projeto após a instalação, por exemplo.
+O comando `check-platform-reqs` verifica se as suas versões do PHP e das
+extensões correspondem aos requisitos de plataforma dos pacotes instalados. Isso
+pode ser usado para verificar se um servidor de produção possui todas as
+extensões necessárias para executar um projeto após a instalação, por exemplo.
 
 Diferente de `update`/`install`, este comando ignorará as configurações em
 `config.platform` e verificará os pacotes reais da plataforma para garantir que
@@ -385,8 +385,8 @@ php composer.phar global update
 ## search
 
 O comando `search` permite pesquisar nos repositórios de pacotes do projeto
-atual. Geralmente será o Packagist. Você simplesmente passa os termos que deseja
-pesquisar.
+atual. Geralmente, será o Packagist. Você simplesmente passa os termos que
+deseja pesquisar.
 
 ```sh
 php composer.phar search monolog
@@ -415,7 +415,7 @@ php composer.phar show monolog/*
 monolog/monolog 1.19.0 Sends your logs to files, sockets, inboxes, databases and various web services
 ```
 
-Se você deseja ver os detalhes de um determinado pacote, pode passar o nome do
+Se você quiser ver os detalhes de um determinado pacote, pode passar o nome do
 pacote.
 
 ```sh
@@ -437,8 +437,8 @@ requires
 php >=5.3.0
 ```
 
-Você pode até passar a versão do pacote, o que informará os detalhes dessa
-versão específica.
+Você pode até mesmo passar a versão do pacote, o que informará os detalhes
+daquela versão específica.
 
 ```sh
 php composer.phar show monolog/monolog 1.0.2
@@ -446,23 +446,25 @@ php composer.phar show monolog/monolog 1.0.2
 
 ### Opções {: #opcoes-show }
 
-* **--all :** lista todos os pacotes disponíveis em todos os repositórios.
-* **--installed (-i):** lista os pacotes que estão instalados (isso está
-  habilitado por padrão e a opção está obsoleta).
+* **--all:** lista todos os pacotes disponíveis em todos os seus repositórios.
+* **--installed (-i):** lista os pacotes que estão instalados (esta opção está
+  habilitada por padrão e se tornou obsoleta).
+* **--locked:** lista os pacotes fixados do `composer.lock`.
 * **--platform (-p):** lista apenas pacotes de plataforma (PHP e extensões).
 * **--available (-a):** lista apenas os pacotes disponíveis.
 * **--self (-s):** lista as informações do pacote raiz.
 * **--name-only (-N):** lista apenas os nomes dos pacotes.
 * **--path (-P):** lista os caminhos dos pacotes.
 * **--tree (-t):** lista as dependências como uma árvore. Se você passar um nome
-  de pacote, isso exibirá a árvore de dependências para esse pacote.
-* **--latest (-l):** lista todos os pacotes instalados, incluindo a versão mais
-  recente.
-* **--outdated (-o):** implica `--latest`, mas lista *apenas* pacotes que têm
+  de pacote, essa opção exibirá a árvore de dependências desse pacote.
+* **--latest (-l):** lista todos os pacotes instalados, incluindo a sua versão
+  mais recente.
+* **--outdated (-o):** implica `--latest`, mas lista *apenas* os pacotes que têm
   uma versão mais recente disponível.
-* **--minor-only (-m):** use com `--latest`. Exibe apenas pacotes que possuem
+* **--no-dev:** filtra as dependências de desenvolvimento da lista de pacotes.
+* **--minor-only (-m):** use com `--latest`. Exibe apenas os pacotes que possuem
   atualizações menores compatíveis com o SemVer.
-* **--direct (-D):** restringe a lista de pacotes às dependências diretas.
+* **--direct (-D):** restringe a lista de pacotes às suas dependências diretas.
 * **--strict:** retorna um código de saída diferente de zero quando há pacotes
   desatualizados.
 * **--format (-f):** permite escolher entre o formato de saída de texto (padrão)
@@ -470,35 +472,38 @@ php composer.phar show monolog/monolog 1.0.2
 
 ## outdated
 
-O comando `outdated` exibe uma lista de pacotes instalados que possuem
-atualizações disponíveis, incluindo suas versões atuais e mais recentes. Isso é
-basicamente um alias para `composer show -lo`.
+O comando `outdated` exibe uma lista de pacotes instalados que têm atualizações
+disponíveis, incluindo as suas versões atuais e mais recentes. Ele é basicamente
+um apelido para `composer show -lo`.
 
 O código de cores é o seguinte:
 
 - **verde (=)**: A dependência está na versão mais recente e atualizada.
 - **amarelo (~)**: A dependência possui uma nova versão disponível, que inclui
-  quebra de compatibilidade com versões anteriores de acordo com o SemVer;
-  portanto, atualize quando puder, mas isso pode envolver algum trabalho.
+  quebra de compatibilidade com versões anteriores de acordo com o SemVer, então
+  atualize quando puder, mas isso pode envolver algum trabalho.
 - **vermelho (!)**: A dependência possui uma nova versão que é compatível com o
-  SemVer e você deve atualizá-la.
+  SemVer e você deveria atualizá-la.
 
 ### Opções {: #opcoes-outdated }
 
-* **--all (-a):** exibe todos os pacotes, não apenas os desatualizados (alias
+* **--all (-a):** exibe todos os pacotes, não apenas os desatualizados (apelido
   para `composer show -l`).
-* **--direct (-D):** restringe a lista de pacotes às dependências diretas.
+* **--direct (-D):** restringe a lista de pacotes às suas dependências diretas.
 * **--strict:** retorna um código de saída diferente de zero quando há pacotes
   desatualizados.
-* **--minor-only (-m):** exibe apenas pacotes que possuem atualizações menores
-  compatíveis com o SemVer.
+* **--minor-only (-m):** exibe apenas os pacotes que possuem atualizações
+  menores compatíveis com o SemVer.
 * **--format (-f):** permite escolher entre o formato de saída de texto (padrão)
   ou json.
+* **--no-dev:** não exibe dependências de desenvolvimento desatualizadas.
+* **--locked:** exibe as atualizações dos pacotes do arquivo lock,
+  independentemente do que está atualmente no diretório `vendor`.
 
 ## browse / home
 
-O comando `browse` (ou o alias `home`) abre o URL do repositório ou a página do
-pacote no navegador.
+O comando `browse` (ou o apelido `home`) abre o URL do repositório ou a página
+do pacote no navegador.
 
 ### Opções {: #opcoes-browse }
 
@@ -508,22 +513,29 @@ pacote no navegador.
 ## suggests
 
 Lista todos os pacotes sugeridos pelo conjunto de pacotes atualmente instalado.
-Opcionalmente, você pode passar um ou mais nomes de pacotes no formato
+Você pode, opcionalmente, passar um ou vários nomes de pacotes no formato
 `vendor/pacote` para limitar a saída apenas às sugestões feitas por esses
 pacotes.
 
-Use as flags `--by-package` ou `--by-suggestion` para agrupar a saída pelo
-pacote que faz as sugestões ou pelos pacotes sugeridos, respectivamente.
+Use as flags `--by-package` (padrão) ou `--by-suggestion` para agrupar a saída
+pelo pacote que oferece as sugestões ou pelos pacotes sugeridos,
+respectivamente.
 
-Use a flag `--verbose (-v)` para exibir o pacote que faz a sugestão e o motivo
-da sugestão. Isso implica `--by-package --by-suggestion`, mostrando as duas
-listas.
+Se você quiser apenas uma lista de nomes de pacotes sugeridos, use `--list`.
 
 ### Opções {: #opcoes-suggests }
 
-* **--by-package:** agrupa a saída pelo pacote que faz a sugestão.
-* **--by-suggestion:** agrupa a saída pelo pacote sugerido.
-* **--no-dev:** exclui sugestões dos pacotes de `require-dev`.
+* **--by-package:** agrupa a saída por pacote que oferece a sugestão (padrão).
+* **--by-suggestion:** agrupa a saída por pacote sugerido.
+* **--all:** exibe sugestões de todas as dependências, incluindo as transitivas
+  (por padrão, apenas as sugestões das dependências diretas são exibidas).
+* **--list:** exibe apenas a lista dos nomes dos pacotes sugeridos.
+* **--no-dev:** exclui as sugestões dos pacotes de `require-dev`.
+
+## fund
+
+Descobre como ajudar a financiar a manutenção das suas dependências. Este
+comando lista todos os links de financiamento das dependências instaladas.
 
 ## depends (why)
 
@@ -593,8 +605,8 @@ todos os pacotes que dependem dos pacotes que causam o conflito.
 ## validate
 
 Você sempre deve executar o comando `validate` antes de fazer o commit do
-arquivo `composer.json` e antes de criar a tag de uma versão. Ele verificará se
-o `composer.json` é válido.
+arquivo `composer.json`, e antes de criar a tag de uma versão. Ele verificará se
+o seu `composer.json` é válido.
 
 ```sh
 php composer.phar validate
@@ -602,22 +614,22 @@ php composer.phar validate
 
 ### Opções {: #opcoes-validate }
 
-* **--no-check-all:** não emite um aviso se os requisitos do `composer.json`
-  usarem restrições de versão não acopladas ou excessivamente rígidas.
+* **--no-check-all:** não emite um alerta se os requisitos do `composer.json`
+  usarem restrições de versão não associadas ou excessivamente rígidas.
 * **--no-check-lock:** não emite um erro se o `composer.lock` existir e não
   estiver atualizado.
-* **--no-check-publish:** não emite um erro se o `composer.json` for inadequado
-  para publicação como um pacote no Packagist, mas for válido.
+* **--no-check-publish:** não emite um erro se o `composer.json` não for
+  adequado para publicação como um pacote no Packagist, mas for válido.
 * **--with-dependencies:** também valida o `composer.json` de todas as
   dependências instaladas.
-* **--strict:** retorna um código de saída diferente de zero para avisos e
+* **--strict:** retorna um código de saída diferente de zero para os alertas e
   erros.
 
 ## status
 
-Se você precisar modificar frequentemente o código de suas dependências e elas
-são instaladas a partir de `source`, o comando `status` permitirá verificar se
-há alterações locais em alguma delas.
+Se você precisar modificar frequentemente o código das suas dependências, e elas
+são instaladas a partir do código-fonte, o comando `status` permitirá verificar
+se há alterações locais em alguma delas.
 
 ```sh
 php composer.phar status
@@ -633,16 +645,16 @@ vendor/seld/jsonlint:
     M README.mdown
 ```
 
-## self-update (selfupdate)
+## self-update (selfupdate) {: #self-update }
 
 Para atualizar o próprio Composer para a versão mais recente, execute o comando
-`self-update`. Ele substituirá seu `composer.phar` pela versão mais recente.
+`self-update`. Ele substituirá o seu `composer.phar` pela versão mais recente.
 
 ```sh
 php composer.phar self-update
 ```
 
-Se você deseja atualizar para uma versão específica, basta especificar:
+Se você preferir atualizar para uma versão específica, basta especificá-la:
 
 ```sh
 php composer.phar self-update 1.0.0-alpha7
@@ -650,27 +662,36 @@ php composer.phar self-update 1.0.0-alpha7
 
 Se você instalou o Composer para todo o sistema (consulte a [instalação global]
 [book-globally]), pode ser necessário executar o comando com privilégios de
-`root`.
+administrador.
 
 ```sh
 sudo -H composer self-update
 ```
+
+Se o Composer não foi instalado como um PHAR, este comando não estará
+disponível. (Às vezes é o que acontece quando o Composer foi instalado por um
+gerenciador de pacotes do sistema operacional.)
 
 ### Opções {: #opcoes-self-update }
 
 * **--rollback (-r):** reverte para a última versão que você instalou.
 * **--clean-backups:** exclui os backups antigos durante uma atualização. Isso
   torna a versão atual do Composer o único backup disponível após a atualização.
-* **--no-progress:** remove a exibição de progresso do download.
+* **--no-progress:** não exibe o progresso do download.
 * **--update-keys:** solicita uma atualização de chave.
 * **--stable:** força uma atualização para o canal estável.
 * **--preview:** força uma atualização para o canal preview.
 * **--snapshot:** força uma atualização para o canal snapshot.
+* **--1:** força uma atualização para o canal estável, mas usa apenas as versões
+  1.x.
+* **--2:** força uma atualização para o canal estável, mas usa apenas as versões
+  2.x.
+* **--set-channel-only:** apenas armazena o canal como o padrão.
 
 ## config
 
-O comando `config` permite editar configurações e repositórios do Composer tanto
-no arquivo local `composer.json` quanto no arquivo global `config.json`.
+O comando `config` permite editar as configurações e repositórios do Composer
+tanto no arquivo local `composer.json` quanto no arquivo global `config.json`.
 
 Além disso, permite editar a maioria das propriedades no `composer.json` local.
 
@@ -697,7 +718,7 @@ Veja o capítulo [Config][book-config] para conhecer as opções de configuraç�
 ### Opções {: #opcoes-config }
 
 * **--global (-g):** opera no arquivo de configuração global localizado em
-  `$COMPOSER_HOME/config.json` por padrão. Sem essa opção, esse comando afeta o
+  `$COMPOSER_HOME/config.json` por padrão. Sem esta opção, este comando afeta o
   arquivo `composer.json` local ou um arquivo especificado por `--file`.
 * **--editor (-e):** abre o arquivo `composer.json` local usando um editor de
   texto conforme definido pela variável de ambiente `EDITOR`. Com a opção
@@ -706,10 +727,10 @@ Veja o capítulo [Config][book-config] para conhecer as opções de configuraç�
   para `--editor`).
 * **--unset:** remove o elemento de configuração nomeado por
   `nome-configuracao`.
-* **--list (-l):** exibe a lista de variáveis de configuração atuais. Com a
+* **--list (-l):** exibe a lista das variáveis de configuração atuais. Com a
   opção `--global`, lista apenas as configurações globais.
 * **--file="..." (-f):** opera num arquivo específico em vez do `composer.json`.
-  Note que isso não pode ser usado em conjunto com a opção `--global`.
+  Observe que isso não pode ser usado em conjunto com a opção `--global`.
 * **--absolute:** retorna caminhos absolutos em vez de caminhos relativos ao
   buscar valores de configuração `*-dir`.
 
@@ -722,8 +743,8 @@ alterações na seção `repositories`, usando-o da seguinte maneira:
 php composer.phar config repositories.foo vcs https://github.com/foo/bar
 ```
 
-Se o seu repositório exigir mais opções de configuração, você poderá passar sua
-representação JSON:
+Se o seu repositório exigir mais opções de configuração, você poderá passar a
+sua representação JSON:
 
 ```sh
 php composer.phar config repositories.foo '{"type": "vcs", "url": "http://svn.exemplo.org.br/meu-projeto/", "trunk-path": "master"}'
@@ -742,11 +763,18 @@ Os pontos indicam aninhamento de arrays, embora seja permitida uma profundidade
 máxima de 3 níveis. O comando acima definiria
 `"extra": { "foo": { "bar": "valor" } }`.
 
+Se você tiver um valor complexo para adicionar/modificar, poderá usar as flags
+`--json` e `--merge` para editar os campos extras como JSON:
+
+```sh
+php composer.phar config --json extra.foo.bar '{"baz": true, "qux": []}'
+```
+
 ## create-project
 
-Você pode usar o Composer para criar novos projetos a partir de um pacote
-existente. Isso é o equivalente a fazer um `git clone` ou um `svn checkout`
-seguido por um `composer install` dos vendors.
+Você pode usar o Composer para criar projetos a partir de um pacote existente.
+Isso é o equivalente a executar um `git clone` ou um `svn checkout` seguido por
+um `composer install` dos vendors.
 
 Existem várias aplicações para isso:
 
@@ -756,8 +784,8 @@ Existem várias aplicações para isso:
 1. Projetos com vários desenvolvedores podem usar esse recurso para inicializar
    a aplicação inicial para desenvolvimento.
 
-Para criar um novo projeto usando o Composer, você pode usar o comando
-`create-project`. Passe o nome de um pacote e o diretório para criar o
+Para criar um projeto usando o Composer, você pode usar o comando
+`create-project`. Passe o nome de um pacote e o diretório no qual criará o
 projeto. Você também pode fornecer uma versão como terceiro argumento, caso
 contrário, a versão mais recente será usada.
 
@@ -767,8 +795,8 @@ Se o diretório não existir, será criado durante a instalação.
 php composer.phar create-project doctrine/orm caminho 2.2.*
 ```
 
-Também é possível executar o comando sem parâmetros em um diretório com um
-arquivo `composer.json` existente para inicializar um projeto.
+Também é possível executar o comando sem parâmetros num diretório com um arquivo
+`composer.json` existente para inicializar um projeto.
 
 Por padrão, o comando procura por pacotes no [Packagist][page-packagist].
 
@@ -781,11 +809,13 @@ Por padrão, o comando procura por pacotes no [Packagist][page-packagist].
   pacote, que será usado no lugar do Packagist. Pode ser um URL HTTP apontando
   para um repositório do `composer`, um caminho para um arquivo `packages.json`
   local ou uma string JSON semelhante à string aceita pela chave
-  [repositories][book-repositories].
-* **--dev:** instala os pacotes listados em `require-dev` (esse é o
-  comportamento padrão).
-* **--no-dev:** ignora a instalação dos pacotes listados em `require-dev`. A
-  geração do autoloader ignora as regras em `autoload-dev`.
+  [repositories][book-repositories]. Você pode usar esta opção várias vezes para
+  configurar vários repositórios.
+* **--add-repository:** Adiciona um repositório personalizado ao
+  `composer.json`. Se um arquivo lock estiver presente, ele será excluído e uma
+  atualização será executada, ao invés de uma instalação.
+* **--dev:** instala os pacotes listados em `require-dev`.
+* **--no-dev:** ignora a instalação dos pacotes listados em `require-dev`.
 * **--no-scripts:** ignora a execução dos scripts definidos no pacote raiz.
 * **--no-progress:** remove a exibição de progresso que pode interferir em
   alguns terminais ou scripts que não tratam caracteres de backspace.
@@ -793,25 +823,29 @@ Por padrão, o comando procura por pacotes no [Packagist][page-packagist].
   temporariamente ao instalar o pacote raiz. Use por sua conta e risco. Usar
   essa flag é uma má ideia.
 * **--keep-vcs:** ignora a exclusão dos metadados do VCS para o projeto criado.
-  Isso é útil principalmente se você executar o comando em modo não interativo.
+  Isto é útil principalmente se você executar o comando em modo não interativo.
 * **--remove-vcs:** força a remoção dos metadados do VCS sem pedir confirmação.
 * **--no-install:** desabilita a instalação dos vendors.
 * **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
   `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina local não
   atenda a eles. Veja também a opção de configuração [`platform`]
 [book-platform].
+* **--ignore-platform-req:** ignora um requisito de plataforma específico
+  (`php`, `hhvm`, `lib-*` e `ext-*`) e força a instalação, mesmo que a máquina
+  local não atenda a ele.
+* **--ask:** Solicita o diretório de destino para o novo projeto.
 
-## dump-autoload (dumpautoload)
+## dump-autoload (dumpautoload) {: #dump-autoload }
 
-Se você precisar atualizar o autoloader por causa de novas classes em um pacote
-de mapa de classes, por exemplo, poderá usar `dump-autoload` para fazer isso sem
-precisar passar por uma instalação ou atualização.
+Se você precisar atualizar o autoloader devido a novas classes num pacote de
+mapa de classes, por exemplo, poderá usar `dump-autoload` para fazer isso sem
+ter que passar por uma instalação ou atualização.
 
 Além disso, ele pode fazer o dump de um autoloader otimizado que converte
 pacotes PSR-0/4 em pacotes de mapa de classes por motivos de desempenho. Em
 aplicações grandes com muitas classes, o autoloader pode ocupar uma porção
 substancial do tempo de cada requisição. O uso de mapas de classes para tudo é
-menos conveniente durante o desenvolvimento, mas, usando essa opção, você ainda
+menos conveniente durante o desenvolvimento, mas, usando esta opção, você ainda
 pode usar PSR-0/4 por conveniência e mapas de classes por desempenho.
 
 ### Opções {: #opcoes-dump-autoload }
@@ -825,20 +859,29 @@ pode usar PSR-0/4 por conveniência e mapas de classes por desempenho.
   de classes. Implicitamente habilita `--optimize`.
 * **--apcu:** usa a APCu para armazenar em cache as classes encontradas/não
   encontradas.
+* **--apcu-prefix:** usa um prefixo personalizado para o cache do autoloader da
+  APCu. Habilita implicitamente `--apcu`.
 * **--no-dev:** desabilita as regras em `autoload-dev`.
+* **--ignore-platform-reqs:** ignora todos os requisitos de plataforma (`php`,
+  `hhvm`, `lib-*` e `ext-*`) e pula a [verificação de plataforma]
+[book-platform-check] para eles. Veja também a opção de configuração
+  [`platform`][book-platform].
+* **--ignore-platform-req:** ignora um requisito de plataforma específico
+  (`php`, `hhvm`, `lib-*` e `ext-*`) e pula a [verificação de plataforma]
+[book-platform-check] para ele.
 
-## clear-cache (clearcache)
+## clear-cache / clearcache / cc
 
 Exclui todo o conteúdo dos diretórios de cache do Composer.
 
 ## licenses
 
-Lista o nome, versão e licença de cada pacote instalado. Use `--format=json`
+Lista o nome, a versão e a licença de cada pacote instalado. Use `--format=json`
 para obter uma saída legível para máquinas.
 
 ### Opções {: #opcoes-licenses }
 
-* **--format:** formato da saída: `text` ou `json` (padrão: `text`).
+* **--format:** formato da saída: `text`, `json` ou `summary` (padrão: `text`).
 * **--no-dev:** remove as dependências de desenvolvimento da saída.
 
 ## run-script
@@ -849,17 +892,17 @@ para obter uma saída legível para máquinas.
   desabilitar o tempo limite.
 * **--dev:** habilita o modo de desenvolvimento.
 * **--no-dev:** desabilita o modo de desenvolvimento.
-* **--list (-l):** lista os scripts definidos por quem que está desenvolvendo.
+* **--list (-l):** lista os scripts definidos pelo usuário.
 
-Para executar [scripts][article-scripts] manualmente, você pode usar esse
+Para executar [scripts][article-scripts] manualmente, você pode usar este
 comando, passando o nome do script e, opcionalmente, quaisquer argumentos
 necessários.
 
 ## exec
 
 Executa um binário ou script de um vendor. Você pode executar qualquer comando e
-isso garantirá que o diretório `bin-dir` do Composer seja adicionado à variável
-`PATH` antes do comando ser executado.
+`exec` garantirá que o diretório `bin-dir` do Composer seja adicionado à
+variável `PATH` antes da execução do comando.
 
 ### Opções {: #opcoes-exec }
 
@@ -867,7 +910,7 @@ isso garantirá que o diretório `bin-dir` do Composer seja adicionado à variá
 
 ## diagnose
 
-Se você acha que encontrou um erro ou se algo está se comportando de maneira
+Se você achar que encontrou um erro, ou se algo está se comportando de forma
 estranha, convém executar o comando `diagnose` para realizar verificações
 automatizadas de muitos problemas comuns.
 
@@ -877,9 +920,9 @@ php composer.phar diagnose
 
 ## archive
 
-Esse comando é usado para gerar um arquivo compactado zip/tar para um
-determinado pacote em uma determinada versão. Também pode ser usado para
-arquivar seu projeto inteiro sem os arquivos excluídos/ignorados.
+Este comando é usado para gerar um arquivo compactado `zip`/`tar` para um
+determinado pacote numa determinada versão. Também pode ser usado para arquivar
+o seu projeto inteiro sem os arquivos excluídos/ignorados.
 
 ```sh
 php composer.phar archive vendor/pacote 2.0.21 --format=zip
@@ -890,7 +933,7 @@ php composer.phar archive vendor/pacote 2.0.21 --format=zip
 * **--format (-f):** formato do arquivo compactado resultante: `tar` ou `zip`
   (padrão: `tar`).
 * **--dir:** salva o arquivo compactado neste diretório (padrão: `.`).
-* **--file:** salva o arquivo compactado com o nome de arquivo especificado.
+* **--file:** salva o arquivo compactado com o nome especificado.
 
 ## help
 
@@ -909,9 +952,9 @@ instruções [nesta página][page-autocomplete].
 
 Você pode definir algumas variáveis de ambiente que substituem determinadas
 configurações. Sempre que possível, é recomendável especificar essas
-configurações na seção `config` do `composer.json`. Vale ressaltar que as
-variáveis de ambiente sempre terão precedência sobre os valores especificados no
-`composer.json`.
+configurações na seção `config` do `composer.json`. É importante ressaltar que
+as variáveis de ambiente sempre terão precedência sobre os valores especificados
+no `composer.json`.
 
 ### COMPOSER
 
@@ -924,14 +967,19 @@ Por exemplo:
 COMPOSER=outro-composer.json php composer.phar install
 ```
 
-O arquivo lock gerado usará o mesmo nome: `outro-composer.lock` nesse exemplo.
+O arquivo lock gerado usará o mesmo nome: `outro-composer.lock` neste exemplo.
 
 ### COMPOSER_ALLOW_SUPERUSER {: #composer-allow-superuser }
 
-Se definida como `1`, esta variável de ambiente desabilita o aviso sobre a
+Se definida como `1`, esta variável de ambiente desabilita o alerta sobre a
 execução de comandos como root/superusuário. Ela também desabilita a limpeza
 automática de sessões sudo; portanto, você realmente deve defini-la apenas se
 usar o Composer como superusuário o tempo todo, como em containers do Docker.
+
+### COMPOSER_ALLOW_XDEBUG {: #composer-allow-xdebug }
+
+Se definida como `1`, esta variável de ambiente permite executar o Composer
+quando a extensão Xdebug estiver habilitada, sem reiniciar o PHP sem a extensão.
 
 ### COMPOSER_AUTH {: #composer-auth }
 
@@ -950,15 +998,35 @@ Vendors][article-binaries]) para algo diferente de `vendor/bin`.
 A variável `COMPOSER_CACHE_DIR` permite alterar o diretório de cache do
 Composer, que também é configurável através da opção [`cache-dir`][book-cache].
 
-Por padrão, ela aponta para `$COMPOSER_HOME/cache` no \*nix e macOS e
+Por padrão, ela aponta para `$COMPOSER_HOME/cache` no \*nix e macOS, e
 `C:\Users\<user>\AppData\Local\Composer` (ou `%LOCALAPPDATA%\Composer`) no
 Windows.
 
 ### COMPOSER_CAFILE {: #composer-cafile }
 
 Ao definir esta variável de ambiente, é possível definir um caminho para um
-arquivo de pacote de certificado que será usado durante a verificação por par
+arquivo de pacote de certificados que será usado durante a verificação por par
 SSL/TLS.
+
+### COMPOSER_DEBUG_EVENTS {: #composer-debug-events }
+
+Se definida como `1`, exibe informações sobre os eventos que estão sendo
+disparados, o que pode ser útil para os autores de plugin identificarem o que
+está disparando e quando exatamente.
+
+### COMPOSER_DISABLE_NETWORK {: #composer-disable-network }
+
+Se definida como `1`, desabilita o acesso à rede (melhor esforço). Esta variável
+pode ser usada para depurar ou executar o Composer num avião ou nave espacial
+com conectividade ruim.
+
+Se definida como `prime`, os repositórios VCS do GitHub irão preparar o cache
+para que ele possa ser usado totalmente offline com `1`.
+
+### COMPOSER_DISABLE_XDEBUG_WARN {: #composer-disable-xdebug-warn }
+
+Se definida como `1`, esta variável suprime o alerta de quando o Composer está
+sendo executado com a extensão Xdebug habilitada.
 
 ### COMPOSER_DISCARD_CHANGES {: #composer-discard-changes }
 
@@ -968,31 +1036,41 @@ Esta variável controla a opção de configuração [`discard-changes`]
 ### COMPOSER_HOME {: #composer-home }
 
 A variável `COMPOSER_HOME` permite alterar o diretório inicial do Composer. Este
-é um diretório oculto global (por usuário na máquina) compartilhado entre todos
+é um diretório global oculto (por usuário na máquina) compartilhado entre todos
 os projetos.
 
+Use `composer config --global home` para ver a localização do diretório home.
+
 Por padrão, ela aponta para `C:\Users\<usuario>\AppData\Roaming\Composer` no
-Windows e `/Users/<usuario>/.composer` no macOS. Em sistemas \*nix que seguem as
-[Especificações de Diretório Base do XDG][page-basedir], ela aponta para
+Windows, e `/Users/<usuario>/.composer` no macOS. Em sistemas \*nix que seguem
+as [Especificações de Diretório Base do XDG][page-basedir], ela aponta para
 `$XDG_CONFIG_HOME/composer`. Em outros sistemas \*nix, ela aponta para
 `/home/<usuario>/.composer`.
 
 #### COMPOSER_HOME/config.json {: #composer-home-config-json }
 
-Você pode colocar um arquivo `config.json` no local para o qual `COMPOSER_HOME`
-aponta. O Composer combinará esta configuração com o `composer.json` do seu
-projeto quando você executar os comandos `install` e `update`.
+Você pode colocar um arquivo `config.json` no diretório para o qual
+`COMPOSER_HOME` aponta. O Composer combinará esta configuração com o
+`composer.json` do seu projeto quando você executar os comandos `install` e
+`update`.
 
-Esse arquivo permite definir [repositórios][book-repos] e [configurações][book-config] para
-os seus projetos.
+Este arquivo permite definir [repositórios][book-repos] e [configurações]
+[book-config] para os seus projetos.
 
-Caso a configuração global corresponda à configuração _local_, a configuração _local_
-no `composer.json` do projeto sempre vence.
+Caso a configuração global corresponda à configuração _local_, a configuração
+_local_ no `composer.json` do projeto sempre vence.
 
 ### COMPOSER_HTACCESS_PROTECT {: #composer-htaccess-protect }
 
 O padrão é `1`. Se definida como `0`, o Composer não criará arquivos `.htaccess`
 nos diretórios home, cache e data do Composer.
+
+### COMPOSER_MAX_PARALLEL_HTTP {: #composer-max-parallel-http }
+
+Defina como um inteiro para configurar quantos arquivos podem ser baixados em
+paralelo. O padrão é 12 e deve estar entre 1 e 50. Se o seu proxy tiver
+problemas com concorrência, talvez você queira diminuir este valor. Aumentá-lo
+geralmente não resulta em ganhos de desempenho.
 
 ### COMPOSER_MEMORY_LIMIT {: #composer-memory-limit }
 
@@ -1001,7 +1079,7 @@ Se definida, o valor é usado como `memory_limit` do PHP.
 ### COMPOSER_MIRROR_PATH_REPOS {: #composer-mirror-path-repos }
 
 Se definida como `1`, esta variável de ambiente altera a estratégia padrão do
-repositório de caminhos para `mirror` em vez de `symlink`. Como é a estratégia
+repositório de caminhos para `mirror`, em vez de `symlink`. Por ser a estratégia
 padrão definida, ela ainda pode ser substituída pelas opções do repositório.
 
 ### COMPOSER_NO_INTERACTION {: #composer-no-interaction }
@@ -1022,10 +1100,16 @@ Ao definir esta variável, você pode especificar a versão do pacote raiz, se e
 não puder ser deduzida a partir das informações do VCS e não estiver presente no
 `composer.json`.
 
+### COMPOSER_SELF_UPDATE_TARGET {: #composer-self-update-target }
+
+Se definida, faz com que o comando `self-update` salve o novo arquivo PHAR do
+Composer neste caminho em vez de sobrescrever-se. Útil para atualizar o Composer
+em sistemas de arquivos somente leitura.
+
 ### COMPOSER_VENDOR_DIR {: #composer-vendor-dir }
 
-Ao definir esta variável, você pode fazer com que o Composer instale as
-dependências em um diretório que não seja o `vendor`.
+Ao definir esta variável, você pode fazer o Composer instalar as dependências
+num diretório diferente de `vendor`.
 
 ### http_proxy ou HTTP_PROXY {: #http-proxy }
 
@@ -1034,43 +1118,37 @@ variável de ambiente padrão `http_proxy` ou `HTTP_PROXY`. Basta configurá-la
 como o URL do seu proxy. Muitos sistemas operacionais já definem esta variável
 para você.
 
-Usar `http_proxy` (letras minúsculas) ou mesmo definir as duas pode ser
-preferível, pois algumas ferramentas como git ou curl usarão apenas a versão
-`http_proxy` com letras minúsculas. Como alternativa, você também pode definir o
-proxy do git usando `git config --global http.proxy <url-do-proxy>`.
+Usar `http_proxy` (em minúsculas) ou mesmo definir as duas pode ser preferível,
+pois algumas ferramentas como git ou curl usarão apenas a versão `http_proxy`
+em minúsculas. Como alternativa, você também pode definir o proxy do git usando
+`git config --global http.proxy <url-do-proxy>`.
 
-Se você estiver usando o Composer em um contexto que não seja a CLI (ou seja,
-integração em um CMS ou caso de uso semelhante) e precisar oferecer suporte a
-proxies, forneça a variável de ambiente `CGI_HTTP_PROXY`. Consulte [httpoxy
-.org][page-httpoxy] para mais detalhes.
+Se você estiver usando o Composer num contexto que não seja a CLI (ou seja,
+integração em um CMS ou algum caso de uso semelhante) e precisar oferecer
+suporte a proxies, forneça a variável de ambiente `CGI_HTTP_PROXY`. Consulte
+[httpoxy.org][page-httpoxy] para mais detalhes.
 
 ### HTTP_PROXY_REQUEST_FULLURI {: #http-proxy-request-fulluri }
 
-Se você usar um proxy, mas ele não suportar a flag `request_fulluri`, então você
-deve definir esta variável como `false` ou `0` para impedir que o Composer
-defina a opção `request_fulluri`.
+Se você usa um proxy, mas ele não suporta a flag `request_fulluri`, então você
+deve definir esta variável de ambiente como `false` ou `0` para evitar que o
+Composer defina a opção `request_fulluri`.
 
 ### HTTPS_PROXY_REQUEST_FULLURI {: #https-proxy-request-fulluri }
 
-Se você usar um proxy, mas ele não suportar a flag `request_fulluri` para
-requisições HTTPS, então você deve definir esta variável como `false` ou `0`
-para impedir que o Composer defina a opção `request_fulluri`.
-
-### COMPOSER_SELF_UPDATE_TARGET {: #composer-self-update-target }
-
-Se definida, faz com que o comando `self-update` salve o novo arquivo phar do
-Composer neste caminho em vez de sobrescrever-se. Útil para atualizar o Composer
-em sistemas de arquivos somente leitura.
+Se você usa um proxy, mas ele não suporta a flag `request_fulluri` para
+requisições HTTPS, então você deve definir esta variável de ambiente como
+`false` ou `0` para evitar que o Composer defina a opção `request_fulluri`.
 
 ### no_proxy ou NO_PROXY {: #no-proxy }
 
 Se você estiver atrás de um proxy e deseja desabilitá-lo para determinados
-domínios, pode usar a variável de ambiente `no_proxy` ou `NO_PROXY`.
-Simplesmente defina-a como uma lista de domínios separados por vírgula para os
-quais o proxy *não* deve ser usado.
+domínios, pode usar a variável de ambiente `no_proxy` ou `NO_PROXY`. Defina-a
+como uma lista de domínios separados por vírgula para os quais o proxy **não**
+deve ser usado.
 
 A variável de ambiente aceita domínios, endereços de IP e blocos de endereços de
-IP em notação CIDR. Você pode restringir o filtro a uma porta específica (por
+IP na notação CIDR. Você pode restringir o filtro a uma porta específica (por
 exemplo, `:80`). Você também pode configurá-la como `*` para ignorar o proxy
 para todas as requisições HTTP.
 
@@ -1084,6 +1162,7 @@ para todas as requisições HTTP.
 [book-globally]: introducao.md#globalmente
 [book-libs]: bibliotecas.md
 [book-platform]: config.md#platform
+[book-platform-check]: runtime.md#platform-check
 [book-repos]: repositorios.md
 [book-repositories]: esquema.md#repositories
 [page-autocomplete]: https://github.com/bamarni/symfony-console-autocomplete
