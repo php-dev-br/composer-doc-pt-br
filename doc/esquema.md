@@ -123,7 +123,7 @@ Opcional.
 
 ### homepage
 
-Uma URL para o site do projeto.
+Um URL para o site do projeto.
 
 Opcional.
 
@@ -205,7 +205,7 @@ Cada objeto de pessoa pode ter as seguintes propriedades:
 
 * **name:** O nome da pessoa. Geralmente o nome verdadeiro.
 * **email:** O endereço de e-mail da pessoa.
-* **homepage:** Uma URL para o site da pessoa.
+* **homepage:** Um URL para o site da pessoa.
 * **role:** A função da pessoa no projeto (por exemplo, desenvolvedora ou
   tradutora).
 
