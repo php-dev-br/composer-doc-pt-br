@@ -78,7 +78,9 @@
 
         gtag('js', new Date());
 
-        gtag('config', 'G-KQJVPVGTPZ');
+        gtag('config', 'G-KQJVPVGTPZ', {
+            cookie_flags: 'max-age=7200;SameSite=None;Secure'
+        });
     </script>
 
 </head>
