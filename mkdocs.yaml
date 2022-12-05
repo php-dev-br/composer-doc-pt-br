@@ -3,11 +3,11 @@
 site_name: Documentação do Composer
 site_description: "Documentação do Composer [pt-br]"
 docs_dir: doc
-site_dir: build/2.4
+site_dir: build/1.10
 use_directory_urls: false
 extra:
     name: Composer
-    version: '2.4'
+    version: '1.10'
     versions:
         - '2.4'
         - '2.2'
@@ -41,7 +41,7 @@ markdown_extensions:
 ### github ###
 
 repo_url: https://github.com/adielcristo/composer-doc-pt-br
-edit_uri: edit/2.4/doc/
+edit_uri: edit/1.10/doc/
 
 ### navigation ###
 
