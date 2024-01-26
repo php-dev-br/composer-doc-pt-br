@@ -1,5 +1,5 @@
 services:
-    python:
+    mkdocs:
         image: composer-doc-pt-br-mkdocs:dev
         build:
             context: ""

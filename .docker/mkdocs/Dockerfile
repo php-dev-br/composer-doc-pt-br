@@ -1,18 +1,19 @@
 ### dev ###
 
-FROM python:3.9.15-alpine3.16 AS dev
+FROM python:3.9.18-alpine3.19 AS dev
 LABEL maintainer="Adiel Cristo <adiel@adielcristo.com>"
 
 # Install dependencies and tools.
 RUN apk update && \
     apk add --no-cache --virtual .build-deps \
-        gcc=11.2.1_git20220219-r2 \
-        musl-dev=1.2.3-r2 && \
+        gcc=13.2.1_git20231014-r0 \
+        musl-dev=1.2.4_git20230717-r4 && \
     apk add --virtual .tool-deps \
-        git=2.36.3-r0 && \
+        git=2.43.0-r0 && \
     pip install \
-        pip==22.3 \
-        mkdocs==1.4.1 && \
+        pip==23.3.2 \
+        mkdocs==1.5.3 \
+        mkdocs-i18n==0.4.6 && \
     apk del --purge .build-deps
 
 WORKDIR "/var/www"
