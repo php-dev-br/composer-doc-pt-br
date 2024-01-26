@@ -5,7 +5,7 @@ on:
     branches:
       - 1.10
       - 2.2
-      - 2.4
+      - 2.6
   workflow_dispatch:
 
 jobs:

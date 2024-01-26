@@ -13,7 +13,7 @@
 
 ## Artigos
 
-* [Aliases][article-aliases]
+* [Apelidos][article-aliases]
 
 ## FAQs
 

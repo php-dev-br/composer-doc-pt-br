@@ -3,13 +3,13 @@
 site_name: Documentação do Composer
 site_description: "Documentação do Composer [pt-br]"
 docs_dir: doc
-site_dir: build/2.4
+site_dir: build/2.6
 use_directory_urls: false
 extra:
     name: Composer
-    version: '2.4'
+    version: '2.6'
     versions:
-        - '2.4'
+        - '2.6'
         - '2.2'
         - '1.10'
 
@@ -18,13 +18,8 @@ extra:
 theme:
     name: readthedocs
     display_version: true
+    locale: pt_BR
     prev_next_buttons_location: bottom
-    static_templates:
-        # config files
-        - .nojekyll
-        # templates
-        - 404.html
-        - pesquisar.html
 
 ### extensions ###
 
@@ -39,8 +34,8 @@ markdown_extensions:
 
 ### github ###
 
-repo_url: https://github.com/adielcristo/composer-doc-pt-br
-edit_uri: edit/2.4/doc/
+repo_url: https://github.com/php-dev-br/composer-doc-pt-br
+edit_uri: edit/2.6/doc/
 
 ### navigation ###
 
@@ -56,4 +51,4 @@ nav:
         - config.md
         - comunidade.md
     - Artigos:
-        - artigos/aliases.md
+        - artigos/apelidos.md

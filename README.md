@@ -2,9 +2,9 @@
 
 ## Status
 
-|              [2.4][branch_2_4]              |              [2.2][branch_2_2]              |              [1.10][branch_1_10]              |
+|              [2.6][branch_2_6]              |              [2.2][branch_2_2]              |              [1.10][branch_1_10]              |
 |:-------------------------------------------:|:-------------------------------------------:|:---------------------------------------------:|
-| [![Build Status][build_img_2_4]][build_2_4] | [![Build Status][build_img_2_2]][build_2_2] | [![Build Status][build_img_1_10]][build_1_10] |
+| [![Build Status][build_img_2_6]][build_2_6] | [![Build Status][build_img_2_2]][build_2_2] | [![Build Status][build_img_1_10]][build_1_10] |
 
 ## Setup
 
@@ -26,33 +26,21 @@
    | DOCKER_HOST_PORT_HTTP     | HTTP port on the host machine.                    | 80                             |
    | DOCKER_NETWORK_DEFAULT    | Default external network shared between projects. | composer-doc-pt-br             |
    | DOCKER_VOLUME_APPLICATION | Application volume name.                          | composer-doc-pt-br-application |
-   | MKDOCS_HOST               | MkDocs service alias.                             | composer.local                 |
+   | MKDOCS_HOST               | MkDocs service alias.                             | localhost                      |
    | MKDOCS_PORT_HTTP          | MkDocs HTTP port.                                 | 8000                           |
-
-2. Import the environment variables to the current shell:
-
-    ```shell
-    source .env
-    ```
 
 #### Containers
 
 1. Build the docker images:
 
    ```shell
-   docker compose \
-       --file ${COMPOSE_FILE} \
-       --env-file ${COMPOSE_PROJECT_DIR}/../.env \
-       build
+   make docker_image_build
    ```
 
 2. Run the containers:
 
    ```shell
-   docker compose \
-       --file ${COMPOSE_FILE} \
-       --env-file ${COMPOSE_PROJECT_DIR}/../.env \
-       up -d
+   make docker_container_start
    ```
 
    > Make sure the host ports set up to the services on the
@@ -64,43 +52,40 @@
 3. To stop the containers, run:
 
    ```shell
-   docker compose \
-       --file ${COMPOSE_FILE} \
-       --env-file ${COMPOSE_PROJECT_DIR}/../.env \
-       down
+   make docker_container_stop
    ```
 
 ## Commands
 
 ### Composer
 
-1. To build the documentation from inside the container execute:
+1. To build the documentation, execute:
 
     ```shell
-    mkdocs build
+    make mkdocs_build
     ```
 
 ## Contributing
 
 * [Instructions][doc-contrib]
 
-[branch_1_10]: https://github.com/adielcristo/composer-doc-pt-br/tree/1.10
+[branch_1_10]: https://github.com/php-dev-br/composer-doc-pt-br/tree/1.10
 
-[build_1_10]: https://github.com/adielcristo/composer-doc-pt-br/actions
+[build_1_10]: https://github.com/php-dev-br/composer-doc-pt-br/actions
 
-[build_img_1_10]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=1.10
+[build_img_1_10]: https://github.com/php-dev-br/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=1.10
 
-[branch_2_2]: https://github.com/adielcristo/composer-doc-pt-br/tree/2.2
+[branch_2_2]: https://github.com/php-dev-br/composer-doc-pt-br/tree/2.2
 
-[build_2_2]: https://github.com/adielcristo/composer-doc-pt-br/actions
+[build_2_2]: https://github.com/php-dev-br/composer-doc-pt-br/actions
 
-[build_img_2_2]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=2.2
+[build_img_2_2]: https://github.com/php-dev-br/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=2.2
 
-[branch_2_4]: https://github.com/adielcristo/composer-doc-pt-br/tree/2.4
+[branch_2_6]: https://github.com/php-dev-br/composer-doc-pt-br/tree/2.6
 
-[build_2_4]: https://github.com/adielcristo/composer-doc-pt-br/actions
+[build_2_6]: https://github.com/php-dev-br/composer-doc-pt-br/actions
 
-[build_img_2_4]: https://github.com/adielcristo/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=2.4
+[build_img_2_6]: https://github.com/php-dev-br/composer-doc-pt-br/actions/workflows/build.yaml/badge.svg?branch=2.6
 
 [compose-install]: https://docs.docker.com/compose/install/
 
