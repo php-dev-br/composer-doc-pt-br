@@ -17,7 +17,7 @@
 
 ## FAQs
 
-[article-aliases]: artigos/aliases.md
+[article-aliases]: artigos/apelidos.md
 
 [book-cli]: cli.md
 

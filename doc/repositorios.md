@@ -742,7 +742,7 @@ global:
 composer config -g repo.packagist false
 ```
 
-[art-aliases]: artigos/aliases.md
+[art-aliases]: artigos/apelidos.md
 [art-satis]: artigos/handling-private-packages-with-satis.md
 [bitbucket]: https://bitbucket.org
 [bitbucket-oauth]: https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html
