@@ -17,7 +17,6 @@ extra:
 
 theme:
     name: readthedocs
-    custom_dir: theme/readthedocs
     display_version: true
     prev_next_buttons_location: bottom
     static_templates:
