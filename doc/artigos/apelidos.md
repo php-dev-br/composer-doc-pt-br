@@ -12,7 +12,7 @@ branches que parecem versões, como `2.0` ou `2.0.x`. Para o branch `master`,
 será obtida uma versão `dev-master`. Para o branch `bugfix`, será obtida uma
 versão `dev-bugfix`.
 
-Se o branch `master` for usado para criar tags de lançamentos da linha de
+Se o branch `master` for usado para criar tags de lançamento da linha de
 desenvolvimento `1.0`, ou seja, `1.0.1`, `1.0.2`, `1.0.3`, etc., qualquer pacote
 que dependa dele provavelmente exigirá a versão `1.0.*`.
 
@@ -22,7 +22,7 @@ levará a conflitos, pois `dev-master` não corresponde à restrição `1.0.*`.
 
 É aí que entram os apelidos.
 
-## Apelido de branch
+## Apelidos de branch
 
 O branch `dev-master` está no repositório VCS principal. É relativamente comum
 que alguém queira a versão de desenvolvimento `master` mais recente. Assim, o
@@ -57,7 +57,7 @@ Para usar apelidos de branch, é necessário possuir o repositório do pacote qu
 está sendo apelidado. Se quiser apelidar um pacote de terceiros sem manter um
 fork dele, use apelidos em linha como descrito abaixo.
 
-## Exigindo apelido em linha
+## Exigindo apelidos em linha
 
 Os apelidos de branch são ótimos para apelidar as linhas de desenvolvimento
 principais. Mas para usá-los, é preciso ter controle sobre o repositório de
@@ -76,7 +76,7 @@ O pacote `symfony/monolog-bundle` está sendo usado e requer o `monolog/monolog`
 na versão `1.*`. Então, é necessário que a versão `dev-bugfix` corresponda a
 essa restrição.
 
-Adicione isto ao `composer.json` na raiz do projeto:
+Adicione isso ao `composer.json` na raiz do projeto:
 
 ```json
 {
@@ -93,7 +93,7 @@ Adicione isto ao `composer.json` na raiz do projeto:
 }
 ```
 
-Ou deixe o Composer adicionar isso com:
+Ou deixe o Composer fazer o trabalho com:
 
 ```shell
 php composer.phar require "monolog/monolog:dev-bugfix as 1.0.x-dev"
@@ -102,13 +102,13 @@ php composer.phar require "monolog/monolog:dev-bugfix as 1.0.x-dev"
 Isso buscará a versão `dev-bugfix` do `monolog/monolog` no GitHub e a apelidará
 como `1.0.x-dev`.
 
-> **Nota:** Apelidos em linha são um recurso [root-only][root-package]. Se um
-> pacote com apelidos em linha for necessário, o apelido (à direita de `as`)
+> **Nota:** Apelidos em linha são um recurso do [pacote raiz][root-package]. Se
+> um pacote com apelidos em linha for necessário, o apelido (à direita de `as`)
 > será usado como restrição de versão. A parte à esquerda de `as` será
 > descartada. Como consequência, se A requer B e B requer a versão
 > `monolog/monolog` `dev-bugfix as 1.0.x-dev`, a instalação de A fará B requerer
 > `1.0.x-dev`, que pode existir como um apelido de branch ou um branch `1.0`
-> real. Caso contrário, ele deve ser apelidado novamente no `composer.json` de
+> real. Se não existir, ele deve ser apelidado novamente no `composer.json` de
 > A.
 
 > **Nota:** Apelidos em linha devem ser evitados, especialmente em bibliotecas e
