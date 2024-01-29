@@ -1,11 +1,11 @@
 <!--
-tagline: Acesse pacotes e repositórios hospedados de forma privada
+tagline: Acesse pacotes e repositórios privados
 source_url: https://github.com/composer/composer/blob/2.6/doc/articles/authentication-for-private-packages.md
 revision: de3698f53588cff7a803137f4fc5b36f54574487
 status: wip
 -->
 
-# Autenticação para pacotes e repositórios hospedados de forma privada
+# Autenticação para pacotes e repositórios privados
 
 O [servidor de pacotes privado][1] ou sistema de controle de versão
 provavelmente está protegido com uma ou mais opções de autenticação.

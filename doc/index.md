@@ -14,10 +14,13 @@
 ## Artigos
 
 * [Apelidos][article-aliases]
+* [Autenticação para pacotes e repositórios privados][article-auth-private-packages]
 
 ## FAQs
 
 [article-aliases]: artigos/apelidos.md
+
+[article-auth-private-packages]: artigos/autenticacao-para-pacotes-privados.md
 
 [book-cli]: cli.md
 

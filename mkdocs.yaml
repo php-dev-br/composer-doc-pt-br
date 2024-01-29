@@ -1,36 +1,38 @@
 ### config ###
 
+# See https://www.mkdocs.org/user-guide/configuration/.
+
 site_name: Documentação do Composer
 site_description: "Documentação do Composer [pt-br]"
 docs_dir: doc
 site_dir: build/2.6
 use_directory_urls: false
 extra:
-    name: Composer
-    version: '2.6'
-    versions:
-        - '2.6'
-        - '2.2'
-        - '1.10'
+  name: Composer
+  version: '2.6'
+  versions:
+    - '2.6'
+    - '2.2'
+    - '1.10'
 
 ### theme ###
 
 theme:
-    name: readthedocs
-    display_version: true
-    locale: pt_BR
-    prev_next_buttons_location: bottom
+  name: readthedocs
+  display_version: true
+  locale: pt_BR
+  prev_next_buttons_location: bottom
 
 ### extensions ###
 
 plugins:
-    - search:
-        lang: ['pt']
+  - search:
+      lang: [ 'pt' ]
 
 markdown_extensions:
-    - attr_list
-    - toc:
-        permalink: true
+  - attr_list
+  - toc:
+      permalink: true
 
 ### github ###
 
@@ -40,15 +42,16 @@ edit_uri: edit/2.6/doc/
 ### navigation ###
 
 nav:
-    - index.md
-    - Livro:
-        - introducao.md
-        - uso-basico.md
-        - bibliotecas.md
-        - 'CLI / Comandos': cli.md
-        - esquema.md
-        - repositorios.md
-        - config.md
-        - comunidade.md
-    - Artigos:
-        - artigos/apelidos.md
+  - index.md
+  - Livro:
+    - introducao.md
+    - uso-basico.md
+    - bibliotecas.md
+    - 'CLI / Comandos': cli.md
+    - esquema.md
+    - repositorios.md
+    - config.md
+    - comunidade.md
+  - Artigos:
+    - artigos/apelidos.md
+    - 'Autenticação para pacotes e repositórios privados': artigos/autenticacao-para-pacotes-privados.md
