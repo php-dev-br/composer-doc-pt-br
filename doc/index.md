@@ -19,7 +19,7 @@
 
 ## FAQs
 
-[1]: introducao.md
+[1]: livro/introducao.md
 
 [2]: uso-basico.md
 

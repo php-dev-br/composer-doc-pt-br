@@ -44,7 +44,7 @@ edit_uri: edit/2.6/doc/
 nav:
   - index.md
   - Livro:
-    - introducao.md
+    - Introdução: livro/introducao.md
     - uso-basico.md
     - bibliotecas.md
     - 'CLI / Comandos': cli.md
