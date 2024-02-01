@@ -2,41 +2,41 @@
 
 ## Livro
 
-* [Introdução][book-intro]
-* [Uso Básico][book-usage]
-* [Bibliotecas][book-libs]
-* [CLI / Comandos][book-cli]
-* [Esquema][book-schema]
-* [Repositórios][book-repos]
-* [Config][book-config]
-* [Utilitários do Runtime Composer][8]
-* [Comunidade][book-community]
+* [Introdução][1]
+* [Uso Básico][2]
+* [Bibliotecas][3]
+* [CLI / Comandos][4]
+* [Esquema do `composer.json`][5]
+* [Repositórios][6]
+* [Configuração][7]
+* [Utilitários do runtime do Composer][8]
+* [Comunidade][9]
 
 ## Artigos
 
-* [Apelidos][article-aliases]
-* [Autenticação para pacotes e repositórios privados][article-auth-private-packages]
+* [Apelidos][10]
+* [Autenticação para pacotes e repositórios privados][11]
 
 ## FAQs
 
+[1]: introducao.md
+
+[2]: uso-basico.md
+
+[3]: bibliotecas.md
+
+[4]: cli.md
+
+[5]: esquema.md
+
+[6]: repositorios.md
+
+[7]: config.md
+
 [8]: runtime.md
 
-[article-aliases]: artigos/apelidos.md
+[9]: comunidade.md
 
-[article-auth-private-packages]: artigos/autenticacao-para-pacotes-privados.md
+[10]: artigos/apelidos.md
 
-[book-cli]: cli.md
-
-[book-community]: comunidade.md
-
-[book-config]: config.md
-
-[book-intro]: introducao.md
-
-[book-libs]: bibliotecas.md
-
-[book-repos]: repositorios.md
-
-[book-schema]: esquema.md
-
-[book-usage]: uso-basico.md
+[11]: artigos/autenticacao-para-pacotes-privados.md

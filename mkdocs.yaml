@@ -48,10 +48,10 @@ nav:
     - uso-basico.md
     - bibliotecas.md
     - 'CLI / Comandos': cli.md
-    - esquema.md
+    - 'Esquema do composer.json': esquema.md
     - repositorios.md
-    - config.md
-    - 'Utilitários do Runtime Composer': runtime.md
+    - 'Configuração': config.md
+    - 'Utilitários do runtime do Composer': runtime.md
     - comunidade.md
   - Artigos:
     - artigos/apelidos.md
