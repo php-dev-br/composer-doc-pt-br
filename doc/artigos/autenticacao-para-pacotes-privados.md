@@ -19,16 +19,16 @@ autenticar primeiro usando credenciais já definidas.
 Quando nenhuma dessas credenciais puder ser aplicada, ele solicitará credenciais
 e as salvará (ou um token, se o Composer puder recuperar um).
 
-| Tipo                   | Gerado por Prompt? |
-|------------------------|:------------------:|
-| [http-basic][2]        |        sim         |
-| [Inline http-basic][3] |        não         |
-| [HTTP Bearer][4]       |        não         |
-| [Custom header][5]     |        não         |
-| [gitlab-oauth][6]      |        sim         |
-| [gitlab-token][7]      |        sim         |
-| [github-oauth][8]      |        sim         |
-| [bitbucket-oauth][9]   |        sim         |
+| Tipo                         | Gerado por Prompt? |
+|------------------------------|:------------------:|
+| [`http-basic`][2]            |        sim         |
+| [`http-basic` em linha][3]   |        não         |
+| [HTTP Bearer][4]             |        não         |
+| [Cabeçalho personalizado][5] |        não         |
+| [`gitlab-oauth`][6]          |        sim         |
+| [`gitlab-token`][7]          |        sim         |
+| [`github-oauth`][8]          |        sim         |
+| [`bitbucket-oauth`][9]       |        sim         |
 
 Às vezes, a autenticação automática não é possível ou alguém pode querer
 predefinir as credenciais de autenticação.
@@ -57,15 +57,15 @@ Essas credenciais são armazenadas em um arquivo `auth.json` global no diretóri
 
 É possível editar todos os métodos de autenticação usando a linha de comando:
 
-- [http-basic][11]
-- [Inline http-basic][12]
+- [`http-basic`][11]
+- [`http-basic` em linha][12]
 - [HTTP Bearer][13]
-- [gitlab-oauth][14]
-- [gitlab-token][15]
-- [github-oauth][16]
-- [bitbucket-oauth][17]
+- [`gitlab-oauth`][14]
+- [`gitlab-token`][15]
+- [`github-oauth`][16]
+- [`bitbucket-oauth`][17]
 
-#### Editando manualmente as credenciais de autenticação global
+#### Editando as credenciais de autenticação global manualmente
 
 > **Nota:** Não é recomendado editar manualmente as opções de autenticação, pois
 > isso pode resultar em JSON inválido.
@@ -79,14 +79,14 @@ php composer.phar config --global --editor [--auth]
 
 Para implementações de autenticação específicas, consulte suas seções:
 
-- [http-basic][19]
-- [Inline http-basic][20]
+- [`http-basic`][19]
+- [`http-basic` em linha][20]
 - [HTTP Bearer][21]
-- [custom header][22]
-- [gitlab-oauth][23]
-- [gitlab-token][24]
-- [github-oauth][25]
-- [bitbucket-oauth][26]
+- [Cabeçalho personalizado][22]
+- [`gitlab-oauth`][23]
+- [`gitlab-token`][24]
+- [`github-oauth`][25]
+- [`bitbucket-oauth`][26]
 
 Editar manualmente este arquivo em vez de usar a linha de comando pode resultar
 em erros de JSON inválidos.
@@ -125,85 +125,24 @@ Essa variável pode ser passada como variável de linha de comando ou definida
 como uma variável de ambiente real.
 Leia mais sobre o uso desta variável de ambiente [aqui][27].
 
-## Authentication methods
+## Métodos de autenticação
 
-### http-basic
+### Autenticação com `http-basic`
 
-#### Command line http-basic
-
-```shell
-php composer.phar config [--global] http-basic.repo.example.org username password
-```
-
-In the above command, the config key `http-basic.repo.example.org` consists of two parts:
-
-- `http-basic` is the authentication method.
-- `repo.example.org` is the repository host name, you should replace it with the host name of your repository.
-
-#### Manual http-basic
+#### Autenticação com `http-basic` na linha de comando
 
 ```shell
-php composer.phar config [--global] --editor --auth
+php composer.phar config [--global] http-basic.repo.example.org usuario senha
 ```
 
-```json
-{
-  "http-basic": {
-    "example.org": {
-      "username": "username",
-      "password": "password"
-    }
-  }
-}
-```
+No comando acima, a chave de configuração `http-basic.repo.example.org` possui
+duas partes:
 
-### Inline http-basic
+- `http-basic` é o método de autenticação.
+- `repo.example.org` é o nome do host do repositório e deve ser substituído pelo
+  nome correto.
 
-For the inline http-basic authentication method the credentials are not stored in a separate
-`auth.json` in the project or globally, but in the `composer.json` or global configuration
-in the same place where the Composer repository definition is defined.
-
-Make sure that the username and password are encoded according to [RFC 3986](http://www.faqs.org/rfcs/rfc3986.html) (
-2.1. Percent-Encoding).
-If the username e.g. is an email address it needs to be passed as `name%40example.com`.
-
-#### Command line inline http-basic
-
-```shell
-php composer.phar config [--global] repositories composer.unique-name https://username:password@repo.example.org
-```
-
-#### Manual inline http-basic
-
-```shell
-php composer.phar config [--global] --editor
-```
-
-```json
-{
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://username:password@example.org"
-    }
-  ]
-}
-```
-
-### HTTP Bearer
-
-#### Command line HTTP Bearer authentication
-
-```shell
-php composer.phar config [--global] bearer.repo.example.org token
-```
-
-In the above command, the config key `bearer.repo.example.org` consists of two parts:
-
-- `bearer` is the authentication method.
-- `repo.example.org` is the repository host name, you should replace it with the host name of your repository.
-
-#### Manual HTTP Bearer authentication
+#### Autenticação manual com `http-basic`
 
 ```shell
 php composer.phar config [--global] --editor --auth
@@ -211,56 +150,66 @@ php composer.phar config [--global] --editor --auth
 
 ```json
 {
-  "bearer": {
-    "example.org": "TOKEN"
-  }
-}
-```
-
-### Custom token authentication
-
-#### Manual custom token authentication
-
-```shell
-php composer.phar config [--global] --editor
-```
-
-```json
-{
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://example.org",
-      "options": {
-        "http": {
-          "header": [
-            "API-TOKEN: YOUR-API-TOKEN"
-          ]
+    "http-basic": {
+        "repo.example.org": {
+            "username": "<usuario>",
+            "password": "<senha>"
         }
-      }
     }
-  ]
 }
 ```
 
-### gitlab-oauth
+### Autenticação com `http-basic` em linha
 
-> **Nota:** For the gitlab authentication to work on private gitlab instances, the
-> [`gitlab-domains`](../06-config.md#gitlab-domains) section should also contain the url.
+Para o método de autenticação `http-basic` em linha, as credenciais não são
+armazenadas em um arquivo `auth.json` separado no projeto ou globalmente, mas
+no `composer.json` ou na configuração global no mesmo local onde a definição do
+repositório foi adicionada.
 
-#### Command line gitlab-oauth
+Certifique-se de que o nome de usuário e a senha estejam codificados conforme a
+[RFC 3986][28] (2.1. Codificação percentual).
+Se o nome de usuário, por exemplo, for um endereço de e-mail, ele precisará ser
+passado como `name%40example.com`.
+
+#### Autenticação com `http-basic` em linha na linha de comando
 
 ```shell
-php composer.phar config [--global] gitlab-oauth.gitlab.example.org token
+php composer.phar config [--global] repositories composer.unique-name https://<usuario>:<senha>@repo.example.org
 ```
 
-In the above command, the config key `gitlab-oauth.gitlab.example.org` consists of two parts:
+#### Autenticação manual com `http-basic` em linha
 
-- `gitlab-oauth` is the authentication method.
-- `gitlab.example.org` is the host name of your GitLab instance, you should replace it with the host name of your GitLab
-  instance or use `gitlab.com` if you don't have a self-hosted GitLab instance.
+```shell
+php composer.phar config [--global] --editor
+```
 
-#### Manual gitlab-oauth
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://<usuario>:<senha>@example.org"
+        }
+    ]
+}
+```
+
+### Autenticação com HTTP Bearer
+
+#### Autenticação com HTTP Bearer na linha de comando
+
+```shell
+php composer.phar config [--global] bearer.repo.example.org <token>
+```
+
+No comando acima, a chave de configuração `bearer.repo.example.org` possui duas
+partes:
+
+- `bearer` é o método de autenticação.
+- `repo.example.org` é o nome do host do repositório e deve ser substituído pelo
+  nome correto.
+
+#### Autenticação manual com HTTP Bearer
 
 ```shell
 php composer.phar config [--global] --editor --auth
@@ -268,155 +217,265 @@ php composer.phar config [--global] --editor --auth
 
 ```json
 {
-  "gitlab-oauth": {
-    "example.org": "token"
-  }
-}
-```
-
-### gitlab-token
-
-> **Nota:** For the gitlab authentication to work on private gitlab instances, the
-> [`gitlab-domains`](../06-config.md#gitlab-domains) section should also contain the url.
-
-To create a new access token, go to
-your [access tokens section on GitLab](https://gitlab.com/-/profile/personal_access_tokens)
-(or the equivalent URL on your private instance) and create a new token. See
-also [the GitLab access token documentation](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
-for more information.
-
-When creating a gitlab token manually, make sure it has either the `read_api` or `api` scope.
-
-#### Command line gitlab-token
-
-```shell
-php composer.phar config [--global] gitlab-token.gitlab.example.org token
-```
-
-In the above command, the config key `gitlab-token.gitlab.example.org` consists of two parts:
-
-- `gitlab-token` is the authentication method.
-- `gitlab.example.org` is the host name of your GitLab instance, you should replace it with the host name of your GitLab
-  instance or use `gitlab.com` if you don't have a self-hosted GitLab instance.
-
-#### Manual gitlab-token
-
-```shell
-php composer.phar config [--global] --editor --auth
-```
-
-```json
-{
-  "gitlab-token": {
-    "example.org": "token"
-  }
-}
-```
-
-### github-oauth
-
-To create a new access token, head to your [token settings section on Github](https://github.com/settings/tokens)
-and [generate a new token](https://github.com/settings/tokens/new).
-
-For public repositories when rate limited, a token *without* any particular scope is sufficient (see `(no scope)` in
-the [scopes documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps)). Such
-tokens grant read-only access to public information.
-
-For private repositories, the `repo` scope is needed. Note that the token will be given broad read/write access to all
-of your private repositories and much more - see
-the [scopes documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) for a
-complete list. As of writing (November 2021), it seems not to be possible to further limit permissions for such tokens.
-
-Read more
-about [Personal Access Tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token),
-or subscribe to the [roadmap item for better scoped tokens in GitHub](https://github.com/github/roadmap/issues/184).
-
-#### Command line github-oauth
-
-```shell
-php composer.phar config [--global] github-oauth.github.com token
-```
-
-In the above command, the config key `github-oauth.github.com` consists of two parts:
-
-- `github-oauth` is the authentication method.
-- `github.com` is the host name for which this token applies. For GitHub you most likely do not need to change this.
-
-#### Manual github-oauth
-
-```shell
-php composer.phar config [--global] --editor --auth
-```
-
-```json
-{
-  "github-oauth": {
-    "github.com": "token"
-  }
-}
-```
-
-### bitbucket-oauth
-
-The BitBucket driver uses OAuth to access your private repositories via the BitBucket REST APIs, and you will need to
-create an OAuth consumer to use the driver, please refer
-to [Atlassian's Documentation](https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/). You
-will need to fill the callback url with something to satisfy BitBucket, but the address does not need to go anywhere and
-is not used by Composer.
-
-#### Command line bitbucket-oauth
-
-```shell
-php composer.phar config [--global] bitbucket-oauth.bitbucket.org consumer-key consumer-secret
-```
-
-In the above command, the config key `bitbucket-oauth.bitbucket.org` consists of two parts:
-
-- `bitbucket-oauth` is the authentication method.
-- `bitbucket.org` is the host name for which this token applies. Unless you have a private instance you don't need to
-  change this.
-
-#### Manual bitbucket-oauth
-
-```shell
-php composer.phar config [--global] --editor --auth
-```
-
-```json
-{
-  "bitbucket-oauth": {
-    "bitbucket.org": {
-      "consumer-key": "key",
-      "consumer-secret": "secret"
+    "bearer": {
+        "repo.example.org": "<token>"
     }
-  }
+}
+```
+
+### Autenticação com cabeçalho personalizado
+
+#### Autenticação manual com cabeçalho personalizado
+
+```shell
+php composer.phar config [--global] --editor
+```
+
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://example.org",
+            "options": {
+                "http": {
+                    "header": [
+                        "<cabecalho>: <token>"
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+### Autenticação com `gitlab-oauth`
+
+> **Nota:** Para que a autenticação do GitLab funcione em instâncias privadas do
+> GitLab, a seção [`gitlab-domains`][29] também deve conter o URL.
+
+#### Autenticação com `gitlab-oauth` na linha de comando
+
+```shell
+php composer.phar config [--global] gitlab-oauth.gitlab.example.org <token>
+```
+
+No comando acima, a chave de configuração `gitlab-oauth.gitlab.example.org`
+possui duas partes:
+
+- `gitlab-oauth` é o método de autenticação.
+- `gitlab.example.org` é o nome do host da instância do GitLab e deve ser
+  substituído pelo nome correto ou usar `gitlab.com` se não tiver uma instância
+  própria do GitLab.
+
+#### Autenticação manual com `gitlab-oauth`
+
+```shell
+php composer.phar config [--global] --editor --auth
+```
+
+```json
+{
+    "gitlab-oauth": {
+        "gitlab.example.org": "<token>"
+    }
+}
+```
+
+### Autenticação com `gitlab-token`
+
+> **Nota:** Para que a autenticação do GitLab funcione em instâncias privadas do
+> GitLab, a seção [`gitlab-domains`][29] também deve conter o URL.
+
+Para criar um token de acesso, vá para a [seção de tokens de acesso no GitLab]
+[30] (ou a URL equivalente em sua instância privada) e crie um token.
+Consulte também a [documentação de tokens de acesso do GitLab][31] para obter
+mais informações.
+
+Ao criar um token do GitLab manualmente, certifique-se de que ele tenha o escopo
+`read_api` ou `api`.
+
+#### Autenticação com `gitlab-token` na linha de comando
+
+```shell
+php composer.phar config [--global] gitlab-token.gitlab.example.org <token>
+```
+
+No comando acima, a chave de configuração `gitlab-token.gitlab.example.org`
+possui duas partes:
+
+- `gitlab-token` é o método de autenticação.
+- `gitlab.example.org` é o nome do host da instância do GitLab e deve ser
+  substituído pelo nome correto ou usar `gitlab.com` se não tiver uma instância
+  própria do GitLab.
+
+#### Autenticação manual com `gitlab-token`
+
+```shell
+php composer.phar config [--global] --editor --auth
+```
+
+```json
+{
+    "gitlab-token": {
+        "gitlab.example.org": "<token>"
+    }
+}
+```
+
+### Autenticação com `github-oauth`
+
+Para criar um token de acesso, vá para a [seção de configurações de token no
+GitHub][32] e [gere um token][33].
+
+Para repositórios públicos, quando a taxa é limitada, um token *sem* escopo
+específico é suficiente (ver `(no scope)` na [documentação sobre escopos][34]).
+Esses tokens concedem acesso somente leitura a informações públicas.
+
+Para repositórios privados, o escopo `repo` é necessário.
+Observe que o token terá amplo acesso de leitura/gravação aos seus repositórios
+privados e muito mais - consulte a [documentação sobre escopos][34] para obter
+uma lista completa.
+No momento da escrita (novembro de 2021), limitar ainda mais as permissões para
+esses tokens parece impossível.
+
+Leia mais sobre [tokens de acesso pessoal][35] ou assine o [item do roteiro para
+tokens com escopo melhor no GitHub][36].
+
+#### Autenticação com `github-oauth` na linha de comando
+
+```shell
+php composer.phar config [--global] github-oauth.github.com <token>
+```
+
+No comando acima, a chave de configuração `github-oauth.github.com`
+possui duas partes:
+
+- `github-oauth` é o método de autenticação.
+- `github.com` é o nome do host ao qual este token se aplica.
+  Para o GitHub, isso provavelmente não precisará ser alterado.
+
+#### Autenticação manual com `github-oauth`
+
+```shell
+php composer.phar config [--global] --editor --auth
+```
+
+```json
+{
+    "github-oauth": {
+        "github.com": "<token>"
+    }
+}
+```
+
+### Autenticação com `bitbucket-oauth`
+
+O driver BitBucket usa OAuth para acessar os repositórios privados por meio das
+APIs REST do BitBucket, e será necessário criar um consumidor OAuth para usar o
+driver; consulte a [documentação da Atlassian][37].
+Será necessário preencher o URL da chamada de retorno com algo que satisfaça o
+BitBucket, mas o endereço não precisa ir a lugar nenhum e não é usado pelo
+Composer.
+
+#### Autenticação com `bitbucket-oauth` na linha de comando
+
+```shell
+php composer.phar config [--global] bitbucket-oauth.bitbucket.org <consumer-key> <consumer-secret>
+```
+
+No comando acima, a chave de configuração `bitbucket-oauth.bitbucket.org` possui
+duas partes:
+
+- `bitbucket-oauth` é o método de autenticação.
+- `bitbucket.org` é o nome do host ao qual este token se aplica.
+  Não é necessário alterar isso, a menos que tenha uma instância privada.
+
+#### Autenticação manual com `bitbucket-oauth`
+
+```shell
+php composer.phar config [--global] --editor --auth
+```
+
+```json
+{
+    "bitbucket-oauth": {
+        "bitbucket.org": {
+            "consumer-key": "<consumer-key>",
+            "consumer-secret": "<consumer-secret>"
+        }
+    }
 }
 ```
 
 [1]: handling-private-packages.md
-[2]: #http-basic
-[3]: #inline-http-basic
-[4]: #http-bearer
-[5]: #custom-token-authentication
-[6]: #gitlab-oauth
-[7]: #gitlab-token
-[8]: #github-oauth
-[9]: #bitbucket-oauth
+
+[2]: #autenticacao-com-http-basic
+
+[3]: #autenticacao-com-http-basic-em-linha
+
+[4]: #autenticacao-com-http-bearer
+
+[5]: #autenticacao-com-cabecalho-personalizado
+
+[6]: #autenticacao-com-gitlab-oauth
+
+[7]: #autenticacao-com-gitlab-token
+
+[8]: #autenticacao-com-github-oauth
+
+[9]: #autenticacao-com-bitbucket-oauth
+
 [10]: ../cli.md#composer-home
-[11]: #command-line-http-basic
-[12]: #command-line-inline-http-basic
-[13]: #http-bearer
-[14]: #command-line-gitlab-oauth
-[15]: #command-line-gitlab-token
-[16]: #command-line-github-oauth
-[17]: #command-line-bitbucket-oauth
+
+[11]: #autenticacao-com-http-basic-na-linha-de-comando
+
+[12]: #autenticacao-com-http-basic-em-linha-na-linha-de-comando
+
+[13]: #autenticacao-com-http-bearer-na-linha-de-comando
+
+[14]: #autenticacao-com-gitlab-oauth-na-linha-de-comando
+
+[15]: #autenticacao-com-gitlab-token-na-linha-de-comando
+
+[16]: #autenticacao-com-github-oauth-na-linha-de-comando
+
+[17]: #autenticacao-com-bitbucket-oauth-na-linha-de-comando
+
 [18]: #editando-as-credenciais-globais-na-linha-de-comando
-[19]: #manual-http-basic
-[20]: #manual-inline-http-basic
-[21]: #http-bearer
-[22]: #manual-custom-token-authentication
-[23]: #manual-gitlab-oauth
-[24]: #manual-gitlab-token
-[25]: #manual-github-oauth
-[26]: #manual-bitbucket-oauth
+
+[19]: #autenticacao-manual-com-http-basic
+
+[20]: #autenticacao-manual-com-http-basic-em-linha
+
+[21]: #autenticacao-manual-com-http-bearer
+
+[22]: #autenticacao-manual-com-cabecalho-personalizado
+
+[23]: #autenticacao-manual-com-gitlab-oauth
+
+[24]: #autenticacao-manual-com-gitlab-token
+
+[25]: #autenticacao-manual-com-github-oauth
+
+[26]: #autenticacao-manual-com-bitbucket-oauth
+
 [27]: ../cli.md#composer-auth
+
+[28]: http://www.faqs.org/rfcs/rfc3986.html
+
+[29]: ../config.md#gitlab-domains
+
+[30]: https://gitlab.com/-/profile/personal_access_tokens
+
+[31]: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token
+
+[32]: https://github.com/settings/tokens
+
+[33]: https://github.com/settings/tokens/new
+
+[34]: https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+
+[35]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+[36]: https://github.com/github/roadmap/issues/184
