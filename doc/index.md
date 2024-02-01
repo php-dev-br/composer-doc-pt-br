@@ -9,6 +9,7 @@
 * [Esquema][book-schema]
 * [Repositórios][book-repos]
 * [Config][book-config]
+* [Utilitários do Runtime Composer][8]
 * [Comunidade][book-community]
 
 ## Artigos
@@ -17,6 +18,8 @@
 * [Autenticação para pacotes e repositórios privados][article-auth-private-packages]
 
 ## FAQs
+
+[8]: runtime.md
 
 [article-aliases]: artigos/apelidos.md
 

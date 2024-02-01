@@ -51,6 +51,7 @@ nav:
     - esquema.md
     - repositorios.md
     - config.md
+    - 'Utilitários do Runtime Composer': runtime.md
     - comunidade.md
   - Artigos:
     - artigos/apelidos.md
