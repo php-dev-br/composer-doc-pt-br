@@ -20,7 +20,7 @@ Ele está disponível em todas as versões do Composer.
 
 ## Versões instaladas
 
-O `composer-runtime-api` 2.0 introduziu uma nova classe
+O `composer-runtime-api` `2.0` introduziu uma nova classe
 `Composer\InstalledVersions` oferecendo alguns métodos estáticos para
 inspecionar quais versões estão atualmente instaladas.
 Isso estará automaticamente disponível para o seu código, se o carregador
@@ -129,16 +129,16 @@ O método `getInstallPath()` retorna o caminho absoluto de instalação de um pa
 
 ### Saber quais pacotes de um determinado tipo estão instalados
 
-O método `getInstalledPackagesByType` aceita um tipo de pacote (por exemplo,
+O método `getInstalledPackagesByType()` aceita um tipo de pacote (por exemplo,
 `foo-plugin`) e lista os pacotes desse tipo que estão instalados.
 Se necessário, é possível usar os métodos acima para recuperar mais informações
 sobre cada pacote.
 
 Este método deve aliviar a necessidade de instaladores personalizados colocarem
-plug-ins em um caminho específico, em vez de deixá-los no diretório do
+plugins em um caminho específico, em vez de deixá-los no diretório do
 fornecedor.
-You can then find plugins to initialize at runtime
-via InstalledVersions, including their paths via getInstallPath if needed.
+Os plugins para inicializar em tempo de execução podem ser encontrados por meio
+de `InstalledVersions`, incluindo seus caminhos por meio de `getInstallPath()`.
 
 ```php
 \Composer\InstalledVersions::getInstalledPackagesByType('foo-plugin');
@@ -146,51 +146,63 @@ via InstalledVersions, including their paths via getInstallPath if needed.
 
 > Disponível a partir do Composer 2.1 (ou seja, `composer-runtime-api ^2.1`).
 
-## Platform check
+## Verificação de plataforma
 
-composer-runtime-api 2.0 introduced a new `vendor/composer/platform_check.php` file, which
-is included automatically when you include the Composer autoloader.
+O `composer-runtime-api` `2.0` introduziu um novo arquivo
+`vendor/composer/platform_check.php`, que é incluído automaticamente quando o
+carregador automático do Composer é incluído.
 
-It verifies that platform requirements (i.e., php and php extensions) are fulfilled
-by the PHP process currently running. If the requirements are not met, the script
-prints a warning with the missing requirements and exits with code 104.
+Ele verifica se o processo PHP atual atende aos requisitos da plataforma (ou
+seja, PHP e extensões PHP).
+Caso os requisitos não sejam atendidos, o script imprime um alerta com os
+requisitos ausentes e sai com o código `104`.
 
-To avoid an unexpected white page of death with some obscure PHP extension warning in
-production, you can run `composer check-platform-reqs` as part of your
-deployment/build and if that returns a non-0 code you should abort.
+Para evitar uma página em branco inesperada da morte com algum alerta obscuro de
+extensão PHP em produção, é possível executar `composer check-platform-reqs`
+como parte da instalação/construção e, se isso retornar um código diferente de
+`0`, a operação deve ser abortada.
 
-The default value is `php-only` which only checks the PHP version.
+O valor padrão é `php-only`, que verifica apenas a versão do PHP.
 
-If you for some reason do not want to use this safety check, and would rather
-risk runtime errors when your code executes, you can disable this by setting the
-[`platform-check`](06-config.md#platform-check) config option to `false`.
+Se, por algum motivo, não quiser usar esta verificação de segurança e preferir
+arriscar erros de tempo de execução quando seu código for executado, é possível
+desabilitar isso definindo a opção de configuração de [`platform-check`][3] como
+`false`.
 
-If you want the check to include verifying the presence of PHP extensions,
-set the config option to `true`. `ext-*` requirements will then be verified
-but for performance reasons Composer only checks the extension is present,
-not its exact version.
+Se quiser que a verificação inclua a verificação da presença de extensões PHP,
+defina a opção config como `true`.
+Os requisitos `ext-*` serão então verificados, mas por razões de desempenho, o
+Composer apenas verifica se a extensão está presente, não sua versão exata.
 
-`lib-*` requirements are never supported/checked by the platform check feature.
+Os requisitos `lib-*` não são suportados/verificados pelo recurso de verificação
+de plataforma.
 
-## Autoloader path in binaries
+## Caminho do carregador automático em binários
 
-composer-runtime-api 2.2 introduced a new `$_composer_autoload_path` global
-variable set when running binaries installed with Composer. Read more
-about this [on the vendor binaries docs](articles/vendor-binaries.md#finding-the-composer-autoloader-from-a-binary).
+O `composer-runtime-api` `2.2` introduziu uma nova variável global
+`$_composer_autoload_path` definida ao executar binários instalados com o
+Composer.
+Leia mais sobre isso na [documentação de binários dos fornecedores][4].
 
-This is set by the binary proxy and as such is not made available to projects
-by Composer's `vendor/autoload.php`, which would be useless as it would point back
-to itself.
+Isso é definido pelo proxy binário e, como tal, não é disponibilizado para
+projetos pelo script `vendor/autoload.php` do Composer, o que seria inútil, pois
+apontaria para si mesmo.
 
-## Binary (bin-dir) path in binaries
+## Caminho dos binários (`bin-dir`) em binários
 
-composer-runtime-api 2.2.2 introduced a new `$_composer_bin_dir` global
-variable set when running binaries installed with Composer. Read more
-about this [on the vendor binaries docs](articles/vendor-binaries.md#finding-the-composer-bin-dir-from-a-binary).
+O `composer-runtime-api` `2.2.2` introduziu uma nova variável global
+`$_composer_bin_dir` definida ao executar binários instalados com o Composer.
+Leia mais sobre isso na [documentação de binários dos fornecedores][5].
 
-This is set by the binary proxy and as such is not made available to projects
-by Composer's `vendor/autoload.php`.
+Isso é definido pelo proxy binário e, como tal, não é disponibilizado para
+projetos pelo script `vendor/autoload.php` do Composer.
 
 [1]: uso-basico.md#autoloading
 
 [2]: https://github.com/composer/composer/blob/main/src/Composer/InstalledVersions.php
+
+[3]: config.md#platform-check
+
+[4]: articles/vendor-binaries.md#finding-the-composer-autoloader-from-a-binary
+
+[5]: articles/vendor-binaries.md#finding-the-composer-bin-dir-from-a-binary
