@@ -375,7 +375,7 @@ O driver BitBucket usa OAuth para acessar os repositórios privados por meio das
 APIs REST do BitBucket, e será necessário criar um consumidor OAuth para usar o
 driver; consulte a [documentação da Atlassian][37].
 Será necessário preencher o URL da chamada de retorno com algo que satisfaça o
-BitBucket, mas o endereço não precisa ir a lugar nenhum e não é usado pelo
+BitBucket, mas o endereço não precisa ir a lugar algum e não é usado pelo
 Composer.
 
 #### Autenticação com `bitbucket-oauth` na linha de comando
@@ -479,3 +479,5 @@ php composer.phar config [--global] --editor --auth
 [35]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 [36]: https://github.com/github/roadmap/issues/184
+
+[37]: https://support.atlassian.com/bitbucket-cloud/docs/use-oauth-on-bitbucket-cloud/
