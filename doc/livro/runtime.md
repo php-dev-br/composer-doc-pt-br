@@ -1,10 +1,10 @@
 <!--
 source_url: https://github.com/composer/composer/blob/2.6/doc/07-runtime.md
 revision: 31c7474cde1abe5bb5ea5bc9623c399797ba2f8e
-status: wip
+status: ready
 -->
 
-# Utilitários do Runtime Composer
+# Utilitários do runtime do Composer
 
 Embora o Composer seja usado principalmente para instalar as dependências do
 projeto, algumas coisas são disponibilizadas para uso em tempo de execução.

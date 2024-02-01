@@ -51,7 +51,7 @@ nav:
     - 'Esquema do composer.json': esquema.md
     - repositorios.md
     - 'Configuração': config.md
-    - 'Utilitários do runtime do Composer': runtime.md
+    - 'Utilitários do runtime do Composer': livro/runtime.md
     - comunidade.md
   - Artigos:
     - artigos/apelidos.md
