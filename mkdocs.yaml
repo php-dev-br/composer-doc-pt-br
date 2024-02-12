@@ -45,7 +45,7 @@ nav:
   - index.md
   - Livro:
     - Introdução: livro/introducao.md
-    - uso-basico.md
+    - 'Uso básico': livro/uso-basico.md
     - bibliotecas.md
     - 'CLI / Comandos': cli.md
     - 'Esquema do composer.json': esquema.md

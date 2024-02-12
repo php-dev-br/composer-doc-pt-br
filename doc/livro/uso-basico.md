@@ -1,95 +1,104 @@
-# Uso Básico
+<!--
+source_url: https://github.com/composer/composer/blob/2.6/doc/01-basic-usage.md
+revision: b608b8e87eeafec47fa04a8156ea44fc3f9745b0
+status: ready
+-->
+
+# Uso básico
 
 ## Introdução
 
 Para a nossa introdução ao uso básico, instalaremos o `monolog/monolog`, uma
-biblioteca de registro de logs. Se você ainda não instalou o Composer, consulte
-o capítulo [Introdução][book-intro].
+biblioteca de registro de logs.
+Se o Composer ainda não foi instalado, consulte o capítulo [Introdução][1].
 
-> **Nota:** por uma questão de simplicidade, esta introdução assumirá que você
-> executou uma instalação [local][book-locally] do Composer.
+> **Nota:** por uma questão de simplicidade, esta introdução assumirá que foi
+> realizada uma instalação [local][2] do Composer.
 
-## `composer.json`: Configuração do Projeto
+## `composer.json`: configuração do projeto {: #composer-json-configuracao-do-projeto }
 
-Para começar a usar o Composer no seu projeto, tudo o que você precisa é de um
-arquivo `composer.json`. Esse arquivo descreve as dependências do seu projeto e
-também pode conter outros metadados. Normalmente, ele deve ficar no diretório
-mais alto do seu projeto/repositório VCS. Tecnicamente, você pode executar o
-Composer de qualquer lugar, mas se quiser publicar um pacote no Packagist.org,
-ele terá que encontrar o arquivo no topo do seu repositório VCS.
+Para começar a usar o Composer no projeto, tudo o que precisamos é de um arquivo
+`composer.json`.
+Esse arquivo descreve as dependências do projeto e também pode conter outros
+metadados.
+Normalmente, ele deve ficar no diretório mais alto do projeto/repositório VCS.
+Tecnicamente, é possível executar o Composer de qualquer lugar, mas se quiser
+publicar um pacote no Packagist.org, ele terá que encontrar o arquivo no topo do
+repositório VCS.
 
-### A Chave `require`
+### A chave `require`
 
-A primeira (e muitas vezes a única) coisa especificada no `composer.json` é a
-chave [`require`][book-require]. Você está simplesmente dizendo ao Composer de
-quais pacotes o seu projeto depende.
+A primeira coisa especificada no `composer.json` é a chave [`require`][3].
+Ela informa ao Composer os pacotes dos quais o projeto depende.
 
 ```json
 {
     "require": {
-        "monolog/monolog": "1.0.*"
+        "monolog/monolog": "2.0.*"
     }
 }
 ```
 
-Como você pode ver, [`require`][book-require] recebe um objeto que mapeia
-**nomes de pacotes** (por exemplo, `monolog/monolog`) para **restrições de
-versão** (por exemplo, `1.0.*`).
+Como é possível ver, [`require`][3] recebe um objeto que mapeia **nomes de
+pacotes** (por exemplo, `monolog/monolog`) para **restrições de versão** (por
+exemplo, `2.0.*`).
 
 O Composer usa essas informações para procurar o conjunto correto de arquivos
-nos “repositórios” de pacotes que você registra com a chave [`repositories`]
-[book-repositories], ou no Packagist, o repositório de pacotes padrão. No
-exemplo acima, como nenhum outro repositório foi registrado no arquivo
-`composer.json`, supõe-se que o pacote `monolog/monolog` esteja registrado no
-Packagist. (Veja mais sobre o Packagist [abaixo][book-packagist] ou leia mais
-sobre repositórios [aqui][book-repos]).
+nos "repositórios" de pacotes registrados com a chave [`repositories`][4], ou em
+[Packagist.org][7], o repositório de pacotes padrão.
+No exemplo acima, como nenhum outro repositório foi registrado no arquivo
+`composer.json`, presume-se que o pacote `monolog/monolog` esteja registrado no
+Packagist.org.
+(Leia mais sobre o [Packagist][5] e sobre [repositórios][6]).
 
-### Nomes de Pacotes
+### Nomes de pacotes
 
-O nome do pacote consiste no nome do vendor e o nome do projeto. Geralmente,
-eles serão idênticos — o nome do vendor existe apenas para evitar conflitos de
-nomes. Por exemplo, isso permite que duas pessoas diferentes criem uma
-biblioteca chamada `json`. Uma pode ser chamada `igorw/json` enquanto a outra
-pode ser `seldaek/json`.
+O nome do pacote consiste no nome do fornecedor e no nome do projeto.
+Geralmente, eles serão idênticos — o nome do fornecedor existe apenas para
+evitar conflitos de nomes.
+Por exemplo, isso permite que duas pessoas diferentes criem uma biblioteca
+chamada `json`.
+Uma pode ser chamada `igorw/json` enquanto a outra pode ser `seldaek/json`.
 
-Leia mais sobre a publicação e a nomenclatura de pacotes [aqui][book-libs].
-(Note que você também pode especificar “pacotes de plataforma” como
-dependências, permitindo que você exija determinadas versões de programas do
-servidor. Consulte os [pacotes de plataforma][book-platform-packages] abaixo.)
+Leia mais sobre [publicação e nomenclatura de pacotes][8].
+(Note que também é possível especificar "pacotes de plataforma" como
+dependências, permitindo exigir determinadas versões de programas do servidor.
+Consulte [pacotes de plataforma][9] abaixo.)
 
-### Restrições de Versão de Pacote
+### Restrições de versão de pacote
 
 No nosso exemplo, estamos solicitando o pacote Monolog com a restrição de versão
-[`1.0.*`][page-semver-monolog]. Isso significa qualquer versão no branch de
-desenvolvimento `1.0`, ou qualquer versão maior ou igual a 1.0 e menor que 1.1
-(`>=1.0 <1.1`).
+[`2.0.*`][10].
+Isso significa qualquer versão no branch de desenvolvimento `2.0`, ou qualquer
+versão maior ou igual a `2.0` e menor que `2.1` (`>=2.0 <2.1`).
 
-Leia o [artigo sobre versões][article-versions] para obter informações mais
-detalhadas sobre versões, como elas se relacionam entre si, e sobre as
-restrições de versão.
+Leia o [artigo sobre versões][11] para obter informações mais detalhadas sobre
+versões, como elas se relacionam entre si e sobre restrições de versão.
 
-> **Como o Composer baixa os arquivos corretos?** Quando você especifica uma
-> dependência no `composer.json`, o Composer primeiro pega o nome do pacote
-> solicitado e o procura em qualquer repositório registrado com a chave
-> [`repositories`][book-repositories]. Se você não registrou nenhum repositório
-> extra, ou se ele não encontra um pacote com esse nome nos repositórios que
-> você especificou, ele recorre ao Packagist (mais [abaixo][book-packagist]).
+> **Como o Composer baixa os arquivos corretos?** Quando uma dependência é
+> especificada no `composer.json`, o Composer primeiro pega o nome do pacote
+> solicitado e o procura em qualquer repositório registrado usando a chave
+> [`repositories`][4].
+> Se nenhum repositório extra foi registrado, ou se ele não encontrou um pacote
+> com esse nome nos repositórios especificados, ele recorre ao Packagist (mais
+> [abaixo][5]).
 >
-> Quando o Composer encontra o pacote correto, no Packagist ou num repositório
-> que você especificou, ele usa os recursos de versionamento do VCS do pacote
-> (ou seja, branches e tags) para tentar encontrar a melhor correspondência para
-> a restrição de versão que você especificou. Leia sobre versões e resolução de
-> pacotes no [artigo sobre versões][article-versions].
+> Quando o Composer encontra o pacote correto, seja no Packagist.org ou num
+> repositório especificado, ele usa os recursos de versionamento do VCS do
+> pacote (ou seja, branches e tags) para tentar encontrar a melhor
+> correspondência para a restrição de versão especificada.
+> Leia sobre versões e resolução de pacotes no [artigo sobre versões][11].
 
-> **Nota:** Se você está tentando requisitar um pacote, mas o Composer gera um
-> erro referente à estabilidade do pacote, a versão que você especificou pode
-> não atender aos seus requisitos mínimos de estabilidade padrão. Por padrão,
-> apenas versões estáveis são consideradas ao procurar versões de pacotes
-> válidas no seu VCS.
+> **Nota:** Se estiver tentando requisitar um pacote e o Composer gerar um erro
+> referente à estabilidade do pacote, a versão especificada pode não atender aos
+> requisitos mínimos de estabilidade padrão.
+> Por padrão, apenas versões estáveis são consideradas ao procurar versões de
+> pacotes válidas no seu VCS.
 >
-> Você pode se deparar com isso se estiver tentando requisitar as versões dev,
-> alpha, beta ou RC de um pacote. Leia mais sobre flags de estabilidade e a
-> chave `minimum-stability` na [página do esquema][book-schema].
+> Isso pode acontecer ao tentar requisitar versões dev, alpha, beta ou RC de um
+> pacote.
+> Leia mais sobre flags de estabilidade e a chave `minimum-stability` na [página
+> do esquema][12].
 
 ## Instalando Dependências
 
@@ -185,14 +194,14 @@ php composer.phar update monolog/monolog [...]
 
 ## Packagist
 
-[Packagist][page-packagist] é o principal repositório do Composer. Um
+[Packagist][7] é o principal repositório do Composer. Um
 repositório do Composer é basicamente uma fonte de pacotes: um lugar de onde
 você pode obter pacotes. O Packagist é o repositório central que todas as
 pessoas usam. Isso significa que você pode solicitar automaticamente qualquer
 pacote disponível lá usando `require`, sem especificar mais detalhes sobre onde
 o Composer deve procurar pelo pacote.
 
-Se você for ao [site do Packagist][page-packagist] (packagist.org), poderá
+Se você for ao [site do Packagist][7] (packagist.org), poderá
 navegar e pesquisar os pacotes.
 
 É recomendado que qualquer projeto de código aberto usando o Composer publique
@@ -247,7 +256,9 @@ Você pode até adicionar o seu próprio código ao autoloader, adicionando um c
 ```json
 {
     "autoload": {
-        "psr-4": {"Acme\\": "src/"}
+        "psr-4": {
+            "Acme\\": "src/"
+        }
     }
 }
 ```
@@ -289,23 +300,42 @@ Consulte também a documentação sobre [otimização do autoloader]
 > usá-lo, pode incluir os arquivos `vendor/composer/autoload_*.php`, que
 > retornam arrays associativos que permitem configurar o seu próprio autoloader.
 
-[article-autoloader]: artigos/autoloader-optimization.md
-[article-versions]: artigos/versions.md
+[1]: introducao.md
+
+[2]: introducao.md#localmente
+
+[3]: esquema.md#require
+
+[4]: esquema.md#repositories
+
+[5]: #packagist
+
+[6]: repositorios.md
+
+[7]: https://packagist.org/
+
+[8]: bibliotecas.md
+
+[9]: #pacotes-de-plataforma
+
+[10]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=2.0.*
+
+[11]: ../artigos/versions.md
+
+[12]: esquema.md
+
+[article-autoloader]: ../artigos/autoloader-optimization.md
+
 [book-autoload]: esquema.md#autoload
+
 [book-dump-autoload]: cli.md#dump-autoload-dumpautoload
+
 [book-install]: cli.md#install-i
-[book-intro]: introducao.md
-[book-libs]: bibliotecas.md
-[book-locally]: introducao.md#localmente
+
 [book-lock-file]: bibliotecas.md#arquivo-lock
-[book-packagist]: #packagist
-[book-platform-packages]: #pacotes-de-plataforma
-[book-repos]: repositorios.md
-[book-repositories]: esquema.md#repositories
-[book-require]: esquema.md#require
-[book-schema]: esquema.md
+
 [book-show]: cli.md#show
+
 [book-update]: cli.md#update-u
-[page-packagist]: https://packagist.org/
+
 [page-psr4]: https://www.php-fig.org/psr/psr-4/
-[page-semver-monolog]: https://semver.mwl.be/#?package=monolog%2Fmonolog&version=1.0.*

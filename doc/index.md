@@ -3,7 +3,7 @@
 ## Livro
 
 * [Introdução][1]
-* [Uso Básico][2]
+* [Uso básico][2]
 * [Bibliotecas][3]
 * [CLI / Comandos][4]
 * [Esquema do `composer.json`][5]
@@ -21,7 +21,7 @@
 
 [1]: livro/introducao.md
 
-[2]: uso-basico.md
+[2]: livro/uso-basico.md
 
 [3]: bibliotecas.md
 
