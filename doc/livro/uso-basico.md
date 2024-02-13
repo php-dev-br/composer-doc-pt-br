@@ -95,78 +95,93 @@ versões, como elas se relacionam entre si e sobre restrições de versão.
 > Por padrão, apenas versões estáveis são consideradas ao procurar versões de
 > pacotes válidas no seu VCS.
 >
-> Isso pode acontecer ao tentar requisitar versões dev, alpha, beta ou RC de um
-> pacote.
+> Isso pode acontecer ao tentar requisitar versões `dev`, `alpha`, `beta` ou
+> `RC` de um pacote.
 > Leia mais sobre flags de estabilidade e a chave `minimum-stability` na [página
 > do esquema][12].
 
-## Instalando Dependências
+## Instalando dependências
 
-Para instalar as dependências definidas no seu projeto, execute o comando
-[`install`][book-install].
+Para instalar inicialmente as dependências definidas no projeto, execute o
+comando [`update`][13]:
 
-```sh
+```shell
+php composer.phar update
+```
+
+Isso fará com que o Composer faça duas coisas:
+
+- Ele resolverá todas as dependências listadas no arquivo `composer.json` e
+  gravará todos os pacotes e suas versões exatas no arquivo `composer.lock`,
+  fixando o projeto nessas versões específicas.
+  O arquivo `composer.lock` deve ser enviado ao repositório do projeto para que
+  todas as pessoas que trabalham no projeto usem as mesmas versões fixas de
+  dependências (mais abaixo).
+  Esta é a função principal do comando `update`.
+- Em seguida, ele executará implicitamente o comando [`install`][14].
+  Isso baixará os arquivos das dependências no diretório `vendor` do projeto.
+  (O diretório `vendor` é o local convencional para todos os códigos de
+  terceiros em um projeto).
+  Em nosso exemplo acima, os arquivos-fonte do Monolog acabariam em
+  `vendor/monolog/monolog/`.
+  Como o Monolog depende do pacote `psr/log`, os arquivos desse pacote também
+  poderiam ser encontrados em `vendor`.
+
+> **Dica:** Se o git estiver sendo usado no projeto, o diretório `vendor`
+> provavelmente deverá ser adicionado ao `.gitignore`.
+> Afinal, não queremos adicionar todo esse código de terceiros ao repositório
+> versionado.
+
+### Envie o arquivo `composer.lock` para o controle de versão
+
+Fazer o commit desse arquivo para o controle de versão é essencial porque fará
+com que qualquer pessoa que configurar o projeto use as mesmas versões das
+dependências que foram usadas.
+O servidor de integração contínua, máquinas de produção, outras pessoas no time,
+tudo e todas as pessoas usarão as mesmas dependências, reduzindo o potencial de
+erros que afetam apenas algumas partes das implantações.
+Mesmo se o projeto for desenvolvido por apenas uma pessoa, em seis meses, ao
+reinstalar o projeto, será possível ter certeza de que as dependências
+instaladas ainda estarão funcionando, mesmo que tenham sido lançadas muitas
+versões novas dessas dependências desde então.
+(Veja a nota abaixo sobre como usar o comando `update`.)
+
+> **Nota:** Para bibliotecas não é necessário fazer o commit do arquivo de
+> travamento; veja também: [Bibliotecas - Arquivo de travamento][15].
+
+### Instalando a partir do `composer.lock`
+
+Se já houver um arquivo `composer.lock` na pasta do projeto, significa que o
+comando `install` já foi executado ou outra pessoa no projeto executou o comando
+`update` e fez o commit do arquivo `composer.lock` no projeto (o que é bom).
+
+De qualquer forma, executar `install` quando um arquivo `composer.lock` estiver
+presente resolverá e instalará todas as dependências listadas no
+`composer.json`, mas o Composer usará as versões exatas listadas no
+`composer.lock` para garantir que as versões dos pacotes sejam consistentes para
+todas as pessoas que trabalham no projeto.
+Como resultado, todas as dependências requisitadas no arquivo `composer.json`
+serão obtidas, mas elas podem não estar nas versões mais recentes disponíveis
+(algumas das dependências listadas no arquivo `composer.lock` podem ter lançado
+versões mais recentes desde que o arquivo foi criado).
+Isso é intencional e garante que o projeto não quebre devido a alterações
+inesperadas nas dependências.
+
+Portanto, após buscar novas alterações no repositório VCS, é recomendado
+executar o comando `install` para garantir que o diretório `vendor` esteja
+sincronizado com o arquivo `composer.lock`:
+
+```shell
 php composer.phar install
 ```
 
-Quando você executar esse comando, uma destas duas coisas pode acontecer:
-
-### Instalando sem o `composer.lock`
-
-Se você nunca executou o comando antes e também não há nenhum arquivo
-`composer.lock` presente, o Composer simplesmente resolve todas as dependências
-listadas no seu arquivo `composer.json` e baixa a versão mais recente dos
-arquivos no diretório `vendor` do seu projeto. (O diretório `vendor` é o local
-convencional para todos os códigos de terceiros num projeto). No nosso exemplo
-acima, você acabaria com os arquivos-fonte do Monolog em
-`vendor/monolog/monolog/`. Se o Monolog listasse quaisquer dependências, elas
-também estariam em pastas em `vendor/`.
-
-> **Dica:** Se você estiver usando o git no seu projeto, provavelmente desejará
-> adicionar `vendor` ao `.gitignore`. Você realmente não deseja adicionar todo
-> esse código de terceiros ao seu repositório versionado.
-
-Quando o Composer termina a instalação, ele grava todos os pacotes e as versões
-exatas deles que foram baixadas no arquivo `composer.lock`, fixando o projeto
-naquelas versões específicas. Você deve fazer o commit do arquivo
-`composer.lock` no repositório do projeto para que todas as pessoas que
-trabalham no projeto usem as mesmas versões das dependências (mais sobre isso
-logo abaixo).
-
-### Instalando com o `composer.lock`
-
-Isso nos leva ao segundo cenário. Se já houver um arquivo `composer.lock` e um
-arquivo `composer.json` quando você executar `composer install`, significa que
-você executou o comando `install` antes, ou outra pessoa no projeto executou o
-comando `install` e fez o commit do arquivo `composer.lock` no projeto (o que é
-bom).
-
-De qualquer forma, executar `install` quando um arquivo `composer.lock` estiver
-presente resolve e instala todas as dependências listadas no `composer.json`,
-mas o Composer usa as versões exatas listadas no `composer.lock` para garantir
-que as versões dos pacotes sejam consistentes para todas as pessoas que
-trabalham no seu projeto. Como resultado, você terá todas as dependências
-requisitadas no arquivo `composer.json`, mas elas podem não estar nas versões
-disponíveis mais recentes (algumas das dependências listadas no arquivo
-`composer.lock` podem ter lançado versões mais recentes desde que o arquivo foi
-criado). Isso é intencional, e garante que o seu projeto não quebre devido a
-mudanças inesperadas nas dependências.
-
-### Faça o Commit do Arquivo `composer.lock` para o Controle de Versão
-
-Fazer o commit desse arquivo para o controle de versão é importante porque fará
-com que qualquer pessoa que configure o projeto use as mesmas versões das
-dependências que você está usando. Seu servidor de integração contínua, máquinas
-de produção, outras pessoas no seu time, tudo e todas as pessoas executam as
-mesmas dependências, o que reduz o potencial para erros que afetam apenas
-algumas partes das implantações. Mesmo se você for a única pessoa desenvolvendo,
-ao reinstalar o projeto após seis meses, você poderá se sentir confiante de que
-as dependências instaladas ainda estão funcionando, mesmo que as suas
-dependências tenham lançado muitas versões novas desde então. (Veja a nota
-abaixo sobre o uso do comando `update`.)
-
-> **Nota:** Para bibliotecas, não é necessário fazer o commit do arquivo
-> `composer.lock`. Veja também: [Bibliotecas - Arquivo Lock][book-lock-file].
+O Composer permite compilações reproduzíveis por padrão.
+Isso significa que executar o mesmo comando várias vezes produzirá um diretório
+`vendor` contendo arquivos idênticos (exceto por suas datas e horas), incluindo
+os arquivos do carregador automático.
+Isso é especialmente benéfico para ambientes que exigem processos de verificação
+rigorosos, bem como para distribuições Linux que visam empacotar aplicações PHP
+de maneira segura e previsível.
 
 ## Atualizando as Dependências para as Suas Versões mais Recentes
 
@@ -324,18 +339,18 @@ Consulte também a documentação sobre [otimização do autoloader]
 
 [12]: esquema.md
 
+[13]: cli.md#update-u
+
+[14]: cli.md#install-i
+
+[15]: bibliotecas.md#arquivo-de-travamento
+
 [article-autoloader]: ../artigos/autoloader-optimization.md
 
 [book-autoload]: esquema.md#autoload
 
 [book-dump-autoload]: cli.md#dump-autoload-dumpautoload
 
-[book-install]: cli.md#install-i
-
-[book-lock-file]: bibliotecas.md#arquivo-lock
-
 [book-show]: cli.md#show
-
-[book-update]: cli.md#update-u
 
 [page-psr4]: https://www.php-fig.org/psr/psr-4/
