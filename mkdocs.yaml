@@ -56,3 +56,4 @@ nav:
   - Artigos:
     - artigos/apelidos.md
     - 'Autenticação para pacotes e repositórios privados': artigos/autenticacao-para-pacotes-privados.md
+    - 'Otimização do carregador automático': artigos/otimizacao-do-carregador-automatico.md

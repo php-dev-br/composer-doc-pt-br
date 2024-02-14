@@ -16,6 +16,7 @@
 
 * [Apelidos][10]
 * [Autenticação para pacotes e repositórios privados][11]
+* [Otimização do carregador automático][12]
 
 ## FAQs
 
@@ -40,3 +41,5 @@
 [10]: artigos/apelidos.md
 
 [11]: artigos/autenticacao-para-pacotes-privados.md
+
+[12]: artigos/otimizacao-do-carregador-automatico.md
