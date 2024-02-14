@@ -5,12 +5,13 @@
 site_name: Documentação do Composer
 site_description: "Documentação do Composer [pt-br]"
 docs_dir: doc
-site_dir: build/2.6
+site_dir: build/2.7
 use_directory_urls: false
 extra:
   name: Composer
-  version: '2.6'
+  version: '2.7'
   versions:
+    - '2.7'
     - '2.6'
     - '2.2'
     - '1.10'
@@ -37,7 +38,7 @@ markdown_extensions:
 ### github ###
 
 repo_url: https://github.com/php-dev-br/composer-doc-pt-br
-edit_uri: edit/2.6/doc/
+edit_uri: edit/2.7/doc/
 
 ### navigation ###
 
