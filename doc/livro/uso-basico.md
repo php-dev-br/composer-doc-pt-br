@@ -125,14 +125,14 @@ Isso fará com que o Composer faça duas coisas:
   Em nosso exemplo acima, os arquivos-fonte do Monolog acabariam em
   `vendor/monolog/monolog/`.
   Como o Monolog depende do pacote `psr/log`, os arquivos desse pacote também
-  poderiam ser encontrados em `vendor`.
+  poderiam ser encontrados no diretório `vendor`.
 
 > **Dica:** Se o git estiver sendo usado no projeto, o diretório `vendor`
 > provavelmente deverá ser adicionado ao `.gitignore`.
 > Afinal, não queremos adicionar todo esse código de terceiros ao repositório
 > versionado.
 
-### Envie o arquivo `composer.lock` para o controle de versão
+### Envie o arquivo `composer.lock` para o controle de versão {: #envie-o-arquivo-composer-lock-para-o-controle-de-versao }
 
 Fazer o commit desse arquivo para o controle de versão é essencial porque fará
 com que qualquer pessoa que configurar o projeto use as mesmas versões das
@@ -149,9 +149,9 @@ versões novas dessas dependências desde então.
 > **Nota:** Para bibliotecas não é necessário fazer o commit do arquivo de
 > travamento; veja também: [Bibliotecas - Arquivo de travamento][15].
 
-### Instalando a partir do `composer.lock`
+### Instalando a partir do `composer.lock` {: #instalando-a-partir-do-composer-lock }
 
-Se já houver um arquivo `composer.lock` na pasta do projeto, significa que o
+Se houver um arquivo `composer.lock` na pasta do projeto, significa que o
 comando `install` já foi executado ou outra pessoa no projeto executou o comando
 `update` e fez o commit do arquivo `composer.lock` no projeto (o que é bom).
 
@@ -183,90 +183,90 @@ Isso é especialmente benéfico para ambientes que exigem processos de verifica�
 rigorosos, bem como para distribuições Linux que visam empacotar aplicações PHP
 de maneira segura e previsível.
 
-## Atualizando as Dependências para as Suas Versões mais Recentes
+## Atualizando as dependências para suas versões mais recentes
 
-Como mencionado acima, o arquivo `composer.lock` impede que você obtenha
-automaticamente as versões mais recentes das suas dependências. Para atualizar
-para as versões mais recentes, use o comando [`update`][book-update]. Ele
-buscará as versões correspondentes mais recentes (de acordo com o arquivo
-`composer.json`) e atualizará o arquivo lock com as novas versões. (Isso é
-equivalente a excluir o arquivo `composer.lock` e executar `install` novamente.)
+Como mencionado acima, o arquivo `composer.lock` impede que as versões mais
+recentes das dependências sejam obtidas automaticamente.
+Para atualizar para as versões mais recentes, use o comando [`update`][13].
+Ele buscará as versões correspondentes mais recentes (conforme o arquivo
+`composer.json`) e atualizará o arquivo de travamento com as novas versões.
 
-```sh
+```shell
 php composer.phar update
 ```
 
 > **Nota:** O Composer exibirá um alerta ao executar um comando `install` se o
-> `composer.lock` não tiver sido atualizado depois que foram feitas alterações
+> `composer.lock` não tiver sido atualizado desde que foram feitas alterações
 > no `composer.json` que podem afetar a resolução de dependências.
 
-Se você deseja instalar, atualizar ou remover apenas uma dependência, você pode
+Se desejar instalar, atualizar ou remover apenas uma dependência, é possível
 listá-la explicitamente como um argumento:
 
-```sh
+```shell
 php composer.phar update monolog/monolog [...]
 ```
 
 ## Packagist
 
-[Packagist][7] é o principal repositório do Composer. Um
-repositório do Composer é basicamente uma fonte de pacotes: um lugar de onde
-você pode obter pacotes. O Packagist é o repositório central que todas as
-pessoas usam. Isso significa que você pode solicitar automaticamente qualquer
-pacote disponível lá usando `require`, sem especificar mais detalhes sobre onde
-o Composer deve procurar pelo pacote.
+[Packagist.org][7] é o principal repositório do Composer.
+Um repositório do Composer é basicamente uma fonte de pacotes: um lugar de onde
+é possível obter pacotes.
+O Packagist é o repositório central que todas as pessoas usam.
+Isso significa que é possível solicitar automaticamente qualquer pacote
+disponível lá usando `require`, sem especificar mais detalhes sobre onde o
+Composer deve procurar pelo pacote.
 
-Se você for ao [site do Packagist][7] (packagist.org), poderá
-navegar e pesquisar os pacotes.
+Ao acessar o site [Packagist.org][7], é possível navegar e pesquisar pacotes.
 
 É recomendado que qualquer projeto de código aberto usando o Composer publique
-seus pacotes no Packagist. Uma biblioteca não precisa estar no Packagist para
-ser usada pelo Composer, mas estar lá permite a descoberta e adoção mais rápida
-por outras pessoas.
+seus pacotes no Packagist.
+Uma biblioteca não precisa estar no Packagist para ser usada pelo Composer, mas
+estar lá permite a descoberta e adoção mais rápida por outras pessoas.
 
-## Pacotes de Plataforma
+## Pacotes de plataforma
 
-O Composer possui pacotes de plataforma, que são pacotes virtuais para itens que
-estão instalados no sistema, embora não sejam realmente instaláveis pelo
-Composer. Isso inclui o próprio PHP, extensões PHP e algumas bibliotecas do
-sistema.
+O Composer possui pacotes de plataforma, que são pacotes virtuais para coisas
+que estão instaladas no sistema, mas que não podem ser instaladas pelo Composer.
+Isso inclui o próprio PHP, extensões PHP e algumas bibliotecas do sistema.
 
-* `php` representa a versão do PHP do usuário, permitindo aplicar restrições,
-  por exemplo, `^7.1`. Para exigir uma versão do PHP de 64 bits, você pode
-  exigir o pacote `php-64bit`.
+* `php` representa a versão do PHP da usuária, permitindo aplicar restrições,
+  por exemplo, `^7.1`.
+  Para exigir uma versão do PHP de 64 bits, é possível exigir o pacote
+  `php-64bit`.
 
 * `hhvm` representa a versão do runtime da HHVM e permite aplicar uma restrição,
   por exemplo, `^2.3`.
 
-* `ext-<nome>` permite exigir extensões PHP (incluindo extensões nativas). O
-  versionamento pode ser bastante inconsistente aqui, portanto é uma boa ideia
-  definir a restrição como `*`. Um exemplo de nome de pacote de extensão é
-  `ext-gd`.
+* `ext-<nome>` permite exigir extensões PHP (incluindo extensões nativas).
+  O versionamento pode ser bastante inconsistente aqui, portanto é uma boa ideia
+  definir a restrição como `*`.
+  Um exemplo de nome de pacote de extensão é `ext-gd`.
 
 * `lib-<nome>` permite que restrições sejam feitas nas versões das bibliotecas
-  usadas pelo PHP. As seguintes estão disponíveis: `curl`, `iconv`, `icu`,
-  `libxml`, `openssl`, `pcre`, `uuid`, `xsl`.
+  usadas pelo PHP.
+  As seguintes estão disponíveis: `curl`, `iconv`, `icu`, `libxml`, `openssl`,
+  `pcre`, `uuid`, `xsl`.
 
-Você pode usar [`show --platform`][book-show] para obter uma lista dos seus
-pacotes de plataforma disponíveis localmente.
+É possível usar [`show --platform`][16] para obter uma lista dos pacotes de
+plataforma disponíveis localmente.
 
-## Autoloading
+## Carregamento automático
 
-Para bibliotecas que especificam informações de autoload, o Composer gera um
-arquivo `vendor/autoload.php`. Você pode simplesmente incluir esse arquivo e
-começar a usar as classes que essas bibliotecas fornecem sem nenhum trabalho
-extra:
+Para bibliotecas que especificam informações de carregamento automático, o
+Composer gera um arquivo `vendor/autoload.php`.
+É possível incluir esse arquivo e começar a usar as classes que essas
+bibliotecas fornecem sem nenhum trabalho extra:
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
 $log = new Monolog\Logger('nome');
 $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::WARNING));
-$log->addWarning('Foo');
+$log->warning('Foo');
 ```
 
-Você pode até adicionar o seu próprio código ao autoloader, adicionando um campo
-[`autoload`][book-autoload] ao `composer.json`.
+É possível até adicionar o seu próprio código ao carregador automático,
+adicionando o campo [`autoload`][17] ao `composer.json`.
 
 ```json
 {
@@ -278,42 +278,46 @@ Você pode até adicionar o seu próprio código ao autoloader, adicionando um c
 }
 ```
 
-O Composer registrará um autoloader [PSR-4][page-psr4] para o namespace `Acme`.
+O Composer registrará um carregador automático [PSR-4][18] para o namespace
+`Acme`.
 
-Você define um mapeamento de namespaces para diretórios. O diretório `src`
-estaria na raiz do seu projeto, no mesmo nível que o diretório `vendor`. Um
-exemplo de nome de arquivo seria `src/Foo.php` contendo uma classe `Acme\Foo`.
+Nesse caso, foi definido um mapeamento de namespaces para diretórios.
+O diretório `src` estaria na raiz do projeto, no mesmo nível que o diretório
+`vendor`.
+Um exemplo de nome de arquivo seria `src/Foo.php` contendo uma classe
+`Acme\Foo`.
 
-Depois de adicionar o campo [`autoload`][book-autoload], você deve executar
-novamente este comando:
+Depois de adicionar o campo [`autoload`][17], é necessário executar novamente
+este comando:
 
-```sh
+```shell
 php composer.phar dump-autoload
 ```
 
-Esse comando irá gerar novamente o arquivo `vendor/autoload.php`. Veja a seção
-[`dump-autoload`][book-autoload] para mais informações.
+Esse comando gerará novamente o arquivo `vendor/autoload.php`.
+Veja a seção [`dump-autoload`][19] para mais informações.
 
-A inclusão desse arquivo também retornará a instância do autoloader, portanto,
-você pode armazenar o valor de retorno da chamada ao include numa variável e
-então adicionar mais namespaces. Isso pode ser útil para fazer o autoloading de
-classes numa suíte de testes, por exemplo.
+A inclusão desse arquivo também retornará a instância do carregador automático,
+portanto, é possível armazenar o valor de retorno da chamada ao include numa
+variável e então adicionar mais namespaces.
+Isso pode ser útil para fazer o carregamento automático de classes numa suíte de
+testes, por exemplo.
 
 ```php
 $loader = require __DIR__ . '/vendor/autoload.php';
 $loader->addPsr4('Acme\\Test\\', __DIR__);
 ```
 
-Além do autoloading PSR-4, o Composer também suporta PSR-0, mapas de classes e
-o autoloading de arquivos. Consulte a referência de [`autoload`][book-autoload]
-para obter mais informações.
+Além do carregamento automático PSR-4, o Composer também suporta PSR-0, mapas de
+classes e o carregamento automático de arquivos.
+Consulte a referência de [`autoload`][17] para obter mais informações.
 
-Consulte também a documentação sobre [otimização do autoloader]
-[article-autoloader].
+Consulte também a documentação sobre [otimização do carregador automático][20].
 
-> **Nota:** O Composer fornece o seu próprio autoloader. Se você não quiser
-> usá-lo, pode incluir os arquivos `vendor/composer/autoload_*.php`, que
-> retornam arrays associativos que permitem configurar o seu próprio autoloader.
+> **Nota:** O Composer fornece o seu próprio carregador automático.
+> Se não quiser usá-lo, é possível incluir os arquivos
+> `vendor/composer/autoload_*.php`, que retornam arrays associativos que
+> permitem configurar o seu próprio carregador automático.
 
 [1]: introducao.md
 
@@ -345,12 +349,12 @@ Consulte também a documentação sobre [otimização do autoloader]
 
 [15]: bibliotecas.md#arquivo-de-travamento
 
-[article-autoloader]: ../artigos/autoloader-optimization.md
+[16]: cli.md#show
 
-[book-autoload]: esquema.md#autoload
+[17]: esquema.md#autoload
 
-[book-dump-autoload]: cli.md#dump-autoload-dumpautoload
+[18]: https://www.php-fig.org/psr/psr-4/
 
-[book-show]: cli.md#show
+[19]: cli.md#dump-autoload-dumpautoload
 
-[page-psr4]: https://www.php-fig.org/psr/psr-4/
+[20]: ../artigos/autoloader-optimization.md
